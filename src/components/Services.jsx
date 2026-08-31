@@ -7,18 +7,18 @@ export default function Services({ onOpenBooking, onOpenServiceDetail, theme = '
   const sectionRef = useRef(null);
   const isLight = theme === 'light';
 
-  // Scroll Progress for drawing the river path
+  // Scroll Progress for drawing the river path with ultra-smooth damped spring (Zero lag/vibration)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start 40%", "end 90%"]
+    offset: ["start 30%", "end 85%"]
   });
 
-  const pathProgress = useTransform(scrollYProgress, [0.02, 0.95], [0, 1]);
+  const pathProgress = useTransform(scrollYProgress, [0.05, 0.95], [0, 1]);
 
   const smoothPathLength = useSpring(pathProgress, {
-    stiffness: 120,
-    damping: 22,
-    restDelta: 0.001
+    stiffness: 250,
+    damping: 35,
+    restDelta: 0.005
   });
 
   const headerContainerVariants = {
@@ -220,12 +220,12 @@ export default function Services({ onOpenBooking, onOpenServiceDetail, theme = '
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, x: isLeft ? -30 : 30, y: 20 }}
+                initial={{ opacity: 0, x: isLeft ? -25 : 25, y: 15 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: false, margin: "-50px" }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ y: -3 }}
-                className={`w-full lg:w-[46%] ${isLeft ? 'lg:mr-auto lg:ml-0' : 'lg:ml-auto lg:mr-0'} p-5 sm:p-6 rounded-2xl border relative overflow-hidden backdrop-blur-xl transition-all duration-300 text-left space-y-3.5 ${isLight
+                className={`w-full lg:w-[46%] ${isLeft ? 'lg:mr-auto lg:ml-0' : 'lg:ml-auto lg:mr-0'} p-5 sm:p-6 rounded-2xl border relative overflow-hidden backdrop-blur-xl transition-all duration-300 text-left space-y-3.5 transform-gpu will-change-transform ${isLight
                   ? 'bg-white border-slate-200/80 shadow-md hover:shadow-xl'
                   : 'bg-[#0B132B]/90 border-[#1E3A8A]/70 shadow-xl shadow-blue-950/50'
                   }`}
