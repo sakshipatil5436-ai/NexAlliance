@@ -156,36 +156,12 @@ export default function Testimonials({ theme = 'light' }) {
                 transition={{ duration: 0.3, ease: 'easeOut' }}
                 className="space-y-6"
               >
-                {/* Metric Badge & Audio Button */}
+                {/* Metric Badge */}
                 <div className="flex items-center gap-4 flex-wrap">
                   <span className="text-xs font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100/90 border border-sky-300/80 px-4 py-1.5 rounded-2xl shadow-sm flex items-center gap-2">
                     <TrendingUp className="w-4 h-4" />
                     <span>{activeStory.metric}</span>
                   </span>
-
-                  <div className="flex items-center gap-2 bg-white/80 border border-sky-200 px-3 py-1 rounded-full shadow-sm">
-                    <button
-                      onClick={(e) => handleTogglePlay(e, activeStory)}
-                      className={`w-7 h-7 rounded-full flex items-center justify-center transition-all cursor-pointer ${
-                        playingId === activeStory.id
-                          ? 'bg-amber-500 text-white animate-pulse'
-                          : 'bg-[#0088FF] text-white hover:bg-[#0077E6]'
-                      }`}
-                      title="Play 10-sec audio story clip"
-                    >
-                      {playingId === activeStory.id ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
-                    </button>
-                    <span className="text-[11px] font-extrabold text-[#0088FF] uppercase tracking-wider">
-                      {playingId === activeStory.id ? 'Playing Clip...' : 'Listen 10s Clip'}
-                    </span>
-
-                    {/* Equalizer */}
-                    <div className="flex items-center gap-0.5 h-4 ml-1">
-                      <div className={`w-0.5 rounded-full bg-[#0088FF] ${playingId === activeStory.id ? 'wave-bar-1' : 'h-2 opacity-40'}`} />
-                      <div className={`w-0.5 rounded-full bg-[#0088FF] ${playingId === activeStory.id ? 'wave-bar-2' : 'h-3 opacity-40'}`} />
-                      <div className={`w-0.5 rounded-full bg-[#0088FF] ${playingId === activeStory.id ? 'wave-bar-3' : 'h-4 opacity-40'}`} />
-                    </div>
-                  </div>
                 </div>
 
                 {/* Bold Crisp Quotation */}
