@@ -96,14 +96,7 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
     }
   ];
 
-  // Fast auto-advance sequence from Step 1 (0) -> 2 -> 3 -> 4 -> 5 -> 6 every 1.6s
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      setActiveStep((prev) => (prev === null ? 0 : (prev + 1) % steps.length));
-    }, 1600);
-    return () => clearInterval(timer);
-  }, [isPaused, steps.length]);
+  // Static user click control (No automatic setInterval timer height shifts)
 
   return (
     <section className="py-14 sm:py-20 transition-colors duration-500 relative overflow-hidden select-none bg-gradient-to-b from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] text-slate-900">
@@ -117,7 +110,8 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          onViewportEnter={() => setActiveStep(0)} // Reset animation to Step 1 whenever user enters/scrolls to section
+          viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.4 }}
           className="text-center max-w-3xl mx-auto space-y-3"
         >
@@ -163,37 +157,33 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
                   <motion.div
                     whileHover={{ scale: 1.1, y: -4 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                    className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center transition-all duration-300 transform-gpu mb-4 ${
-                      isActive
+                    className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center transition-all duration-300 transform-gpu mb-4 ${isActive
                         ? 'bg-gradient-to-tr from-[#0088FF] via-[#0077E6] to-indigo-600 text-white shadow-[0_12px_30px_rgba(0,136,255,0.45)] ring-4 ring-sky-300/80 scale-105 -translate-y-2'
                         : 'bg-gradient-to-tr from-slate-300 via-slate-200 to-slate-100 text-slate-600 shadow-md hover:shadow-lg hover:bg-sky-100'
-                    }`}
+                      }`}
                   >
-                    {/* Inner 3D Glow Ring */}
+                    {/* Inner 3D Pulse Ring */}
                     {isActive && (
-                      <div className="absolute inset-0 rounded-full bg-[#0088FF]/20 border-2 border-sky-400 shadow-[0_0_15px_rgba(0,136,255,0.6)] pointer-events-none" />
+                      <div className="absolute inset-0 rounded-full bg-[#0088FF]/30 animate-ping pointer-events-none" />
                     )}
 
                     {/* Step Icon */}
-                    <IconComp className={`w-8 h-8 sm:w-9 sm:h-9 transition-transform duration-300 ${
-                      isActive ? 'scale-110 drop-shadow-md text-white' : 'text-slate-600 group-hover:text-[#0088FF]'
-                    }`} />
+                    <IconComp className={`w-8 h-8 sm:w-9 sm:h-9 transition-transform duration-300 ${isActive ? 'scale-110 drop-shadow-md text-white' : 'text-slate-600 group-hover:text-[#0088FF]'
+                      }`} />
 
                     {/* Floating Step Number Pill (1, 2, 3, 4, 5, 6) */}
-                    <div className={`absolute -bottom-1 -right-1 w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-white flex items-center justify-center font-heading font-black text-xs sm:text-sm shadow-md transition-all ${
-                      isActive
+                    <div className={`absolute -bottom-1 -right-1 w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-white flex items-center justify-center font-heading font-black text-xs sm:text-sm shadow-md transition-all ${isActive
                         ? 'bg-white text-[#0088FF] scale-110'
                         : 'bg-slate-100 text-slate-700'
-                    }`}>
+                      }`}>
                       {step.number}
                     </div>
                   </motion.div>
 
                   {/* HEADING LABEL (Always visible) */}
                   <div className="text-center mb-3">
-                    <h3 className={`font-heading font-black text-sm sm:text-base leading-snug transition-colors ${
-                      isActive ? 'text-[#0088FF]' : 'text-slate-900 group-hover:text-[#0088FF]'
-                    }`}>
+                    <h3 className={`font-heading font-black text-sm sm:text-base leading-snug transition-colors ${isActive ? 'text-[#0088FF]' : 'text-slate-900 group-hover:text-[#0088FF]'
+                      }`}>
                       {step.title}
                     </h3>
                   </div>

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage = false }) {
@@ -138,29 +139,66 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
     : projects.filter(p => p.category === activeTab);
 
   return (
-    <section id="portfolio" className={`scroll-mt-20 ${isHomePage ? 'py-12 sm:py-16' : 'pt-28 sm:pt-36 pb-20 sm:pb-24'} relative overflow-hidden select-none bg-[#F0F6FF] text-slate-900`}>
+    <section id="portfolio" className={`scroll-mt-20 ${isHomePage ? 'py-12 sm:py-16' : 'pt-28 sm:pt-36 pb-20 sm:pb-24'} transition-colors duration-500 relative overflow-hidden select-none bg-gradient-to-b from-[#F0F6FF] via-[#E8F2FF] to-[#F0F6FF] text-slate-900`}>
+
+      {/* Fast GPU Marquee Keyframes */}
+      <style>{`
+        @keyframes nexGpuMarqueeFast {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
+        }
+        .nex-gpu-marquee-fast {
+          display: flex;
+          gap: 1.5rem;
+          width: max-content;
+          will-change: transform;
+          animation: nexGpuMarqueeFast 18s linear infinite;
+        }
+        .nex-gpu-marquee-fast:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
+      {/* Ambient Radial Blue Glow Points */}
+      <div className="absolute top-10 right-10 w-[500px] h-[500px] bg-[#0088FF]/15 rounded-full filter blur-[140px] pointer-events-none z-0" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-cyan-400/15 rounded-full filter blur-[140px] pointer-events-none z-0" />
 
       <div className={isHomePage ? "w-full relative z-10" : "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"}>
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 px-4">
-          <div className="relative inline-block text-center pb-1 mb-2">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative inline-block text-center pb-1 mb-2"
+          >
             <div className="text-xs font-bold tracking-[0.25em] uppercase text-[#0088FF] text-center">
               <span>{isHomePage ? 'OUR PORTFOLIO GALLERY' : 'OUR PORTFOLIO'}</span>
             </div>
-          </div>
+          </motion.div>
 
-          <h2 className="font-heading text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-3 text-slate-900">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="font-heading text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-3 text-slate-900"
+          >
             {isHomePage ? (
               <>Real Client <span className="text-[#0088FF]">Projects Showcase.</span></>
             ) : (
               <>Our Real <span className="text-[#0088FF]">Projects.</span></>
             )}
-          </h2>
+          </motion.h2>
 
-          <p className="text-xs sm:text-base font-semibold leading-relaxed max-w-2xl mx-auto text-slate-600">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xs sm:text-base font-semibold leading-relaxed max-w-2xl mx-auto text-slate-600"
+          >
             A showcase of custom platforms, web applications, and enterprise solutions shipped by NexAlliance.
-          </p>
+          </motion.p>
 
           {/* Filter Tabs */}
           <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
@@ -173,11 +211,10 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider border cursor-pointer ${
-                  activeTab === tab.id
-                    ? 'bg-[#0088FF] text-white shadow-md border-[#0088FF]'
-                    : 'bg-white text-slate-600 hover:bg-white hover:text-[#0088FF] border-sky-200 shadow-sm'
-                }`}
+                className={`px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all duration-150 border cursor-pointer ${activeTab === tab.id
+                    ? 'bg-[#0088FF] text-white shadow-md shadow-sky-500/25 scale-105 border-[#0088FF]'
+                    : 'bg-white/80 text-slate-600 hover:bg-white hover:text-[#0088FF] border-sky-200/80'
+                  }`}
               >
                 {tab.label}
               </button>
@@ -191,7 +228,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
             {/* Left Arrow Button */}
             <button
               onClick={() => scrollManual('left')}
-              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-slate-800 hover:bg-[#0088FF] hover:text-white border border-sky-200 shadow-xl flex items-center justify-center cursor-pointer"
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 text-slate-800 hover:bg-[#0088FF] hover:text-white border border-sky-200 shadow-xl flex items-center justify-center transition-all cursor-pointer hover:scale-110"
               aria-label="Previous Projects"
             >
               <ChevronLeft className="w-5 h-5 sm:w-7 sm:h-7" />
@@ -200,16 +237,22 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
             {/* Right Arrow Button */}
             <button
               onClick={() => scrollManual('right')}
-              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-slate-800 hover:bg-[#0088FF] hover:text-white border border-sky-200 shadow-xl flex items-center justify-center cursor-pointer"
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 text-slate-800 hover:bg-[#0088FF] hover:text-white border border-sky-200 shadow-xl flex items-center justify-center transition-all cursor-pointer hover:scale-110"
               aria-label="Next Projects"
             >
               <ChevronRight className="w-5 h-5 sm:w-7 sm:h-7" />
             </button>
 
-            {/* SCROLLABLE GALLERY TRACK (Clean Horizontal Scroll Track) */}
+            {/* Left Fade Mask */}
+            <div className="absolute top-0 left-0 bottom-0 w-12 sm:w-32 z-20 pointer-events-none bg-gradient-to-r from-[#F0F6FF] to-transparent"></div>
+
+            {/* Right Fade Mask */}
+            <div className="absolute top-0 right-0 bottom-0 w-12 sm:w-32 z-20 pointer-events-none bg-gradient-to-l from-[#F0F6FF] to-transparent"></div>
+
+            {/* SCROLLABLE GALLERY TRACK (Native smooth horizontal & arrow button scrolling) */}
             <div
               ref={scrollRef}
-              className="w-full overflow-x-auto py-3 no-scrollbar"
+              className="w-full overflow-x-auto scroll-smooth py-3 no-scrollbar"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               <div className="flex gap-6 px-6 sm:px-12 w-max">
@@ -217,7 +260,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                   <div
                     key={item.id}
                     onClick={() => handleProjectClick(item)}
-                    className="w-[290px] xs:w-[330px] sm:w-[400px] h-[220px] xs:h-[250px] sm:h-[280px] shrink-0 rounded-3xl relative overflow-hidden group cursor-pointer shadow-md border-2 border-sky-200/80 hover:border-[#0088FF] bg-white p-5 sm:p-6 flex flex-col justify-between"
+                    className="w-[290px] xs:w-[330px] sm:w-[400px] h-[220px] xs:h-[250px] sm:h-[280px] shrink-0 rounded-3xl relative overflow-hidden group cursor-pointer shadow-xl shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 hover:-translate-y-1.5 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-5 sm:p-6 flex flex-col justify-between transform-gpu"
                   >
                     {/* Clean Logo Image Centered */}
                     <div className="flex-1 min-h-0 w-full flex items-center justify-center p-3">
@@ -226,17 +269,17 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                         alt={item.title}
                         loading="lazy"
                         decoding="async"
-                        className="max-h-full max-w-full object-contain object-center filter drop-shadow-sm"
+                        className="max-h-full max-w-full object-contain object-center filter drop-shadow-sm group-hover:scale-105 transition-transform duration-300 transform-gpu"
                       />
                     </div>
 
                     {/* Project Name & Explore Icon */}
-                    <div className="flex items-center justify-between pt-3 pb-1 border-t border-sky-100 z-10 shrink-0 min-w-0">
+                    <div className="flex items-center justify-between pt-3 pb-1 border-t border-sky-200/80 z-10 shrink-0 min-w-0">
                       <h3 className="font-heading text-sm sm:text-base font-extrabold text-slate-900 truncate pr-2">
                         {item.title}
                       </h3>
                       {!item.hideExplore && (
-                        <div className="w-7 h-7 rounded-full bg-sky-50 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white shrink-0">
+                        <div className="w-7 h-7 rounded-full bg-sky-100 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white group-hover:scale-110 transition-all shrink-0">
                           <ArrowUpRight className="w-4 h-4" />
                         </div>
                       )}
@@ -249,41 +292,47 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
         ) : (
           /* CONDITION 2: Dedicated Full Portfolio Page View Grid */
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch max-w-7xl mx-auto">
-            {filtered.map((item) => (
-              <div
-                key={item.id}
-                className="h-[240px] sm:h-[280px] rounded-3xl relative overflow-hidden group cursor-pointer shadow-md border-2 border-sky-200/80 hover:border-[#0088FF] bg-white p-5 sm:p-7 flex flex-col justify-between w-full"
-                onClick={() => handleProjectClick(item)}
-              >
-                {/* Clean Logo Image Centered */}
-                <div className="flex-1 min-h-0 w-full flex items-center justify-center p-3">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="max-h-full max-w-full object-contain object-center filter drop-shadow-sm"
-                  />
-                </div>
-
-                {/* Project Name & Explore Icon */}
-                <div className="flex items-center justify-between pt-3 pb-1 border-t border-sky-100 z-10 shrink-0 min-w-0">
-                  <div className="min-w-0 pr-2">
-                    <h3 className="font-heading text-base sm:text-lg font-black text-slate-900 truncate">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs font-semibold text-slate-500 truncate">
-                      {item.tech}
-                    </p>
+            <AnimatePresence mode="popLayout">
+              {filtered.map((item, idx) => (
+                <motion.div
+                  key={item.id}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: (idx % 3) * 0.05 }}
+                  whileHover={{ y: -6 }}
+                  className="h-[240px] sm:h-[280px] rounded-3xl relative overflow-hidden group cursor-pointer shadow-xl shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-5 sm:p-7 flex flex-col justify-between w-full"
+                  onClick={() => handleProjectClick(item)}
+                >
+                  {/* Clean Logo Image Centered */}
+                  <div className="flex-1 min-h-0 w-full flex items-center justify-center p-3">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="max-h-full max-w-full object-contain object-center filter drop-shadow-sm group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  {!item.hideExplore && (
-                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-sky-50 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white shrink-0">
-                      <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+
+                  {/* Project Name & Explore Icon */}
+                  <div className="flex items-center justify-between pt-3 pb-1 border-t border-sky-200/80 z-10 shrink-0 min-w-0">
+                    <div className="min-w-0 pr-2">
+                      <h3 className="font-heading text-base sm:text-lg font-black text-slate-900 truncate">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs font-semibold text-slate-500 truncate">
+                        {item.tech}
+                      </p>
                     </div>
-                  )}
-                </div>
-              </div>
-            ))}
+                    {!item.hideExplore && (
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-sky-100 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white group-hover:scale-110 transition-all shrink-0">
+                        <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
         )}
 
