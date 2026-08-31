@@ -65,7 +65,8 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
       category: 'erp',
       title: 'BDSRN',
       image: '/projects/bdsrn.webp',
-      tech: 'Disaster Resource Network'
+      tech: 'Disaster Resource Network',
+      hideExplore: true
     },
     {
       id: 7,
@@ -137,6 +138,7 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
   ];
 
   const handleProjectClick = (item) => {
+    if (item.hideExplore) return;
     if (item.link) {
       window.open(item.link, '_blank', 'noopener,noreferrer');
     } else if (onOpenBooking) {
@@ -306,9 +308,11 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
                         <h4 className="font-heading text-lg sm:text-2xl font-black text-white drop-shadow-md">
                           {item.title}
                         </h4>
-                        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white group-hover:bg-[#0088FF] group-hover:scale-110 transition-all shrink-0">
-                          <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
-                        </div>
+                        {!item.hideExplore && (
+                          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white group-hover:bg-[#0088FF] group-hover:scale-110 transition-all shrink-0">
+                            <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -342,9 +346,11 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
                         <h4 className="font-heading text-lg sm:text-2xl font-black text-white drop-shadow-md">
                           {item.title}
                         </h4>
-                        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white group-hover:bg-[#0088FF] group-hover:scale-110 transition-all shrink-0">
-                          <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
-                        </div>
+                        {!item.hideExplore && (
+                          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white group-hover:bg-[#0088FF] group-hover:scale-110 transition-all shrink-0">
+                            <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -389,9 +395,11 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
                     <h4 className="font-heading text-xl sm:text-2xl font-black text-white drop-shadow-md">
                       {item.title}
                     </h4>
-                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white group-hover:bg-[#0088FF] group-hover:scale-110 transition-all shrink-0">
-                      <ArrowUpRight className="w-5 h-5" />
-                    </div>
+                    {!item.hideExplore && (
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white group-hover:bg-[#0088FF] group-hover:scale-110 transition-all shrink-0">
+                        <ArrowUpRight className="w-5 h-5" />
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               ))}
