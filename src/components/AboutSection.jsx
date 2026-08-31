@@ -117,7 +117,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
           <div className="text-center max-w-2xl mx-auto space-y-2 relative z-10">
             <span className="text-xs font-bold uppercase tracking-widest text-[#0088FF]">OUR STORY</span>
             <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
-              From Two Journeys to One Alliance
+              From Two Journeys to <span className="text-[#0088FF]">NexAlliance</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 font-medium">
               A timeline of independent beginnings, project collaboration, and shared vision.
@@ -333,28 +333,59 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
             </h3>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
-            {timelineEvents.map((evt, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                whileHover={{ x: 4 }}
-                className="space-y-1.5 pb-4 group"
-              >
-                <span className="text-[11px] font-bold text-[#0088FF] uppercase tracking-wider block">
-                  {evt.date}
-                </span>
-                <h4 className="font-heading text-base font-bold text-slate-900 group-hover:text-[#0088FF] transition-colors">
-                  {evt.title}
-                </h4>
-                <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                  {evt.desc}
-                </p>
-              </motion.div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+            {timelineEvents.map((evt, idx) => {
+              const IconComponent = evt.icon;
+              // Directional initial position when reaching section: Left, Right, Top, Bottom
+              const directions = [
+                { x: -70, y: 0 },  // Left
+                { x: 70, y: 0 },   // Right
+                { x: 0, y: -50 },  // Top
+                { x: 0, y: 50 },   // Bottom
+              ];
+              const initPos = directions[idx % directions.length];
+
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, ...initPos }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: false, amount: 0.25 }}
+                  transition={{ type: "spring", stiffness: 280, damping: 20, delay: idx * 0.05 }}
+                  whileHover={{ scale: 1.03, y: -5, transition: { duration: 0.15, ease: "easeOut" } }}
+                  className="bg-slate-50/80 hover:bg-white border border-slate-200/90 hover:border-[#0088FF]/50 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
+                >
+                  <div className="space-y-4">
+                    {/* Top Row: Date Badge */}
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-black text-[#0088FF] uppercase tracking-wider bg-sky-100/70 px-3 py-1 rounded-full border border-sky-200/60">
+                        {evt.date}
+                      </span>
+                    </div>
+
+                    {/* Milestone Title & Description */}
+                    <div className="space-y-1.5">
+                      <h4 className="font-heading text-lg font-black text-slate-900 group-hover:text-[#0088FF] transition-colors">
+                        {evt.title}
+                      </h4>
+                      <p className="text-xs text-slate-600 leading-relaxed font-semibold">
+                        {evt.desc}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Bottom Tag Badge */}
+                  {evt.tag && (
+                    <div className="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between">
+                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 group-hover:text-[#0088FF] transition-colors">
+                        {evt.tag}
+                      </span>
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#0088FF]/40 group-hover:bg-[#0088FF] transition-colors"></div>
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 

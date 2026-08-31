@@ -17,45 +17,53 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
   const projects = [
     {
       id: 1,
-      category: 'web',
-      title: 'Vrani Chemicals',
-      image: '/projects/vrani_chemicals.webp',
-      tech: 'Chemical & Product Portal'
+      category: 'crm',
+      title: 'Hotel Hilton TMS',
+      image: '/projects/milton.webp',
+      tech: 'Hotel Task Management App',
+      fit: 'contain',
+      link: 'https://www.hilton.com/en/locations/india/'
     },
     {
       id: 2,
-      category: 'web',
-      title: 'ArkA Stone Realty',
-      image: '/projects/arka_stone_realty.webp',
-      tech: 'Real Estate Advisory'
+      category: 'erp',
+      title: 'Mad Over Grills MS',
+      image: '/projects/Mad_over.webp',
+      tech: 'Restaurant Billing & POS',
+      fit: 'contain',
+      link: 'https://madovergrills.co.in/'
     },
     {
       id: 3,
       category: 'erp',
-      title: 'BrandBox',
-      image: '/projects/brandbox.webp',
-      tech: 'E-Commerce & HRM System'
+      title: 'Nirman Architects MS Build Transform',
+      image: '/projects/niraman.webp',
+      tech: 'Architecture Management',
+      fit: 'contain',
+      link: 'https://www.nirman-architects.com/'
     },
     {
       id: 4,
-      category: 'crm',
-      title: 'V Square Neuro Spine Centre',
-      image: '/projects/v_square_spine.webp',
-      tech: 'Healthcare & Clinic Portal'
+      category: 'erp',
+      title: 'Modulite Interior',
+      image: '/projects/modulite.webp',
+      tech: 'Interior Project Management',
+      fit: 'contain',
+      link: 'https://modulite.in/'
     },
     {
       id: 5,
       category: 'web',
-      title: 'Dotteds',
-      image: '/projects/dotteds.webp',
-      tech: 'Fashion E-Commerce Store'
+      title: 'Har Bole – News Platform',
+      image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&auto=format&fit=crop&q=80',
+      tech: 'Digital News & CMS Portal'
     },
     {
       id: 6,
       category: 'erp',
-      title: 'Gas Agency',
-      image: '/projects/gas_agency.webp',
-      tech: 'Gas & Inventory ERP'
+      title: 'BDSRN',
+      image: '/projects/bdsrn.webp',
+      tech: 'Disaster Resource Network'
     },
     {
       id: 7,
@@ -67,53 +75,69 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
     {
       id: 8,
       category: 'erp',
-      title: 'BDSRN',
-      image: '/projects/bdsrn.webp',
-      tech: 'Disaster Resource Network'
+      title: 'Gas Agency',
+      image: '/projects/gas_agency.webp',
+      tech: 'Gas & Inventory ERP'
     },
     {
       id: 9,
-      category: 'erp',
-      title: 'Custom Restaurant System',
-      image: '/projects/restaurant_system.webp',
-      tech: 'Restaurant POS & Billing'
+      category: 'crm',
+      title: 'V Square Neuro Spine Centre',
+      image: '/projects/v_logo.webp',
+      tech: 'Healthcare & Clinic Portal',
+      fit: 'contain',
+      link: 'https://vsquareneurospine.com/'
     },
     {
       id: 10,
-      category: 'erp',
-      title: 'Nirman Architects MS',
-      image: '/projects/nirman_architects.webp',
-      tech: 'Architecture Management'
+      category: 'web',
+      title: 'Dotteds',
+      image: '/projects/dotteds_logo.webp',
+      tech: 'Fashion E-Commerce Store',
+      fit: 'contain',
+      link: 'https://dotteds.in/'
     },
     {
       id: 11,
       category: 'erp',
-      title: 'Modulite Interior',
-      image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&auto=format&fit=crop&q=80',
-      tech: 'Interior Project Management'
+      title: 'BrandBox',
+      image: '/projects/brandbox.webp',
+      tech: 'E-Commerce & HRM System'
     },
     {
       id: 12,
       category: 'web',
-      title: 'Har Bole - News Platform',
-      image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&auto=format&fit=crop&q=80',
-      tech: 'Digital News & CMS Portal'
+      title: 'ArkA Stone Realty',
+      image: '/projects/arka_logo.webp',
+      tech: 'Real Estate Advisory',
+      fit: 'contain',
+      link: 'https://arkastonerealty.com/'
     },
     {
       id: 13,
-      category: 'crm',
-      title: 'Hotel Hilton TMS',
-      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=80',
-      tech: 'Hotel Task Management App'
+      category: 'web',
+      title: 'Luxbury Properties',
+      image: '/projects/new-logo.webp',
+      tech: 'Real Estate Portal',
+      fit: 'contain',
+      link: 'https://luxburyproperties.com/'
     },
     {
       id: 14,
-      category: 'erp',
-      title: 'Mad Over Grills MS',
-      image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80',
-      tech: 'Restaurant Billing & POS'
+      category: 'web',
+      title: 'Vrani Chemicals',
+      image: '/projects/vrani_chemicals.webp',
+      tech: 'Chemical & Product Portal'
     }
   ];
+
+  const handleProjectClick = (item) => {
+    if (item.link) {
+      window.open(item.link, '_blank', 'noopener,noreferrer');
+    } else if (onOpenBooking) {
+      onOpenBooking();
+    }
+  };
 
   const filtered = activeTab === 'all'
     ? projects
@@ -253,25 +277,24 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
                   {[...projects, ...projects, ...projects].map((item, idx) => (
                     <div
                       key={`${item.id}-${idx}`}
-                      onClick={onOpenBooking}
+                      onClick={() => handleProjectClick(item)}
                       className="w-[290px] xs:w-[340px] sm:w-[420px] h-[190px] xs:h-[220px] sm:h-[250px] shrink-0 rounded-[20px] sm:rounded-[24px] relative overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] border border-slate-200/80 dark:border-white/20 bg-slate-900"
                     >
-                      {/* Image Only */}
+                      {/* Image Only - Centered in Box */}
                       {item.image && (
                         <img
                           src={item.image}
                           alt={item.title}
-                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+                          className={`absolute inset-0 w-full h-full group-hover:scale-105 transition-transform duration-700 pointer-events-none ${
+                            item.fit === 'contain'
+                              ? 'object-contain object-center p-6 sm:p-8 bg-[#050B17]'
+                              : 'object-cover object-center'
+                          }`}
                         />
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent pointer-events-none" />
 
-                      {/* Tech Tag Badge */}
-                      <div className="absolute top-3.5 left-3.5 z-10">
-                        <span className="px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-[#0088FF]/90 text-white backdrop-blur-md border border-white/30 shadow-md">
-                          {item.tech}
-                        </span>
-                      </div>
+
 
                       {/* Project Name Only */}
                       <div className="absolute bottom-0 inset-x-0 p-4 sm:p-5 flex items-center justify-between z-10">
@@ -290,25 +313,24 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
                   {filtered.map((item) => (
                     <div
                       key={item.id}
-                      onClick={onOpenBooking}
+                      onClick={() => handleProjectClick(item)}
                       className="w-[290px] xs:w-[340px] sm:w-[420px] h-[190px] xs:h-[220px] sm:h-[250px] shrink-0 rounded-[20px] sm:rounded-[24px] relative overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] border border-slate-200/80 dark:border-white/20 bg-slate-900"
                     >
-                      {/* Image Only */}
+                      {/* Image Only - Centered in Box */}
                       {item.image && (
                         <img
                           src={item.image}
                           alt={item.title}
-                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+                          className={`absolute inset-0 w-full h-full group-hover:scale-105 transition-transform duration-700 pointer-events-none ${
+                            item.fit === 'contain'
+                              ? 'object-contain object-center p-6 sm:p-8 bg-[#050B17]'
+                              : 'object-cover object-center'
+                          }`}
                         />
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent pointer-events-none" />
 
-                      {/* Tech Tag Badge */}
-                      <div className="absolute top-3.5 left-3.5 z-10">
-                        <span className="px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-[#0088FF]/90 text-white backdrop-blur-md border border-white/30 shadow-md">
-                          {item.tech}
-                        </span>
-                      </div>
+
 
                       {/* Project Name Only */}
                       <div className="absolute bottom-0 inset-x-0 p-4 sm:p-5 flex items-center justify-between z-10">
@@ -339,24 +361,23 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
                   transition={{ duration: 0.4, delay: (idx % 3) * 0.1 }}
                   whileHover={{ scale: 1.02 }}
                   className="h-[240px] sm:h-[290px] rounded-[20px] sm:rounded-[24px] relative overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-300 border border-slate-200/80 dark:border-white/20 w-full bg-slate-900"
-                  onClick={onOpenBooking}
+                  onClick={() => handleProjectClick(item)}
                 >
-                  {/* Image Only */}
+                  {/* Image Only - Centered in Box */}
                   {item.image && (
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+                      className={`absolute inset-0 w-full h-full group-hover:scale-105 transition-transform duration-700 pointer-events-none ${
+                        item.fit === 'contain'
+                          ? 'object-contain object-center p-6 sm:p-8 bg-[#050B17]'
+                          : 'object-cover object-center'
+                      }`}
                     />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent pointer-events-none" />
 
-                  {/* Tech Tag Badge */}
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#0088FF]/90 text-white backdrop-blur-md border border-white/30 shadow-md">
-                      {item.tech}
-                    </span>
-                  </div>
+
 
                   {/* Project Name Only */}
                   <div className="absolute bottom-0 inset-x-0 p-5 sm:p-6 flex items-center justify-between z-10">

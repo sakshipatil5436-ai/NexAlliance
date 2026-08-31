@@ -10,7 +10,6 @@ import CareersSection from './components/CareersSection';
 import ContactSection from './components/ContactSection';
 import BookingModal from './components/BookingModal';
 import Footer from './components/Footer';
-import VoiceBrowserAssistant from './components/VoiceBrowserAssistant';
 import { PhoneCall } from 'lucide-react';
 
 // ScrollToTop Helper Component to reset scroll position on route change
@@ -167,9 +166,6 @@ export default function App() {
             </a>
           </div>
         )}
-
-        {/* Voice AI Browser Assistant (Listen & Talk Back) */}
-        <VoiceBrowserAssistant onOpenBooking={handleOpenBookingModal} />
 
         {/* Start Consultation Email Form Modal */}
         <BookingModal isOpen={bookingOpen} onClose={handleCloseBooking} theme="light" />
