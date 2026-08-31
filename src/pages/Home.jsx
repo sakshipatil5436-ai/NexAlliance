@@ -29,31 +29,8 @@ export default function Home({ onOpenBooking, onOpenServiceDetail, theme }) {
       {/* 1. HERO SECTION (100% UNTOUCHED - NO CHANGES IN HERO SECTION) */}
       <Hero onOpenBooking={onOpenBooking} theme={theme} />
 
-      {/* 2. GLOBAL HOME BACKGROUND TECH CODE MATRIX RAINFALL (CRM, HRM, ERP, REACT.JS, etc.) */}
+      {/* 2. STABLE CLEAN HOME BACKGROUND SECTIONS */}
       <div className="relative w-full flex flex-col">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-35 z-0 transform-gpu">
-          {techRainItems.map((item, idx) => (
-            <motion.div
-              key={idx}
-              animate={{
-                y: ["-5%", "105%"],
-                opacity: [0, 0.85, 0.85, 0]
-              }}
-              transition={{
-                duration: item.duration,
-                repeat: Infinity,
-                ease: "linear",
-                delay: item.delay
-              }}
-              style={{ left: item.left }}
-              className="absolute top-0 font-mono text-xs font-bold tracking-widest uppercase select-none pointer-events-none text-transparent bg-clip-text bg-gradient-to-b from-cyan-400 via-[#0088FF] to-blue-600 drop-shadow-sm whitespace-nowrap"
-            >
-              <span className="text-cyan-400 opacity-60 mr-1">&gt;</span>
-              <span>{item.text}</span>
-            </motion.div>
-          ))}
-        </div>
-
         {/* Home Page Sections Overlay */}
         <div className="relative z-10 w-full flex flex-col">
           <Stats theme={theme} />

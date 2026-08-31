@@ -170,9 +170,9 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
                         : 'bg-gradient-to-tr from-slate-300 via-slate-200 to-slate-100 text-slate-600 shadow-md hover:shadow-lg hover:bg-sky-100'
                     }`}
                   >
-                    {/* Inner 3D Pulse Ring */}
+                    {/* Inner 3D Glow Ring */}
                     {isActive && (
-                      <div className="absolute inset-0 rounded-full bg-[#0088FF]/30 animate-ping pointer-events-none" />
+                      <div className="absolute inset-0 rounded-full bg-[#0088FF]/20 border-2 border-sky-400 shadow-[0_0_15px_rgba(0,136,255,0.6)] pointer-events-none" />
                     )}
 
                     {/* Step Icon */}
