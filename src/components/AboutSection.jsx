@@ -346,7 +346,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="space-y-1">
               <div className="font-heading text-3xl sm:text-4xl font-extrabold text-[#0088FF]">
-                <AnimatedCounter end={15} suffix="+" duration={1800} />
+                <AnimatedCounter end={20} suffix="+" duration={1800} />
               </div>
               <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Projects Delivered</span>
             </div>

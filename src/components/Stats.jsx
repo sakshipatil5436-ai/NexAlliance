@@ -9,7 +9,7 @@ export default function Stats({ theme = 'light' }) {
   const statsData = [
     {
       icon: Award,
-      value: 15,
+      value: 20,
       suffix: "+",
       label: "Projects Completed",
       desc: "Delivered on schedule with 100% precision"
