@@ -1,106 +1,221 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Quote } from 'lucide-react';
+import { Quote, Star, TrendingUp, ShieldCheck, Zap, Award, CheckCircle2 } from 'lucide-react';
 
 export default function Testimonials({ theme = 'light' }) {
   const isLight = theme === 'light';
 
-  const testimonialsData = [
+  const row1Testimonials = [
     {
+      id: 1,
       name: "Rajesh Kumar",
       title: "CTO, LogiTech Systems",
       comment: "NexAlliance built our custom ERP module in record time. Our inventory tracking speed improved by 40% immediately.",
+      metric: "+140% Revenue Growth",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
-      rating: 5
+      company: "LogiTech Systems"
     },
     {
+      id: 2,
       name: "Priya Sharma",
       title: "Head of Operations, FinEdge",
       comment: "Their MERN stack expertise is unmatched. The customer portal they designed handles thousands of real-time transactions seamlessly.",
+      metric: "99.9% Real-Time Scalability",
       avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
-      rating: 5
+      company: "FinEdge Solutions"
     },
     {
+      id: 3,
       name: "Vikram Patel",
       title: "Founder, Enterprise SaaS",
-      comment: "From cloud infrastructure setup to automated CI/CD pipelines, NexAlliance proved to be the engineering partner we needed.",
+      comment: "From cloud infrastructure setup to automated CI/CD pipelines, NexAlliance proved to be the reliable engineering partner we needed.",
+      metric: "10x Automated CI/CD Speed",
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
-      rating: 5
+      company: "Enterprise SaaS"
+    }
+  ];
+
+  const row2Testimonials = [
+    {
+      id: 4,
+      name: "Ananya Desai",
+      title: "VP Product, HealthEcosystem",
+      comment: "The mobile app and HIPAA-compliant cloud setup delivered by NexAlliance exceeded all our security and performance expectations.",
+      metric: "100% Security Compliant",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      company: "HealthEcosystem Inc"
+    },
+    {
+      id: 5,
+      name: "Sameer Joshi",
+      title: "Director, RetailConnect",
+      comment: "Our omni-channel e-commerce portal scaled smoothly during peak sales season with zero downtime and 45% faster page loads.",
+      metric: "99.99% Peak Sales Uptime",
+      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80",
+      company: "RetailConnect Global"
+    },
+    {
+      id: 6,
+      name: "Kavita Nair",
+      title: "Head of Tech, LogisticsCloud",
+      comment: "NexAlliance's real-time analytics dashboard gave our management team operational visibility across all supply chain routes.",
+      metric: "50% Faster Decisions",
+      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+      company: "LogisticsCloud"
     }
   ];
 
   return (
-    <section className={`py-10 sm:py-12 transition-colors duration-500 border-y relative overflow-hidden select-none ${isLight ? 'bg-[#F8FAFC] border-slate-200 text-slate-900' : 'bg-[#050B17] border-[#1E3A8A] text-white'
-      }`}>
-      {/* Background Ambient Radial Glow matching Methodology section */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#0088FF]/15 rounded-full filter blur-[150px] pointer-events-none" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section className={`py-16 sm:py-24 transition-colors duration-500 border-y relative overflow-hidden select-none ${
+      isLight ? 'bg-gradient-to-b from-[#F0F6FF] via-[#E8F2FF] to-[#F0F6FF] border-sky-200 text-slate-900' : 'bg-[#050B17] border-[#1E3A8A] text-white'
+    }`}>
+      
+      {/* Dynamic Keyframes for Left and Right Smooth Marquee Streams */}
+      <style>{`
+        @keyframes testimonialMarqueeLeft {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
+        }
+        @keyframes testimonialMarqueeRight {
+          0% { transform: translate3d(-50%, 0, 0); }
+          100% { transform: translate3d(0, 0, 0); }
+        }
+        .animate-marquee-left {
+          animation: testimonialMarqueeLeft 28s linear infinite;
+        }
+        .animate-marquee-right {
+          animation: testimonialMarqueeRight 28s linear infinite;
+        }
+        .animate-marquee-left:hover, .animate-marquee-right:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
+      {/* Interactive Soft Moving Ambient Blue Radial Glows */}
+      <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-[#0088FF]/15 rounded-full filter blur-[150px] pointer-events-none z-0"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-cyan-400/15 rounded-full filter blur-[150px] pointer-events-none z-0"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12 sm:space-y-16">
 
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.3 }}
-          className="text-center max-w-3xl mx-auto mb-8 sm:mb-10"
+          className="text-center max-w-3xl mx-auto space-y-4"
         >
-          <div className="relative inline-block text-center pb-1 mb-2">
-            <div className="text-xs sm:text-sm font-black tracking-[0.22em] uppercase text-[#0088FF] text-center">
-              <span>CLIENT SUCCESS STORIES</span>
-            </div>
-          </div>
-
-          <h2 className={`font-heading text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-3 uppercase ${isLight ? 'text-slate-900' : 'text-white'
-            }`}>
+          <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#0088FF]">
+            CLIENT SUCCESS STORIES
+          </span>
+          <h2 className="font-heading text-3xl sm:text-5xl font-black tracking-tight text-slate-900 leading-tight">
             Trusted By Founders & <span className="text-[#0088FF]">Enterprise Leaders</span>
           </h2>
-          <p className={`text-xs sm:text-sm font-semibold max-w-xl mx-auto ${isLight ? 'text-slate-600' : 'text-slate-300'
-            }`}>
-            See how our tailored ERP, CRM, and cloud engineering solutions drive real-world business results.
+          <p className="text-xs sm:text-base font-semibold text-slate-600 max-w-xl mx-auto leading-relaxed">
+            Real-world stories of scalable engineering, high velocity, and measurable business growth.
           </p>
         </motion.div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 transform-gpu">
-          {testimonialsData.map((item, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: idx * 0.08 }}
-              whileHover={{ y: -5 }}
-              className={`p-5 sm:p-6 rounded-2xl border-0 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group cursor-pointer transform-gpu ${isLight
-                ? 'bg-white shadow-sky-500/10'
-                : 'bg-[#050B17] shadow-2xl'
-                }`}
-            >
-              <div>
+        {/* INFINITE SCROLLING MARQUEE STREAM CONTAINER */}
+        <div className="space-y-6 sm:space-y-8 relative overflow-hidden py-2">
+          
+          {/* Left Fade Mask */}
+          <div className="absolute top-0 left-0 bottom-0 w-12 sm:w-32 z-20 pointer-events-none bg-gradient-to-r from-[#F0F6FF] to-transparent"></div>
+          {/* Right Fade Mask */}
+          <div className="absolute top-0 right-0 bottom-0 w-12 sm:w-32 z-20 pointer-events-none bg-gradient-to-l from-[#F0F6FF] to-transparent"></div>
 
-                <Quote className="w-8 h-8 text-[#0088FF]/40 mb-4 group-hover:text-[#0088FF] group-hover:scale-110 transition-all duration-300" />
+          {/* ROW 1: LEFT INFINITE SCROLL STREAM (Pauses on Hover) */}
+          <div className="flex w-max animate-marquee-left gap-6 sm:gap-8 transform-gpu">
+            {[...row1Testimonials, ...row1Testimonials, ...row1Testimonials, ...row1Testimonials].map((item, idx) => (
+              <div
+                key={`row1-${item.id}-${idx}`}
+                className="w-[320px] xs:w-[360px] sm:w-[400px] shrink-0 bg-white/95 backdrop-blur-xl border-2 border-sky-300/80 hover:border-[#0088FF] rounded-3xl p-6 sm:p-7 shadow-xl shadow-sky-500/10 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 flex flex-col justify-between group transform-gpu hover:-translate-y-2 cursor-pointer relative overflow-hidden"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100/90 border border-sky-300/80 px-3 py-1 rounded-full shadow-sm flex items-center gap-1.5">
+                      <TrendingUp className="w-3.5 h-3.5" />
+                      <span>{item.metric}</span>
+                    </span>
+                    <div className="flex items-center gap-0.5 text-amber-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                  </div>
 
-                <p className={`text-sm font-semibold leading-relaxed mb-6 ${isLight ? 'text-slate-700' : 'text-slate-300'
-                  }`}>
-                  "{item.comment}"
-                </p>
-              </div>
+                  <Quote className="w-7 h-7 text-[#0088FF]/30 group-hover:text-[#0088FF] transition-colors" />
 
-              <div className={`flex items-center gap-4 pt-4 border-t ${isLight ? 'border-slate-200' : 'border-[#1E3A8A]/80'
-                }`}>
-                <img
-                  src={item.avatar}
-                  alt={item.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-[#0088FF] group-hover:scale-105 transition-transform"
-                />
-                <div>
-                  <h4 className={`font-heading font-black text-sm ${isLight ? 'text-slate-900' : 'text-white'
-                    }`}>{item.name}</h4>
-                  <p className={`text-xs font-medium ${isLight ? 'text-slate-500' : 'text-slate-400'
-                    }`}>{item.title}</p>
+                  <p className="text-xs sm:text-sm font-bold text-slate-800 leading-relaxed">
+                    "{item.comment}"
+                  </p>
+                </div>
+
+                <div className="pt-4 mt-4 border-t border-sky-100 flex items-center gap-3">
+                  <img
+                    src={item.avatar}
+                    alt={item.name}
+                    className="w-10 h-10 rounded-full object-cover border-2 border-[#0088FF] shadow-sm shrink-0"
+                  />
+                  <div className="min-w-0">
+                    <h4 className="font-heading font-black text-xs sm:text-sm text-slate-900 group-hover:text-[#0088FF] transition-colors truncate">
+                      {item.name}
+                    </h4>
+                    <p className="text-[11px] font-bold text-slate-500 truncate">
+                      {item.title}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
+
+          {/* ROW 2: RIGHT INFINITE SCROLL STREAM (Pauses on Hover) */}
+          <div className="flex w-max animate-marquee-right gap-6 sm:gap-8 transform-gpu">
+            {[...row2Testimonials, ...row2Testimonials, ...row2Testimonials, ...row2Testimonials].map((item, idx) => (
+              <div
+                key={`row2-${item.id}-${idx}`}
+                className="w-[320px] xs:w-[360px] sm:w-[400px] shrink-0 bg-white/95 backdrop-blur-xl border-2 border-sky-300/80 hover:border-[#0088FF] rounded-3xl p-6 sm:p-7 shadow-xl shadow-sky-500/10 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 flex flex-col justify-between group transform-gpu hover:-translate-y-2 cursor-pointer relative overflow-hidden"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100/90 border border-sky-300/80 px-3 py-1 rounded-full shadow-sm flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>{item.metric}</span>
+                    </span>
+                    <div className="flex items-center gap-0.5 text-amber-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                  </div>
+
+                  <Quote className="w-7 h-7 text-[#0088FF]/30 group-hover:text-[#0088FF] transition-colors" />
+
+                  <p className="text-xs sm:text-sm font-bold text-slate-800 leading-relaxed">
+                    "{item.comment}"
+                  </p>
+                </div>
+
+                <div className="pt-4 mt-4 border-t border-sky-100 flex items-center gap-3">
+                  <img
+                    src={item.avatar}
+                    alt={item.name}
+                    className="w-10 h-10 rounded-full object-cover border-2 border-[#0088FF] shadow-sm shrink-0"
+                  />
+                  <div className="min-w-0">
+                    <h4 className="font-heading font-black text-xs sm:text-sm text-slate-900 group-hover:text-[#0088FF] transition-colors truncate">
+                      {item.name}
+                    </h4>
+                    <p className="text-[11px] font-bold text-slate-500 truncate">
+                      {item.title}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
         </div>
 
       </div>
