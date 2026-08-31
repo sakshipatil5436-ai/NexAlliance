@@ -58,7 +58,7 @@ export default function Testimonials({ theme = 'light' }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIdx((prevIdx) => (prevIdx + 1) % testimonials.length);
-    }, 4500);
+    }, 2200);
 
     return () => clearInterval(interval);
   }, [testimonials.length]);
@@ -153,7 +153,7 @@ export default function Testimonials({ theme = 'light' }) {
                 initial={{ opacity: 0, x: -25 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 25 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
                 className="space-y-6"
               >
                 {/* Metric Badge */}
