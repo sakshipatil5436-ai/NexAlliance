@@ -229,9 +229,6 @@ export default function Testimonials({ theme = 'light' }) {
                     }`}>
                       {item.metric}
                     </span>
-                    <ChevronRight className={`w-4 h-4 transition-transform ${
-                      isActive ? 'text-[#0088FF] translate-x-1' : 'text-slate-400'
-                    }`} />
                   </div>
                 </div>
               );
