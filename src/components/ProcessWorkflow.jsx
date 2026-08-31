@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Compass,
@@ -7,13 +7,13 @@ import {
   Code2,
   ShieldCheck,
   Rocket,
-  ChevronRight,
   ChevronDown
 } from 'lucide-react';
 
 export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
   const isLight = theme === 'light';
-  const [activeStep, setActiveStep] = useState(2); // Default open to Step 3 (0-indexed: 2) as in Image 2
+  const [activeStep, setActiveStep] = useState(0); // Start at Step 1 (0-indexed: 0)
+  const [isPaused, setIsPaused] = useState(false);
 
   const steps = [
     {
@@ -96,6 +96,15 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
     }
   ];
 
+  // Auto-advance sequence from Step 1 (0) -> 2 -> 3 -> 4 -> 5 -> 6 every 3.5s
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setActiveStep((prev) => (prev === null ? 0 : (prev + 1) % steps.length));
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [isPaused, steps.length]);
+
   return (
     <section className="py-14 sm:py-20 transition-colors duration-500 relative overflow-hidden select-none bg-gradient-to-b from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] text-slate-900">
 
@@ -108,7 +117,8 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          onViewportEnter={() => setActiveStep(0)} // Reset animation to Step 1 whenever user enters/scrolls to section
+          viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.4 }}
           className="text-center max-w-3xl mx-auto space-y-3"
         >
@@ -126,7 +136,11 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
         </motion.div>
 
         {/* 6-STEP 3D INTERACTIVE TIMELINE CONTAINER */}
-        <div className="relative max-w-7xl mx-auto pt-6 pb-4">
+        <div
+          className="relative max-w-7xl mx-auto pt-6 pb-4"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
 
           {/* Horizontal Connecting 3D Pipeline Line (Desktop) */}
           <div className="hidden lg:block absolute top-[52px] left-[6%] right-[6%] h-[3px] bg-gradient-to-r from-sky-300 via-[#0088FF] to-indigo-500 rounded-full shadow-[0_0_12px_rgba(0,136,255,0.4)] z-0" />
@@ -140,7 +154,10 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
               return (
                 <div
                   key={step.id}
-                  onClick={() => setActiveStep(isActive ? null : idx)}
+                  onClick={() => {
+                    setIsPaused(true);
+                    setActiveStep(isActive ? null : idx);
+                  }}
                   className="flex flex-col items-center cursor-pointer group"
                 >
                   {/* 3D FLOATING GLOWING ORB */}
@@ -182,7 +199,7 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
                     </h3>
                   </div>
 
-                  {/* EXPANDABLE INFORMATION BOX (Opens ONLY when clicked!) */}
+                  {/* EXPANDABLE INFORMATION BOX (Opens ONLY when clicked or active in sequence!) */}
                   <AnimatePresence>
                     {isActive && (
                       <motion.div
