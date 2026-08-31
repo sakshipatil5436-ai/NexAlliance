@@ -72,7 +72,6 @@ export default function Footer({ onOpenBooking }) {
           <div className="text-left">
             <h4 className="font-heading font-extrabold text-sm text-slate-900 uppercase tracking-wider mb-4">Company</h4>
             <ul className="space-y-3 text-xs font-semibold text-slate-600">
-              <li><Link to="/about" className="hover:text-[#0088FF] transition-colors">About Us & Founders</Link></li>
               <li><Link to="/portfolio" className="hover:text-[#0088FF] transition-colors">Case Studies & Work</Link></li>
               <li><Link to="/careers" className="hover:text-[#0088FF] transition-colors">Careers & Openings</Link></li>
               <li><Link to="/contact" className="hover:text-[#0088FF] transition-colors">Contact Engineering</Link></li>
