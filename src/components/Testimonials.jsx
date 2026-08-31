@@ -96,10 +96,9 @@ export default function Testimonials({ theme = 'light' }) {
   };
 
   return (
-    <section className={`py-16 sm:py-24 transition-colors duration-500 border-y relative overflow-hidden select-none ${
-      isLight ? 'bg-gradient-to-b from-[#F0F6FF] via-[#E8F2FF] to-[#F0F6FF] border-sky-200 text-slate-900' : 'bg-[#050B17] border-[#1E3A8A] text-white'
-    }`}>
-      
+    <section className={`py-16 sm:py-24 transition-colors duration-500 border-y relative overflow-hidden select-none ${isLight ? 'bg-gradient-to-b from-[#F0F6FF] via-[#E8F2FF] to-[#F0F6FF] border-sky-200 text-slate-900' : 'bg-[#050B17] border-[#1E3A8A] text-white'
+      }`}>
+
       {/* Soundwave Animation Keyframes */}
       <style>{`
         @keyframes audioWaveBar {
@@ -140,7 +139,7 @@ export default function Testimonials({ theme = 'light' }) {
 
         {/* SPLIT-SCREEN CINEMATIC CONTAINER (No bulky boxes, pure crisp typography) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 items-center">
-          
+
           {/* LEFT COLUMN: CINEMATIC FIXED QUOTE AREA (7 Cols) */}
           <div className="lg:col-span-7 relative min-h-[360px] sm:min-h-[400px] flex flex-col justify-between py-4">
             <AnimatePresence mode="wait">
@@ -197,24 +196,21 @@ export default function Testimonials({ theme = 'light' }) {
                 <div
                   key={item.id}
                   onClick={() => handleSelectStory(idx)}
-                  className={`p-4 rounded-2xl transition-all duration-300 cursor-pointer flex items-center justify-between gap-4 border ${
-                    isActive
+                  className={`p-4 rounded-2xl transition-all duration-300 cursor-pointer flex items-center justify-between gap-4 border ${isActive
                       ? 'bg-white/95 border-[#0088FF] shadow-xl shadow-sky-500/15 translate-x-2 ring-1 ring-[#0088FF]/30'
                       : 'bg-white/60 border-sky-200/60 hover:bg-white/90 hover:border-sky-300 hover:translate-x-1'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center gap-3.5 min-w-0">
                     <img
                       src={item.avatar}
                       alt={item.name}
-                      className={`w-11 h-11 rounded-full object-cover border-2 transition-transform shrink-0 ${
-                        isActive ? 'border-[#0088FF] scale-105' : 'border-sky-200'
-                      }`}
+                      className={`w-11 h-11 rounded-full object-cover border-2 transition-transform shrink-0 ${isActive ? 'border-[#0088FF] scale-105' : 'border-sky-200'
+                        }`}
                     />
                     <div className="min-w-0">
-                      <h4 className={`font-heading font-extrabold text-sm truncate ${
-                        isActive ? 'text-[#0088FF]' : 'text-slate-900'
-                      }`}>
+                      <h4 className={`font-heading font-extrabold text-sm truncate ${isActive ? 'text-[#0088FF]' : 'text-slate-900'
+                        }`}>
                         {item.name}
                       </h4>
                       <p className="text-xs font-semibold text-slate-500 truncate">
@@ -224,9 +220,8 @@ export default function Testimonials({ theme = 'light' }) {
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0">
-                    <span className={`text-[11px] font-extrabold uppercase px-2.5 py-1 rounded-full ${
-                      isActive ? 'bg-sky-100 text-[#0088FF]' : 'bg-slate-100 text-slate-600'
-                    }`}>
+                    <span className={`text-[11px] font-extrabold uppercase px-2.5 py-1 rounded-full ${isActive ? 'bg-sky-100 text-[#0088FF]' : 'bg-slate-100 text-slate-600'
+                      }`}>
                       {item.metric}
                     </span>
                   </div>
