@@ -57,7 +57,8 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
       title: 'Har Bole – News Platform',
       image: '/projects/harbole.webp',
       tech: 'Digital News & CMS Portal',
-      fit: 'contain'
+      fit: 'contain',
+      link: 'https://harbole.com/'
     },
     {
       id: 6,
