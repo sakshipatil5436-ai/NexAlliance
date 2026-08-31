@@ -137,9 +137,8 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
               className="bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] border-2 border-sky-300/80 hover:border-[#0088FF] rounded-2xl p-6 sm:p-7 shadow-xl shadow-sky-500/10 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between group"
             >
               <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#0088FF]" />
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100 px-3 py-1 rounded-full border border-sky-300/70 shadow-sm">
+                <div>
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100 px-3 py-1 rounded-full border border-sky-300/70 shadow-sm inline-block">
                     10 February 2025
                   </span>
                 </div>
@@ -165,9 +164,8 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
               className="bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] border-2 border-sky-300/80 hover:border-[#0088FF] rounded-2xl p-6 sm:p-7 shadow-xl shadow-sky-500/10 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between group"
             >
               <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-teal-600" />
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-teal-700 bg-teal-100/80 px-3 py-1 rounded-full border border-teal-300/70 shadow-sm">
+                <div>
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-teal-700 bg-teal-100/80 px-3 py-1 rounded-full border border-teal-300/70 shadow-sm inline-block">
                     1 March 2025
                   </span>
                 </div>
@@ -193,9 +191,8 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
               className="bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] border-2 border-sky-300/80 hover:border-[#0088FF] rounded-2xl p-6 sm:p-7 shadow-xl shadow-sky-500/10 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between group"
             >
               <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-indigo-600" />
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-indigo-700 bg-indigo-100/80 px-3 py-1 rounded-full border border-indigo-300/70 shadow-sm">
+                <div>
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-indigo-700 bg-indigo-100/80 px-3 py-1 rounded-full border border-indigo-300/70 shadow-sm inline-block">
                     Project Partnership
                   </span>
                 </div>
@@ -218,9 +215,8 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
               className="bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] border-2 border-sky-300/80 hover:border-[#0088FF] rounded-2xl p-6 sm:p-7 shadow-xl shadow-sky-500/10 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between group"
             >
               <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#0088FF]" />
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100 px-3 py-1 rounded-full border border-sky-300/70 shadow-sm">
+                <div>
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100 px-3 py-1 rounded-full border border-sky-300/70 shadow-sm inline-block">
                     26 July 2026
                   </span>
                 </div>
