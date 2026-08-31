@@ -343,19 +343,12 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
 
         {/* 5. MINIMALIST METRICS SUMMARY */}
         <div className="py-8 px-6 sm:px-10 rounded-3xl bg-white/80 border border-sky-200/80 shadow-lg shadow-sky-500/5 backdrop-blur-xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             <div className="space-y-1">
               <div className="font-heading text-3xl sm:text-4xl font-extrabold text-[#0088FF]">
                 <AnimatedCounter end={20} suffix="+" duration={1800} />
               </div>
               <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Projects Delivered</span>
-            </div>
-
-            <div className="space-y-1">
-              <div className="font-heading text-3xl sm:text-4xl font-extrabold text-[#0088FF]">
-                <AnimatedCounter end={60} suffix="+" duration={1800} />
-              </div>
-              <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Senior Engineers</span>
             </div>
 
             <div className="space-y-1">
