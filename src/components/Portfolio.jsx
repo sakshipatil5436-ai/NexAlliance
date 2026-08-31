@@ -230,8 +230,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                   <div
                     key={item.id}
                     onClick={() => handleProjectClick(item)}
-                    className="w-[290px] xs:w-[330px] sm:w-[400px] h-[220px] xs:h-[250px] sm:h-[280px] shrink-0 rounded-3xl relative overflow-hidden group cursor-pointer shadow-xl shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-5 sm:p-6 flex flex-col justify-between transform-gpu subpixel-antialiased"
-                    style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+                    className="w-[290px] xs:w-[330px] sm:w-[400px] h-[220px] xs:h-[250px] sm:h-[280px] shrink-0 rounded-3xl relative overflow-hidden group cursor-pointer shadow-lg shadow-sky-500/10 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-5 sm:p-6 flex flex-col justify-between transition-colors duration-150"
                   >
                     {/* Clean Logo Image Centered */}
                     <div className="flex-1 min-h-0 w-full flex items-center justify-center p-3">
@@ -240,8 +239,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                         alt={item.title}
                         loading="lazy"
                         decoding="async"
-                        className="max-h-full max-w-full object-contain object-center filter drop-shadow-sm transition-transform duration-300 transform-gpu"
-                        style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+                        className="max-h-full max-w-full object-contain object-center filter drop-shadow-sm"
                       />
                     </div>
 
@@ -251,7 +249,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                         {item.title}
                       </h3>
                       {!item.hideExplore && (
-                        <div className="w-7 h-7 rounded-full bg-sky-100 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white transition-all shrink-0">
+                        <div className="w-7 h-7 rounded-full bg-sky-100 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white transition-colors shrink-0">
                           <ArrowUpRight className="w-4 h-4" />
                         </div>
                       )}
@@ -267,8 +265,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
             {filtered.map((item) => (
               <div
                 key={item.id}
-                className="h-[240px] sm:h-[280px] rounded-3xl relative overflow-hidden group cursor-pointer shadow-xl shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-5 sm:p-7 flex flex-col justify-between w-full transform-gpu subpixel-antialiased"
-                style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+                className="h-[240px] sm:h-[280px] rounded-3xl relative overflow-hidden group cursor-pointer shadow-lg shadow-sky-500/10 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-5 sm:p-7 flex flex-col justify-between w-full transition-colors duration-150"
                 onClick={() => handleProjectClick(item)}
               >
                 {/* Clean Logo Image Centered */}
@@ -278,8 +275,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                     alt={item.title}
                     loading="lazy"
                     decoding="async"
-                    className="max-h-full max-w-full object-contain object-center filter drop-shadow-sm transition-transform duration-300 transform-gpu"
-                    style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+                    className="max-h-full max-w-full object-contain object-center filter drop-shadow-sm"
                   />
                 </div>
 
@@ -294,7 +290,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                     </p>
                   </div>
                   {!item.hideExplore && (
-                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-sky-100 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white transition-all shrink-0">
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-sky-100 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white transition-colors shrink-0">
                       <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                   )}
