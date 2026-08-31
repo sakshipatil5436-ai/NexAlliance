@@ -117,8 +117,7 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          onViewportEnter={() => setActiveStep(0)} // Reset animation to Step 1 whenever user enters/scrolls to section
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.4 }}
           className="text-center max-w-3xl mx-auto space-y-3"
         >
