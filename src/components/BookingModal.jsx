@@ -98,37 +98,41 @@ export default function BookingModal({ isOpen, onClose, theme = 'light', onToggl
         <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-blue-100/50 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
 
         {/* Top Sticky Header Bar matching Main Website Header */}
-        <div className="w-full px-4 sm:px-8 h-16 sm:h-20 border-b border-slate-200 bg-white/95 backdrop-blur-xl text-slate-900 shadow-sm flex items-center justify-between shrink-0 relative z-20">
-
-          {/* NexAlliance Logo */}
-          <div className="shrink-0 cursor-pointer" onClick={onClose}>
-            <NexLogo theme="light" />
-          </div>
-
-          {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-6 sm:gap-8 text-xs font-bold uppercase tracking-wider text-slate-600">
-            <a href="#home" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Home</a>
-            <a href="#about" onClick={onClose} className="hover:text-[#0088FF] transition-colors">About</a>
-            <a href="#services" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Services</a>
-            <a href="#portfolio" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Portfolio</a>
-            <a href="#clients" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Clients</a>
-            <a href="#careers" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Careers</a>
-            <a href="#contact" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Contact</a>
-          </nav>
-
-          {/* Right: Book A Call Button + Close Button */}
-          <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-2 bg-[#0088FF] text-white px-4 py-2 rounded-full text-xs font-extrabold shadow-md shadow-sky-500/20">
-              <span>BOOK A CALL</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+        <div className="w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-xl text-slate-900 shadow-sm shrink-0 relative z-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between">
+            {/* NexAlliance Logo */}
+            <div className="shrink-0 cursor-pointer" onClick={onClose}>
+              <NexLogo theme="light" />
             </div>
-            <button
-              onClick={onClose}
-              className="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-300 flex items-center justify-center text-slate-700 hover:text-slate-900 transition-all shrink-0 cursor-pointer"
-              title="Close Consultation Modal"
-            >
-              <X className="w-5 h-5" />
-            </button>
+
+            {/* Desktop Nav Links (Identical to main website header) */}
+            <nav className="hidden md:flex items-center gap-8">
+              <NavLink to="/" onClick={onClose} className="text-sm font-semibold text-slate-700 hover:text-[#0088FF] transition-colors">Home</NavLink>
+              <NavLink to="/about" onClick={onClose} className="text-sm font-semibold text-slate-700 hover:text-[#0088FF] transition-colors">About</NavLink>
+              <NavLink to="/services" onClick={onClose} className="text-sm font-semibold text-slate-700 hover:text-[#0088FF] transition-colors">Services</NavLink>
+              <NavLink to="/portfolio" onClick={onClose} className="text-sm font-semibold text-slate-700 hover:text-[#0088FF] transition-colors">Portfolio</NavLink>
+              <NavLink to="/clients" onClick={onClose} className="text-sm font-semibold text-slate-700 hover:text-[#0088FF] transition-colors">Clients</NavLink>
+              <NavLink to="/careers" onClick={onClose} className="text-sm font-semibold text-slate-700 hover:text-[#0088FF] transition-colors">Careers</NavLink>
+              <NavLink to="/contact" onClick={onClose} className="text-sm font-semibold text-[#0088FF] font-black relative">
+                Contact
+                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#0088FF] rounded-full shadow-sm"></span>
+              </NavLink>
+            </nav>
+
+            {/* Right: Book A Call Button + Close Button */}
+            <div className="flex items-center gap-3">
+              <div className="hidden sm:flex items-center gap-1.5 bg-gradient-to-r from-[#2563EB] to-[#3B82F6] text-white font-black text-xs uppercase tracking-wider px-5 py-2.5 rounded-full shadow-md shadow-[#2563EB]/20">
+                <span>BOOK A CALL</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </div>
+              <button
+                onClick={onClose}
+                className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-300 flex items-center justify-center text-slate-700 hover:text-slate-900 transition-all shrink-0 cursor-pointer"
+                title="Close Consultation Modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
 

@@ -27,13 +27,7 @@ export default function Navbar({ onOpenBooking }) {
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 w-full z-[9999] transition-all duration-300 transform-none select-none ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-md'
-          : 'bg-transparent border-b-0 shadow-none'
-      }`}
-    >
+    <header className="fixed top-0 left-0 right-0 w-full z-[9999] bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-sm select-none transition-all duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between">
 
         {/* NexAlliance Logo */}
@@ -41,7 +35,7 @@ export default function Navbar({ onOpenBooking }) {
           <NexLogo theme="light" />
         </NavLink>
 
-        {/* Desktop Nav Links */}
+        {/* Desktop Nav Links (Identical across all views) */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <NavLink
@@ -68,11 +62,11 @@ export default function Navbar({ onOpenBooking }) {
           ))}
         </nav>
 
-        {/* Action Button - Compact Small Profile */}
+        {/* Action Button - BOOK A CALL */}
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={onOpenBooking}
-            className="group flex items-center gap-1.5 bg-gradient-to-r from-[#2563EB] to-[#3B82F6] hover:from-[#1D4ED8] hover:to-[#2563EB] text-white font-black text-[10px] sm:text-xs uppercase tracking-wider px-4 py-2 sm:px-4.5 sm:py-2 rounded-full shadow-md shadow-[#2563EB]/20 transition-all hover:scale-105 cursor-pointer"
+            className="group flex items-center gap-1.5 bg-gradient-to-r from-[#2563EB] to-[#3B82F6] hover:from-[#1D4ED8] hover:to-[#2563EB] text-white font-black text-xs uppercase tracking-wider px-5 py-2.5 rounded-full shadow-md shadow-[#2563EB]/20 transition-all hover:scale-105 cursor-pointer"
           >
             <span>BOOK A CALL</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -115,7 +109,7 @@ export default function Navbar({ onOpenBooking }) {
           <div className="pt-2">
             <button
               onClick={() => { setMobileOpen(false); onOpenBooking(); }}
-              className="w-full flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#2563EB] to-[#3B82F6] text-white font-black text-[11px] uppercase tracking-wider py-2.5 rounded-full shadow-md cursor-pointer"
+              className="w-full flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#2563EB] to-[#3B82F6] text-white font-black text-xs uppercase tracking-wider py-3 rounded-full shadow-md cursor-pointer"
             >
               <span>BOOK A CALL</span>
               <ArrowRight className="w-3.5 h-3.5" />
