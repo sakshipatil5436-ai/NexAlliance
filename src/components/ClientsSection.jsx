@@ -60,16 +60,13 @@ export default function ClientsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.25, ease: 'easeOut', delay: (idx % 4) * 0.05 }}
               whileHover={{ y: -6, scale: 1.02 }}
-              className="bg-white/90 border border-sky-200/80 hover:border-[#0088FF] rounded-3xl p-5 sm:p-6 shadow-lg shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-200 flex items-center justify-center group transform-gpu"
+              className="bg-white/95 border border-sky-200/80 hover:border-[#0088FF] rounded-3xl p-6 sm:p-8 h-36 sm:h-44 shadow-lg shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-200 flex items-center justify-center group transform-gpu overflow-hidden"
             >
-              {/* Inner Dark Logo Container for Clean Contrast */}
-              <div className="w-full h-28 sm:h-36 rounded-2xl bg-[#050B17] border border-slate-800 p-4 sm:p-6 flex items-center justify-center overflow-hidden">
-                <img
-                  src={client.image}
-                  alt={client.title}
-                  className="max-h-full max-w-full object-contain object-center group-hover:scale-108 transition-transform duration-300"
-                />
-              </div>
+              <img
+                src={client.image}
+                alt={client.title}
+                className="max-h-full max-w-full object-contain object-center group-hover:scale-108 transition-transform duration-300 filter drop-shadow-sm"
+              />
             </motion.div>
           ))}
         </div>
