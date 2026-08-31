@@ -172,20 +172,19 @@ export default function CareersSection({ onOpenBooking, theme = 'light', isHomeP
       <div className="absolute top-12 left-1/4 w-[600px] h-[600px] bg-[#0088FF]/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
       <div className="absolute bottom-20 right-1/4 w-[600px] h-[600px] bg-cyan-400/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
 
-      {(isCareersPage || !isHomePage) && (
-        <div className="fixed inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover opacity-20 sm:opacity-25 filter brightness-95 contrast-105"
-          >
-            <source src="/career_k_liye_kuch_video_bana.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F0F6FF]/70 via-sky-950/20 to-[#F0F6FF]/80 backdrop-blur-[1px]"></div>
-        </div>
-      )}
+      {/* Loop Video Background for Careers Section */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-35 sm:opacity-40 filter brightness-95 contrast-105"
+        >
+          <source src="/career_k_liye_kuch_video_bana.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F0F6FF]/60 via-[#E8F2FF]/40 to-[#F0F6FF]/70 backdrop-blur-[1px]"></div>
+      </div>
 
       <iframe name="hidden-pdf-iframe" className="hidden" title="hidden-pdf-iframe"></iframe>
       <form
