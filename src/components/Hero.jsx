@@ -56,21 +56,6 @@ export default function Hero({ onOpenBooking, theme = 'dark' }) {
           {/* LEFT COLUMN: WE BUILD DIGITAL ECOSYSTEMS TYPOGRAPHY */}
           <div className="lg:col-span-6 text-left space-y-6">
 
-            {/* Top Tagline Underlined Typography */}
-            <motion.div
-              initial={{ opacity: 0, y: -15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="relative inline-block pb-1 max-w-full overflow-hidden"
-            >
-              <div className="text-[9px] xs:text-[10px] sm:text-xs font-black tracking-[0.10em] xs:tracking-[0.16em] sm:tracking-[0.22em] uppercase text-[#0088FF] whitespace-nowrap overflow-hidden text-ellipsis">
-                <span>NEXALLIANCE — INNOVATE. BUILD. TRANSFORM.</span>
-              </div>
-
-              {/* Elegant Glowing Blue Gradient Underline */}
-              <div className="h-0.5 w-full bg-gradient-to-r from-[#0088FF] via-[#00F0FF] to-transparent mt-1 rounded-full shadow-sm"></div>
-            </motion.div>
-
             {/* Headline ("We Build Digital Ecosystems.") */}
             <motion.h2
               initial={{ opacity: 0, y: 30, scale: 0.95 }}
