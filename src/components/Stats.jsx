@@ -60,7 +60,7 @@ export default function Stats({ theme = 'light' }) {
                     <Icon className="w-5 h-5" />
                   </div>
 
-                  <div className={`font-heading text-3xl sm:text-4xl font-black tracking-tight mb-1 ${isLight ? 'text-slate-900' : 'text-white'
+                  <div className={`font-heading text-3xl sm:text-4xl font-black tracking-tight mb-1 ${isLight ? 'text-[#0088FF]' : 'text-[#0088FF]'
                     }`}>
                     <AnimatedCounter
                       end={stat.value}
