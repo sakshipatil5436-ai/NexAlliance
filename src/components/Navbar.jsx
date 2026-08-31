@@ -28,7 +28,7 @@ export default function Navbar({ onOpenBooking }) {
 
   return (
     <header className="fixed top-0 left-0 right-0 w-full z-[9999] bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-sm select-none transition-all duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
 
         {/* NexAlliance Logo */}
         <NavLink to="/" className="shrink-0">
@@ -66,7 +66,7 @@ export default function Navbar({ onOpenBooking }) {
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={onOpenBooking}
-            className="group flex items-center gap-1.5 bg-gradient-to-r from-[#2563EB] to-[#3B82F6] hover:from-[#1D4ED8] hover:to-[#2563EB] text-white font-black text-xs uppercase tracking-wider px-5 py-2.5 rounded-full shadow-md shadow-[#2563EB]/20 transition-all hover:scale-105 cursor-pointer"
+            className="group flex items-center gap-1.5 bg-gradient-to-r from-[#2563EB] to-[#3B82F6] hover:from-[#1D4ED8] hover:to-[#2563EB] text-white font-black text-xs uppercase tracking-wider px-4 py-2 rounded-full shadow-md shadow-[#2563EB]/20 transition-all hover:scale-105 cursor-pointer"
           >
             <span>BOOK A CALL</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />

@@ -25,7 +25,7 @@ export default function ClientsSection({ onOpenBooking }) {
 
   return (
     <div className="pt-24 sm:pt-32 pb-12 bg-gradient-to-b from-[#F0F6FF] via-[#E8F2FF] to-[#F0F6FF] text-slate-900 select-none relative overflow-hidden">
-      
+
       {/* Ambient Radial Blue Glow Points */}
       <div className="absolute top-12 left-1/4 w-[600px] h-[600px] bg-[#0088FF]/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
       <div className="absolute bottom-20 right-1/4 w-[600px] h-[600px] bg-cyan-400/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>

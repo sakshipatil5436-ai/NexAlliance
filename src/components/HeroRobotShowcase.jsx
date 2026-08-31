@@ -126,6 +126,18 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
       animFrameRef.current = requestAnimationFrame(renderTransparentFrame);
     };
 
+    const startPlay = () => {
+      if (video && video.paused) {
+        video.play().catch(() => {});
+      }
+    };
+
+    video.addEventListener('canplay', startPlay);
+    video.addEventListener('loadeddata', startPlay);
+    window.addEventListener('touchstart', startPlay, { passive: true });
+    window.addEventListener('pointerdown', startPlay, { passive: true });
+    window.addEventListener('scroll', startPlay, { passive: true });
+
     video.play().catch(() => { });
     animFrameRef.current = requestAnimationFrame(renderTransparentFrame);
 
@@ -133,6 +145,13 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
       if (animFrameRef.current) {
         cancelAnimationFrame(animFrameRef.current);
       }
+      if (video) {
+        video.removeEventListener('canplay', startPlay);
+        video.removeEventListener('loadeddata', startPlay);
+      }
+      window.removeEventListener('touchstart', startPlay);
+      window.removeEventListener('pointerdown', startPlay);
+      window.removeEventListener('scroll', startPlay);
     };
   }, []);
 
@@ -160,8 +179,8 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
             autoPlay
             loop
             muted={true}
-            playsInline
-            crossOrigin="anonymous"
+            playsInline={true}
+            webkit-playsinline="true"
             className="hidden"
           />
 

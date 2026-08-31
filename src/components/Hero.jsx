@@ -32,8 +32,9 @@ export default function Hero({ onOpenBooking, theme = 'dark' }) {
       <video
         autoPlay
         loop
-        muted
-        playsInline
+        muted={true}
+        playsInline={true}
+        webkit-playsinline="true"
         className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-30 pointer-events-none"
       >
         <source src="/tu_video_banvala_tyat_header_r.mp4" type="video/mp4" />

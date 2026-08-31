@@ -181,41 +181,81 @@ export default function Services({ onOpenBooking, onOpenServiceDetail, theme = '
           </motion.p>
         </motion.div>
 
-        {/* 3D Glowing River Path (SHOWN ONLY ON HOME PAGE /) */}
+        {/* 3D Glowing River Path (SHOWN ON ALL DEVICES WITH RESPONSIVE PATHS) */}
         {isHomePage && (
-          <div className="absolute top-[260px] bottom-36 left-0 right-0 w-full pointer-events-none z-0 hidden lg:block overflow-visible">
-            <svg
-              className="w-full h-full overflow-visible"
-              viewBox="0 0 1000 2000"
-              preserveAspectRatio="none"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* Background Faint Track */}
-              <path
-                d="M 270 70 C 750 200, 250 280, 730 410 C 250 540, 750 620, 270 750 C 750 880, 250 960, 730 1090 C 250 1220, 750 1300, 270 1430 C 750 1560, 250 1640, 730 1770"
-                stroke="rgba(0, 136, 255, 0.18)"
-                strokeWidth="4"
-                strokeDasharray="8 6"
-              />
-              {/* Animated Active Glowing Blue Line Connecting Box to Box */}
-              <motion.path
-                d="M 270 70 C 750 200, 250 280, 730 410 C 250 540, 750 620, 270 750 C 750 880, 250 960, 730 1090 C 250 1220, 750 1300, 270 1430 C 750 1560, 250 1640, 730 1770"
-                stroke="url(#blueRiverGradient)"
-                strokeWidth="6"
-                strokeLinecap="round"
-                style={{ pathLength: smoothPathLength }}
-                className="filter drop-shadow-[0_0_12px_rgba(0,136,255,0.9)]"
-              />
-              <defs>
-                <linearGradient id="blueRiverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#0088FF" stopOpacity="1" />
-                  <stop offset="50%" stopColor="#00F0FF" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#2563EB" stopOpacity="0.95" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
+          <>
+            {/* 1. Desktop Winding Curve River Path (hidden on mobile, block on lg+) */}
+            <div className="absolute top-[260px] bottom-36 left-0 right-0 w-full pointer-events-none z-0 hidden lg:block overflow-visible">
+              <svg
+                className="w-full h-full overflow-visible"
+                viewBox="0 0 1000 2000"
+                preserveAspectRatio="none"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* Background Faint Track */}
+                <path
+                  d="M 270 70 C 750 200, 250 280, 730 410 C 250 540, 750 620, 270 750 C 750 880, 250 960, 730 1090 C 250 1220, 750 1300, 270 1430 C 750 1560, 250 1640, 730 1770"
+                  stroke="rgba(0, 136, 255, 0.18)"
+                  strokeWidth="4"
+                  strokeDasharray="8 6"
+                />
+                {/* Animated Active Glowing Blue Line Connecting Box to Box */}
+                <motion.path
+                  d="M 270 70 C 750 200, 250 280, 730 410 C 250 540, 750 620, 270 750 C 750 880, 250 960, 730 1090 C 250 1220, 750 1300, 270 1430 C 750 1560, 250 1640, 730 1770"
+                  stroke="url(#blueRiverGradient)"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                  style={{ pathLength: smoothPathLength }}
+                  className="filter drop-shadow-[0_0_12px_rgba(0,136,255,0.9)]"
+                />
+                <defs>
+                  <linearGradient id="blueRiverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#0088FF" stopOpacity="1" />
+                    <stop offset="50%" stopColor="#00F0FF" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#2563EB" stopOpacity="0.95" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+
+            {/* 2. Mobile & Tablet Vertical Glowing River Path Line (block on mobile, hidden on lg+) */}
+            <div className="absolute top-[240px] bottom-32 left-6 sm:left-10 w-2 pointer-events-none z-0 block lg:hidden overflow-visible">
+              <svg
+                className="w-full h-full overflow-visible"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line
+                  x1="4"
+                  y1="0"
+                  x2="4"
+                  y2="100%"
+                  stroke="rgba(0, 136, 255, 0.25)"
+                  strokeWidth="3"
+                  strokeDasharray="6 4"
+                />
+                <motion.line
+                  x1="4"
+                  y1="0"
+                  x2="4"
+                  y2="100%"
+                  stroke="url(#blueRiverGradientMobile)"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                  style={{ pathLength: smoothPathLength }}
+                  className="filter drop-shadow-[0_0_10px_rgba(0,136,255,0.9)]"
+                />
+                <defs>
+                  <linearGradient id="blueRiverGradientMobile" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#0088FF" stopOpacity="1" />
+                    <stop offset="50%" stopColor="#00F0FF" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#2563EB" stopOpacity="0.95" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </>
         )}
 
         {/* 2. SERVICES STACK (ZIG-ZAG ALTERNATING CARDS - LEFT & RIGHT) */}

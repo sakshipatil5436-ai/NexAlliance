@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function NexLogo({ theme = "light", size = "normal" }) {
-  const heightClass = size === "large" ? "h-20 sm:h-24" : "h-14 sm:h-16 md:h-18";
+  const heightClass = size === "large" ? "h-16 sm:h-20" : "h-9 sm:h-11 md:h-12";
 
   return (
     <div className="flex items-center cursor-pointer select-none">

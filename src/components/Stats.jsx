@@ -41,7 +41,7 @@ export default function Stats({ theme = 'light' }) {
     <section className={`py-6 sm:py-8 transition-colors duration-500 border-y select-none ${isLight ? 'bg-[#F8FAFC] border-slate-200/80' : 'bg-[#0B172E] border-[#1E3A8A]'
       }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
           {statsData.map((stat, idx) => {
             const Icon = stat.icon;
             return (

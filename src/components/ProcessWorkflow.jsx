@@ -135,8 +135,11 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
           onMouseLeave={() => setIsPaused(false)}
         >
 
-          {/* Horizontal Connecting 3D Pipeline Line (Desktop) */}
+          {/* 1. Horizontal Connecting 3D Pipeline Line (Desktop) */}
           <div className="hidden lg:block absolute top-[52px] left-[6%] right-[6%] h-[3px] bg-gradient-to-r from-sky-300 via-[#0088FF] to-indigo-500 rounded-full shadow-[0_0_12px_rgba(0,136,255,0.4)] z-0" />
+
+          {/* 2. Vertical Connecting 3D Pipeline Line (Mobile & Tablet) */}
+          <div className="block lg:hidden absolute top-[52px] bottom-[52px] left-1/2 sm:left-[25%] -translate-x-1/2 w-[3px] bg-gradient-to-b from-sky-300 via-[#0088FF] to-indigo-500 rounded-full shadow-[0_0_12px_rgba(0,136,255,0.4)] z-0" />
 
           {/* 6-Step Timeline Nodes Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-4 relative z-10 items-start">
