@@ -26,18 +26,18 @@ export default function Services({ onOpenBooking, onOpenServiceDetail, theme = '
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.05
+        staggerChildren: 0.05,
+        delayChildren: 0.02
       }
     }
   };
 
   const headerItemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 15 },
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+      transition: { duration: 0.25, ease: "easeOut" }
     }
   };
 
@@ -150,7 +150,7 @@ export default function Services({ onOpenBooking, onOpenServiceDetail, theme = '
           variants={headerContainerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, margin: "-50px" }}
+          viewport={{ once: true }}
           className="text-center max-w-3xl mx-auto space-y-4"
         >
           <motion.div variants={headerItemVariants}>
@@ -220,14 +220,14 @@ export default function Services({ onOpenBooking, onOpenServiceDetail, theme = '
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, x: isLeft ? -25 : 25, y: 15 }}
+                initial={{ opacity: 0, x: isLeft ? -30 : 30, y: 0 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.25, ease: "easeOut", delay: (index % 2) * 0.05 }}
                 whileHover={{ y: -3 }}
-                className={`w-full lg:w-[46%] ${isLeft ? 'lg:mr-auto lg:ml-0' : 'lg:ml-auto lg:mr-0'} p-5 sm:p-6 rounded-2xl border relative overflow-hidden backdrop-blur-xl transition-all duration-300 text-left space-y-3.5 transform-gpu will-change-transform ${isLight
+                className={`w-full lg:w-[46%] ${isLeft ? 'lg:mr-auto lg:ml-0' : 'lg:ml-auto lg:mr-0'} p-5 sm:p-6 rounded-2xl border relative overflow-hidden transition-all duration-200 text-left space-y-3.5 transform-gpu ${isLight
                   ? 'bg-white border-slate-200/80 shadow-md hover:shadow-xl'
-                  : 'bg-[#0B132B]/90 border-[#1E3A8A]/70 shadow-xl shadow-blue-950/50'
+                  : 'bg-[#0B132B] border-[#1E3A8A]/70 shadow-xl shadow-blue-950/50'
                   }`}
               >
                 {/* Header: 3D Glossy Sphere Ball Icon + Status Tag + Title */}
@@ -287,10 +287,10 @@ export default function Services({ onOpenBooking, onOpenServiceDetail, theme = '
 
         {/* Compact CTA Banner at Bottom */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
           className="rounded-2xl sm:rounded-3xl py-6 sm:py-8 px-6 sm:px-10 relative overflow-hidden bg-gradient-to-r from-[#0088FF] via-[#0077E6] to-[#2563EB] text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4 max-w-3xl mx-auto"
         >
           <div className="space-y-1 relative z-10 text-center md:text-left max-w-xl">

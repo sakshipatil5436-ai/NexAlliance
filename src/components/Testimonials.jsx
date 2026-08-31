@@ -38,10 +38,10 @@ export default function Testimonials({ theme = 'light' }) {
 
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.3 }}
           className="text-center max-w-3xl mx-auto mb-8 sm:mb-10"
         >
           <div className="relative inline-block text-center pb-1 mb-2">
@@ -61,18 +61,18 @@ export default function Testimonials({ theme = 'light' }) {
         </motion.div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 transform-gpu">
           {testimonialsData.map((item, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 35 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.5, delay: idx * 0.12 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className={`p-5 sm:p-6 rounded-2xl border-0 shadow-lg backdrop-blur-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group cursor-pointer ${isLight
-                  ? 'bg-white/90 shadow-sky-500/10 hover:bg-white'
-                  : 'bg-[#050B17]/90 shadow-2xl hover:bg-[#050B17]'
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: idx * 0.08 }}
+              whileHover={{ y: -5 }}
+              className={`p-5 sm:p-6 rounded-2xl border-0 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group cursor-pointer transform-gpu ${isLight
+                  ? 'bg-white shadow-sky-500/10'
+                  : 'bg-[#050B17] shadow-2xl'
                 }`}
             >
               <div>

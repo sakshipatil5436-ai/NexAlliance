@@ -42,17 +42,17 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
 
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.3 }}
           className="text-center max-w-3xl mx-auto"
         >
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.4 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3 }}
             className="relative inline-block text-center pb-1 mb-2"
           >
             <div className="text-xs sm:text-sm font-black tracking-[0.22em] uppercase text-[#0088FF] text-center">
@@ -74,20 +74,20 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
         {/* 4 Clean Methodology Cards Grid (Clean Full-Width Original Grid Layout) */}
         <motion.div
           whileInView={{ opacity: 1 }}
-          viewport={{ once: false, amount: 0.2 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative transform-gpu"
         >
           {steps.map((step, idx) => {
             const Icon = step.icon;
             return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                whileHover={{ y: -6, scale: 1.02 }}
-                className={`p-6 sm:p-7 rounded-3xl border shadow-md hover:border-[#0088FF] transition-all duration-300 relative flex flex-col justify-between group overflow-hidden ${isLight
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: idx * 0.08 }}
+                whileHover={{ y: -4 }}
+                className={`p-6 sm:p-7 rounded-3xl border shadow-md hover:border-[#0088FF] transition-all duration-300 relative flex flex-col justify-between group overflow-hidden transform-gpu ${isLight
                   ? 'bg-white border-slate-200/90 hover:shadow-sky-500/10'
                   : 'bg-[#0B172E] border-[#1E3A8A] hover:shadow-sky-500/20'
                   }`}

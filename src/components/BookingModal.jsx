@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, MapPin, Phone, Mail, ExternalLink, CheckCircle2, Send } from 'lucide-react';
+import { X, MapPin, Phone, Mail, ExternalLink, CheckCircle2, Send, ArrowRight } from 'lucide-react';
 import NexLogo from './NexLogo';
 
 export default function BookingModal({ isOpen, onClose, theme = 'light', onToggleTheme }) {
@@ -13,15 +13,15 @@ export default function BookingModal({ isOpen, onClose, theme = 'light', onToggl
     projectDetails: ''
   });
 
-  // Lock body scroll when Full Page Form is open
+  // Lock body scroll when Full Page Form is open without layout shift
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('modal-open');
     } else {
-      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
     };
   }, [isOpen]);
 
@@ -97,21 +97,37 @@ export default function BookingModal({ isOpen, onClose, theme = 'light', onToggl
         <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-sky-200/40 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
         <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-blue-100/50 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
 
-        {/* Top Sticky Header Bar */}
-        <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between shrink-0 relative z-20 bg-white/95 backdrop-blur-xl text-slate-900 shadow-sm">
+        {/* Top Sticky Header Bar matching Main Website Header */}
+        <div className="w-full px-4 sm:px-8 h-16 sm:h-20 border-b border-slate-200 bg-white/95 backdrop-blur-xl text-slate-900 shadow-sm flex items-center justify-between shrink-0 relative z-20">
 
-          {/* Light Theme Logo */}
-          <div className="flex items-center gap-3">
+          {/* NexAlliance Logo */}
+          <div className="shrink-0 cursor-pointer" onClick={onClose}>
             <NexLogo theme="light" />
           </div>
 
-          {/* Desktop Nav Items */}
-          <div className="hidden lg:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-600">
+          {/* Desktop Nav Links */}
+          <nav className="hidden md:flex items-center gap-6 sm:gap-8 text-xs font-bold uppercase tracking-wider text-slate-600">
             <a href="#home" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Home</a>
             <a href="#about" onClick={onClose} className="hover:text-[#0088FF] transition-colors">About</a>
             <a href="#services" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Services</a>
             <a href="#portfolio" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Portfolio</a>
             <a href="#careers" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Careers</a>
+            <a href="#contact" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Contact</a>
+          </nav>
+
+          {/* Right: Book A Call Button + Close Button */}
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-2 bg-[#0088FF] text-white px-4 py-2 rounded-full text-xs font-extrabold shadow-md shadow-sky-500/20">
+              <span>BOOK A CALL</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </div>
+            <button
+              onClick={onClose}
+              className="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-300 flex items-center justify-center text-slate-700 hover:text-slate-900 transition-all shrink-0 cursor-pointer"
+              title="Close Consultation Modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
         </div>
 
@@ -286,11 +302,8 @@ export default function BookingModal({ isOpen, onClose, theme = 'light', onToggl
 
                 {/* Contact Info */}
                 <div className="space-y-5">
-                  <h3 className="font-heading font-black text-2xl tracking-tight text-slate-900 flex items-center justify-between">
+                  <h3 className="font-heading font-black text-2xl tracking-tight text-slate-900">
                     <span>NexAlliance</span>
-                    <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-sky-50 text-[#0088FF] border border-sky-200">
-                      HEADQUARTERS
-                    </span>
                   </h3>
 
                   <div className="space-y-4 text-xs sm:text-sm font-semibold text-slate-700">

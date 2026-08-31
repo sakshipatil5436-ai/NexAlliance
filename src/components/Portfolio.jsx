@@ -144,7 +144,7 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
     : projects.filter(p => p.category === activeTab);
 
   return (
-    <section id="portfolio" className={`scroll-mt-20 ${isHomePage ? 'py-10 sm:py-12' : 'pt-28 sm:pt-36 pb-16 sm:pb-20'} transition-colors duration-500 relative overflow-hidden select-none backdrop-blur-2xl ${isLight ? 'bg-[#F0F6FF]/70 text-slate-800' : 'bg-[#050B17]/80 text-white'
+    <section id="portfolio" className={`scroll-mt-20 ${isHomePage ? 'py-10 sm:py-12' : 'pt-28 sm:pt-36 pb-16 sm:pb-20'} transition-colors duration-500 relative overflow-hidden select-none ${isLight ? 'bg-[#F0F6FF] text-slate-800' : 'bg-[#050B17] text-white'
       }`}>
 
       {/* Fast & Dynamic GPU Marquee Keyframes */}

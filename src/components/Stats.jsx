@@ -9,7 +9,7 @@ export default function Stats({ theme = 'light' }) {
   const statsData = [
     {
       icon: Award,
-      value: 150,
+      value: 15,
       suffix: "+",
       label: "Projects Completed",
       desc: "Delivered on schedule with 100% precision"
@@ -47,12 +47,12 @@ export default function Stats({ theme = 'light' }) {
             return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                whileHover={{ y: -6, scale: 1.02 }}
-                className={`p-4 sm:p-5 rounded-2xl border-0 shadow-md backdrop-blur-xl transition-all duration-300 hover:shadow-xl group flex flex-col justify-between cursor-pointer ${isLight ? 'bg-white/85 shadow-sky-500/10 hover:bg-white' : 'bg-[#050B17]/90 shadow-xl hover:bg-[#050B17]'
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: idx * 0.06 }}
+                whileHover={{ y: -4 }}
+                className={`p-4 sm:p-5 rounded-2xl border-0 shadow-md transition-all duration-200 hover:shadow-xl group flex flex-col justify-between cursor-pointer transform-gpu ${isLight ? 'bg-white shadow-sky-500/10' : 'bg-[#050B17] shadow-xl'
                   }`}
               >
                 <div>
