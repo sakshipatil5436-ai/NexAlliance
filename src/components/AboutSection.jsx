@@ -2,7 +2,6 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  ArrowRight,
   ArrowDown,
   Building2,
   Users,
@@ -10,8 +9,10 @@ import {
   Globe2,
   Rocket,
   Code2,
-  Sparkles,
-  CheckCircle2
+  CheckCircle2,
+  GitMerge,
+  Cpu,
+  Layers
 } from 'lucide-react';
 import AnimatedCounter from './AnimatedCounter';
 
@@ -33,66 +34,9 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
     }
   ];
 
-  const storySteps = [
-    {
-      step: "01",
-      date: "10 February 2025",
-      badge: "10 FEBRUARY 2025",
-      title: "The Beginning — Meet.Nexus",
-      desc: "Meet Mistry started his entrepreneurial journey with Meet.Nexus, focusing on practical client digital solutions, sales, business development, and client relationships.",
-      subText: "Built strong experience in project management and business-aligned technology.",
-      icon: Building2
-    },
-    {
-      step: "02",
-      date: "First Project",
-      badge: "MILESTONE PROJECT",
-      title: "Hotel Hilton TMS",
-      desc: "Meet.Nexus delivered its first major technology project for Hotel Hilton, marking the start of Meet's journey in building client-focused enterprise software.",
-      subText: "Hotel Task Management App engineered for hospitality operations.",
-      icon: Award
-    },
-    {
-      step: "03",
-      date: "1 March 2025",
-      badge: "1 MARCH 2025",
-      title: "A Second Journey — Nexora",
-      desc: "Sanket Pithava started his technology company Nexora, focusing on software development, digital solutions, and complex technical architecture.",
-      subText: "Built a strong foundation in software engineering and technical problem solving.",
-      icon: Code2
-    },
-    {
-      step: "04",
-      date: "First Project",
-      badge: "MILESTONE PROJECT",
-      title: "Bihar Disaster System",
-      desc: "Nexora delivered the Bihar Disaster System (BDSRN), a technology-driven operational initiative solving real-world emergency resource management challenges.",
-      subText: "Valuable experience in developing solutions for high-stakes operational needs.",
-      icon: Globe2
-    },
-    {
-      step: "05",
-      date: "Partnership",
-      badge: "PROJECT PARTNERSHIP",
-      title: "When Two Journeys Connected",
-      desc: "Meet.Nexus and Nexora came together through a project partnership. Meet brought business, sales & growth expertise, while Sanket brought technology & development execution.",
-      subText: "Combining strengths created the foundation for a unified technology company.",
-      icon: Users
-    },
-    {
-      step: "06",
-      date: "26 July 2026",
-      badge: "26 JULY 2026",
-      title: "The Birth of NexAlliance",
-      desc: "NexAlliance was officially established by Meet Mistry & Sanket Pithava — uniting two independent companies, real-world projects, and one shared vision.",
-      subText: "One vision built together: Business Strategy + Technology Innovation.",
-      icon: Rocket,
-      highlight: true
-    }
-  ];
-
   return (
     <section id="about" className="scroll-mt-20 pt-24 sm:pt-32 pb-20 bg-gradient-to-b from-[#F0F6FF] via-[#E8F2FF] to-[#F0F6FF] text-slate-900 select-none relative overflow-hidden">
+      
       {/* Ambient Blue Glow Points */}
       <div className="absolute top-12 left-1/4 w-[600px] h-[600px] bg-[#0088FF]/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
       <div className="absolute bottom-20 right-1/4 w-[600px] h-[600px] bg-cyan-400/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
@@ -106,8 +50,9 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#0088FF]">
-              ABOUT NEXALLIANCE
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#0088FF] flex items-center justify-center gap-2">
+              <Cpu className="w-4 h-4" />
+              <span>ABOUT NEXALLIANCE</span>
             </span>
           </motion.div>
 
@@ -130,94 +75,183 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
             className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto font-semibold"
           >
             Every great company begins with a vision. <strong className="text-slate-900 font-bold">NexAlliance</strong> began with two.
-            Before NexAlliance, founders <strong className="text-[#0088FF] font-bold">Meet Mistry</strong> and <strong className="text-[#0088FF] font-bold">Sanket Pithava</strong> were independently building their own companies and projects.
+            Before NexAlliance, founders <strong className="text-[#0088FF] font-bold">Meet Mistry</strong> and <strong className="text-[#0088FF] font-bold">Sanket Pithava</strong> were independently building their own technology companies.
           </motion.p>
         </div>
 
-        {/* 2. OUR STORY — ONE-BY-ONE ANIMATED ARROW TIMELINE FLOW */}
-        <div id="our-story" className="scroll-mt-24 space-y-10 sm:space-y-12 relative">
+        {/* 2. OUR STORY — SYSTEM ARCHITECTURE DIAGRAM LAYOUT */}
+        <div id="our-story" className="scroll-mt-24 space-y-12 relative">
 
           <div className="text-center max-w-2xl mx-auto space-y-2 relative z-10">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#0088FF]">OUR STORY TIMELINE</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-[#0088FF] flex items-center justify-center gap-2">
+              <Layers className="w-4 h-4" />
+              <span>SYSTEM ARCHITECTURE DIAGRAM</span>
+            </span>
             <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
-              From Two Journeys to <span className="text-[#0088FF]">NexAlliance</span>
+              The Evolution <span className="text-[#0088FF]">Architecture Diagram</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-semibold">
-              Follow the step-by-step chronological evolution of how Meet.Nexus & Nexora united into one alliance.
+              Visual pipeline showing how Meet.Nexus & Nexora converged into NexAlliance.
             </p>
           </div>
 
-          {/* Sequential Arrow Flow Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 items-stretch relative">
-            {storySteps.map((stepItem, idx) => {
-              const IconComp = stepItem.icon;
-              const isLast = idx === storySteps.length - 1;
-
-              return (
-                <div key={idx} className="relative flex flex-col justify-between">
-                  {/* Story Card */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 25 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: (idx % 2) * 0.12, ease: "easeOut" }}
-                    whileHover={{ y: -4, scale: 1.01 }}
-                    className={`h-full p-6 sm:p-7 rounded-3xl border-2 transition-all duration-300 flex flex-col justify-between group transform-gpu ${
-                      stepItem.highlight
-                        ? 'bg-gradient-to-br from-white via-sky-50 to-sky-100/90 border-[#0088FF] shadow-2xl shadow-sky-500/20 ring-2 ring-[#0088FF]/30'
-                        : 'bg-white/95 backdrop-blur-xl border-sky-300/80 hover:border-[#0088FF] shadow-xl shadow-sky-500/10 hover:shadow-2xl hover:shadow-sky-500/20'
-                    }`}
-                  >
-                    <div className="space-y-4">
-                      {/* Badge Row & Step Number */}
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[11px] font-extrabold uppercase tracking-wider px-3.5 py-1 rounded-full border shadow-sm flex items-center gap-1.5 ${
-                          stepItem.highlight
-                            ? 'bg-[#0088FF] text-white border-[#0088FF]'
-                            : 'bg-sky-100 text-[#0088FF] border-sky-300/70'
-                        }`}>
-                          <IconComp className="w-3.5 h-3.5" />
-                          <span>{stepItem.badge}</span>
-                        </span>
-
-                        <span className="font-heading text-lg font-black text-[#0088FF]">
-                          Step {stepItem.step}
-                        </span>
-                      </div>
-
-                      {/* Title */}
-                      <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#0088FF] transition-colors">
-                        {stepItem.title}
-                      </h3>
-
-                      {/* Description */}
-                      <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-semibold">
-                        {stepItem.desc}
-                      </p>
-                    </div>
-
-                    {/* SubText / Outcome */}
-                    <div className="pt-4 mt-4 border-t border-sky-200/80 flex items-center gap-2 text-xs font-bold text-slate-500">
-                      <CheckCircle2 className="w-4 h-4 text-[#0088FF] shrink-0" />
-                      <span>{stepItem.subText}</span>
-                    </div>
-                  </motion.div>
-
-                  {/* Animated Connecting Blue Arrow to Next Step */}
-                  {!isLast && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: (idx % 2) * 0.12 + 0.1 }}
-                      className="hidden md:flex absolute -right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-[#0088FF] text-white shadow-lg shadow-sky-500/30 items-center justify-center border-2 border-white animate-pulse"
-                    >
-                      <ArrowRight className="w-5 h-5" />
-                    </motion.div>
-                  )}
+          {/* VISUAL ARCHITECTURE DIAGRAM CONTAINER */}
+          <div className="relative max-w-5xl mx-auto space-y-10 sm:space-y-14 pt-4">
+            
+            {/* STAGE 1: TWO PARALLEL FOUNDER NODES (TOP LEVEL) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 relative z-10">
+              
+              {/* NODE A: MEET.NEXUS */}
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3 }}
+                whileHover={{ y: -4 }}
+                className="bg-white/95 backdrop-blur-xl border-2 border-sky-300/80 hover:border-[#0088FF] rounded-3xl p-6 sm:p-7 shadow-xl shadow-sky-500/10 hover:shadow-2xl transition-all duration-300 relative space-y-4 group"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100 px-3 py-1 rounded-full border border-sky-300/80 flex items-center gap-1.5">
+                    <Building2 className="w-3.5 h-3.5" />
+                    <span>10 FEBRUARY 2025</span>
+                  </span>
+                  <span className="text-[10px] font-mono font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded">NODE_A</span>
                 </div>
-              );
-            })}
+
+                <div className="space-y-2">
+                  <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#0088FF] transition-colors">
+                    Meet.Nexus <span className="text-xs text-slate-500 font-semibold block">(Meet Mistry)</span>
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-semibold">
+                    Meet Mistry started Meet.Nexus focusing on practical client digital solutions, sales, business development, and client relationships.
+                  </p>
+                </div>
+
+                {/* Sub Node: First Project */}
+                <div className="pt-3 border-t border-sky-100 bg-sky-50/70 p-3 rounded-2xl border border-sky-200/80 space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-extrabold text-[#0088FF] uppercase tracking-wider flex items-center gap-1">
+                      <Award className="w-3 h-3" />
+                      <span>FIRST PROJECT: HOTEL HILTON TMS</span>
+                    </span>
+                    <span className="text-[10px] font-bold text-emerald-600">DELIVERED</span>
+                  </div>
+                  <p className="text-[11px] font-semibold text-slate-600">
+                    Engineered task management software for hospitality client operations.
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* NODE B: NEXORA */}
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+                whileHover={{ y: -4 }}
+                className="bg-white/95 backdrop-blur-xl border-2 border-sky-300/80 hover:border-[#0088FF] rounded-3xl p-6 sm:p-7 shadow-xl shadow-sky-500/10 hover:shadow-2xl transition-all duration-300 relative space-y-4 group"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100 px-3 py-1 rounded-full border border-sky-300/80 flex items-center gap-1.5">
+                    <Code2 className="w-3.5 h-3.5" />
+                    <span>1 MARCH 2025</span>
+                  </span>
+                  <span className="text-[10px] font-mono font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded">NODE_B</span>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#0088FF] transition-colors">
+                    Nexora <span className="text-xs text-slate-500 font-semibold block">(Sanket Pithava)</span>
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-semibold">
+                    Sanket Pithava started Nexora focusing on software development, digital solutions, complex technology architecture, and technical innovation.
+                  </p>
+                </div>
+
+                {/* Sub Node: First Project */}
+                <div className="pt-3 border-t border-sky-100 bg-sky-50/70 p-3 rounded-2xl border border-sky-200/80 space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-extrabold text-[#0088FF] uppercase tracking-wider flex items-center gap-1">
+                      <Globe2 className="w-3 h-3" />
+                      <span>FIRST PROJECT: BIHAR DISASTER SYSTEM</span>
+                    </span>
+                    <span className="text-[10px] font-bold text-emerald-600">DELIVERED</span>
+                  </div>
+                  <p className="text-[11px] font-semibold text-slate-600">
+                    Developed technology-driven operational system for emergency resource management.
+                  </p>
+                </div>
+              </motion.div>
+
+            </div>
+
+            {/* CONNECTING FLOW PIPELINE ANIMATION (BOTH STREAMS CONVERGE) */}
+            <div className="flex flex-col items-center justify-center my-4 relative">
+              <div className="w-1 h-12 bg-gradient-to-b from-[#0088FF] to-cyan-400 rounded-full animate-pulse" />
+              <div className="w-8 h-8 rounded-full bg-[#0088FF] text-white flex items-center justify-center shadow-lg shadow-sky-500/40 border-2 border-white -mt-1 z-20">
+                <GitMerge className="w-4 h-4" />
+              </div>
+            </div>
+
+            {/* STAGE 2: CONVERGENCE GATEWAY (PROJECT PARTNERSHIP) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3 }}
+              whileHover={{ y: -3 }}
+              className="max-w-3xl mx-auto bg-gradient-to-r from-sky-50 via-white to-sky-50 border-2 border-[#0088FF] rounded-3xl p-6 sm:p-8 shadow-2xl shadow-sky-500/15 relative space-y-3 text-center"
+            >
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-xs font-extrabold uppercase tracking-widest text-[#0088FF] bg-sky-100 px-4 py-1.5 rounded-full border border-sky-300">
+                  CONVERGENCE GATEWAY — PROJECT PARTNERSHIP
+                </span>
+              </div>
+              <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900">
+                When Two Journeys Connected
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-semibold max-w-2xl mx-auto">
+                Working together on projects created an opportunity for both founders to combine their strengths. Meet brought business, sales, and growth strategy, while Sanket brought technology architecture and development execution.
+              </p>
+            </motion.div>
+
+            {/* FINAL PIPELINE DOWNWARD */}
+            <div className="flex flex-col items-center justify-center my-4 relative">
+              <div className="w-1 h-12 bg-gradient-to-b from-cyan-400 to-[#0088FF] rounded-full animate-pulse" />
+              <div className="w-8 h-8 rounded-full bg-[#0088FF] text-white flex items-center justify-center shadow-lg shadow-sky-500/40 border-2 border-white -mt-1 z-20">
+                <ArrowDown className="w-4 h-4 animate-bounce" />
+              </div>
+            </div>
+
+            {/* STAGE 3: SYSTEM APEX NODE (NEXALLIANCE OFFICIALLY BORN) */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              whileHover={{ scale: 1.01 }}
+              className="max-w-3xl mx-auto bg-gradient-to-br from-[#0088FF] via-[#0077E6] to-blue-700 text-white rounded-3xl p-8 sm:p-10 shadow-2xl shadow-sky-500/30 text-center space-y-4 relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full filter blur-3xl pointer-events-none" />
+              
+              <div className="inline-block bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/30 text-xs font-extrabold uppercase tracking-widest text-white shadow-sm">
+                SYSTEM APEX · 26 JULY 2026
+              </div>
+
+              <h2 className="font-heading text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+                The Birth of NexAlliance
+              </h2>
+
+              <p className="text-sm sm:text-base font-semibold text-sky-100 max-w-xl mx-auto leading-relaxed">
+                Officially established by Meet Mistry & Sanket Pithava — uniting two independent companies, real-world projects, and one shared vision.
+              </p>
+
+              <div className="pt-4 flex items-center justify-center gap-2 text-xs font-black uppercase tracking-wider text-sky-200 border-t border-white/20">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <span>One Vision. Built Together.</span>
+              </div>
+            </motion.div>
+
           </div>
 
         </div>
