@@ -24,13 +24,14 @@ export default function AnimatedCounter({
       { threshold: 0.15 }
     );
 
-    if (counterRef.current) {
-      observer.observe(counterRef.current);
+    const targetEl = counterRef.current;
+    if (targetEl) {
+      observer.observe(targetEl);
     }
 
     return () => {
-      if (counterRef.current) {
-        observer.unobserve(counterRef.current);
+      if (targetEl) {
+        observer.unobserve(targetEl);
       }
     };
   }, []);

@@ -101,29 +101,34 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
           canvas.height = height;
         }
 
-        ctx.drawImage(video, 0, 0, width, height);
+        try {
+          ctx.drawImage(video, 0, 0, width, height);
 
-        const frameData = ctx.getImageData(0, 0, width, height);
-        const data = frameData.data;
-        const len = data.length;
+          const frameData = ctx.getImageData(0, 0, width, height);
+          const data = frameData.data;
+          const len = data.length;
 
-        for (let i = 0; i < len; i += 4) {
-          const r = data[i];
-          const g = data[i + 1];
-          const b = data[i + 2];
+          for (let i = 0; i < len; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
 
-          if (r > 220 && g > 220 && b > 220) {
-            const avg = (r + g + b) / 3;
-            if (avg > 240) {
-              data[i + 3] = 0;
-            } else {
-              const alpha = Math.max(0, Math.floor(255 - (avg - 220) * 12.75));
-              data[i + 3] = alpha;
+            if (r > 220 && g > 220 && b > 220) {
+              const avg = (r + g + b) / 3;
+              if (avg > 240) {
+                data[i + 3] = 0;
+              } else {
+                const alpha = Math.max(0, Math.floor(255 - (avg - 220) * 12.75));
+                data[i + 3] = alpha;
+              }
             }
           }
-        }
 
-        ctx.putImageData(frameData, 0, 0);
+          ctx.putImageData(frameData, 0, 0);
+        } catch (e) {
+          // Fallback draw without pixel manipulation if tainted canvas
+          ctx.drawImage(video, 0, 0, width, height);
+        }
       }
 
       animFrameRef.current = requestAnimationFrame(renderTransparentFrame);
