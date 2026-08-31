@@ -82,9 +82,8 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
         <div id="our-story" className="scroll-mt-24 space-y-12 relative">
 
           <div className="text-center max-w-2xl mx-auto space-y-2 relative z-10">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#0088FF] flex items-center justify-center gap-2">
-              <Layers className="w-4 h-4" />
-              <span>SYSTEM ARCHITECTURE DIAGRAM</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-[#0088FF]">
+              SYSTEM ARCHITECTURE DIAGRAM
             </span>
             <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
               The Evolution <span className="text-[#0088FF]">Architecture Diagram</span>
