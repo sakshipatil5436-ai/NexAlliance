@@ -125,9 +125,8 @@ export default function Testimonials({ theme = 'light' }) {
           transition={{ duration: 0.3 }}
           className="text-center max-w-3xl mx-auto space-y-4"
         >
-          <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#0088FF] flex items-center justify-center gap-2">
-            <Film className="w-4 h-4" />
-            <span>SPLIT-SCREEN CINEMATIC STORIES</span>
+          <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#0088FF]">
+            CLIENT SUCCESS STORIES
           </span>
           <h2 className="font-heading text-3xl sm:text-5xl font-black tracking-tight text-slate-900 leading-tight">
             Trusted By Founders & <span className="text-[#0088FF]">Enterprise Leaders</span>
