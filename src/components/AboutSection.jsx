@@ -32,6 +32,16 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
 
         {/* 1. HERO HEADER AREA */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#0088FF]">
+              ABOUT NEXALLIANCE
+            </span>
+          </motion.div>
+
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -55,10 +65,13 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
           </motion.p>
         </div>
 
-        {/* 2. OUR STORY — CLEAN VISUAL FLOW PIPELINE */}
+        {/* 2. OUR STORY — CLEAN VISUAL DIAGRAM LAYOUT */}
         <div id="our-story" className="scroll-mt-24 space-y-12 relative">
 
           <div className="text-center max-w-2xl mx-auto space-y-2 relative z-10">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#0088FF]">
+              SYSTEM ARCHITECTURE
+            </span>
             <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
               From Two Journeys to <span className="text-[#0088FF]">NexAlliance</span>
             </h2>
