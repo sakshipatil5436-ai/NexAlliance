@@ -83,7 +83,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
           {/* VISUAL ARCHITECTURE DIAGRAM CONTAINER */}
           <div className="relative max-w-5xl mx-auto space-y-10 sm:space-y-14 pt-4">
             
-            {/* STAGE 1: TWO PARALLEL FOUNDER NODES (TOP LEVEL) */}
+            {/* STAGE 1: TWO PARALLEL FOUNDER NODES */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 relative z-10">
               
               {/* MEET.NEXUS */}
