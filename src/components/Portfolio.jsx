@@ -138,11 +138,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
     : projects.filter(p => p.category === activeTab);
 
   return (
-    <section id="portfolio" className={`scroll-mt-20 ${isHomePage ? 'py-12 sm:py-16' : 'pt-28 sm:pt-36 pb-20 sm:pb-24'} transition-colors duration-500 relative overflow-hidden select-none bg-gradient-to-b from-[#F0F6FF] via-[#E8F2FF] to-[#F0F6FF] text-slate-900`}>
-
-      {/* Ambient Radial Blue Glow Points */}
-      <div className="absolute top-10 right-10 w-[500px] h-[500px] bg-[#0088FF]/15 rounded-full filter blur-[140px] pointer-events-none z-0" />
-      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-cyan-400/15 rounded-full filter blur-[140px] pointer-events-none z-0" />
+    <section id="portfolio" className={`scroll-mt-20 ${isHomePage ? 'py-12 sm:py-16' : 'pt-28 sm:pt-36 pb-20 sm:pb-24'} relative overflow-hidden select-none bg-[#F0F6FF] text-slate-900`}>
 
       <div className={isHomePage ? "w-full relative z-10" : "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"}>
 
@@ -177,12 +173,11 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider transition-colors duration-200 border cursor-pointer transform-gpu ${
+                className={`px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider border cursor-pointer ${
                   activeTab === tab.id
-                    ? 'bg-[#0088FF] text-white shadow-lg shadow-sky-500/30 border-[#0088FF]'
-                    : 'bg-white/90 text-slate-600 hover:bg-white hover:text-[#0088FF] border-sky-200/80 shadow-sm'
+                    ? 'bg-[#0088FF] text-white shadow-md border-[#0088FF]'
+                    : 'bg-white text-slate-600 hover:bg-white hover:text-[#0088FF] border-sky-200 shadow-sm'
                 }`}
-                style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
               >
                 {tab.label}
               </button>
@@ -196,8 +191,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
             {/* Left Arrow Button */}
             <button
               onClick={() => scrollManual('left')}
-              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 text-slate-800 hover:bg-[#0088FF] hover:text-white border border-sky-200 shadow-xl flex items-center justify-center transition-colors cursor-pointer transform-gpu"
-              style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-slate-800 hover:bg-[#0088FF] hover:text-white border border-sky-200 shadow-xl flex items-center justify-center cursor-pointer"
               aria-label="Previous Projects"
             >
               <ChevronLeft className="w-5 h-5 sm:w-7 sm:h-7" />
@@ -206,20 +200,13 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
             {/* Right Arrow Button */}
             <button
               onClick={() => scrollManual('right')}
-              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 text-slate-800 hover:bg-[#0088FF] hover:text-white border border-sky-200 shadow-xl flex items-center justify-center transition-colors cursor-pointer transform-gpu"
-              style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-slate-800 hover:bg-[#0088FF] hover:text-white border border-sky-200 shadow-xl flex items-center justify-center cursor-pointer"
               aria-label="Next Projects"
             >
               <ChevronRight className="w-5 h-5 sm:w-7 sm:h-7" />
             </button>
 
-            {/* Left Fade Mask */}
-            <div className="absolute top-0 left-0 bottom-0 w-12 sm:w-32 z-20 pointer-events-none bg-gradient-to-r from-[#F0F6FF] to-transparent"></div>
-
-            {/* Right Fade Mask */}
-            <div className="absolute top-0 right-0 bottom-0 w-12 sm:w-32 z-20 pointer-events-none bg-gradient-to-l from-[#F0F6FF] to-transparent"></div>
-
-            {/* SCROLLABLE GALLERY TRACK (Native smooth horizontal & arrow button scrolling ONLY) */}
+            {/* SCROLLABLE GALLERY TRACK (Clean Static Rendering) */}
             <div
               ref={scrollRef}
               className="w-full overflow-x-auto scroll-smooth py-3 no-scrollbar"
@@ -230,7 +217,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                   <div
                     key={item.id}
                     onClick={() => handleProjectClick(item)}
-                    className="w-[290px] xs:w-[330px] sm:w-[400px] h-[220px] xs:h-[250px] sm:h-[280px] shrink-0 rounded-3xl relative overflow-hidden group cursor-pointer shadow-lg shadow-sky-500/10 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-5 sm:p-6 flex flex-col justify-between transition-colors duration-150"
+                    className="w-[290px] xs:w-[330px] sm:w-[400px] h-[220px] xs:h-[250px] sm:h-[280px] shrink-0 rounded-3xl relative overflow-hidden group cursor-pointer shadow-md border-2 border-sky-200/80 hover:border-[#0088FF] bg-white p-5 sm:p-6 flex flex-col justify-between"
                   >
                     {/* Clean Logo Image Centered */}
                     <div className="flex-1 min-h-0 w-full flex items-center justify-center p-3">
@@ -244,12 +231,12 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                     </div>
 
                     {/* Project Name & Explore Icon */}
-                    <div className="flex items-center justify-between pt-3 pb-1 border-t border-sky-200/80 z-10 shrink-0 min-w-0">
+                    <div className="flex items-center justify-between pt-3 pb-1 border-t border-sky-100 z-10 shrink-0 min-w-0">
                       <h3 className="font-heading text-sm sm:text-base font-extrabold text-slate-900 truncate pr-2">
                         {item.title}
                       </h3>
                       {!item.hideExplore && (
-                        <div className="w-7 h-7 rounded-full bg-sky-100 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white transition-colors shrink-0">
+                        <div className="w-7 h-7 rounded-full bg-sky-50 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white shrink-0">
                           <ArrowUpRight className="w-4 h-4" />
                         </div>
                       )}
@@ -265,7 +252,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
             {filtered.map((item) => (
               <div
                 key={item.id}
-                className="h-[240px] sm:h-[280px] rounded-3xl relative overflow-hidden group cursor-pointer shadow-lg shadow-sky-500/10 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-5 sm:p-7 flex flex-col justify-between w-full transition-colors duration-150"
+                className="h-[240px] sm:h-[280px] rounded-3xl relative overflow-hidden group cursor-pointer shadow-md border-2 border-sky-200/80 hover:border-[#0088FF] bg-white p-5 sm:p-7 flex flex-col justify-between w-full"
                 onClick={() => handleProjectClick(item)}
               >
                 {/* Clean Logo Image Centered */}
@@ -280,7 +267,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                 </div>
 
                 {/* Project Name & Explore Icon */}
-                <div className="flex items-center justify-between pt-3 pb-1 border-t border-sky-200/80 z-10 shrink-0 min-w-0">
+                <div className="flex items-center justify-between pt-3 pb-1 border-t border-sky-100 z-10 shrink-0 min-w-0">
                   <div className="min-w-0 pr-2">
                     <h3 className="font-heading text-base sm:text-lg font-black text-slate-900 truncate">
                       {item.title}
@@ -290,7 +277,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                     </p>
                   </div>
                   {!item.hideExplore && (
-                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-sky-100 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white transition-colors shrink-0">
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-sky-50 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white shrink-0">
                       <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                   )}
