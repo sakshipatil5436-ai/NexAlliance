@@ -31,21 +31,13 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
     }
   };
 
-  // Entry Greeting on Website Initial Open ONLY
+  // Entry Greeting on Website Initial Open & Refresh
   useEffect(() => {
-    // If already spoken in this session or during SPA navigation, DO NOT speak again
-    if (HAS_GLOBAL_SPOKEN_HI || sessionStorage.getItem('nexalliance_has_spoken_hi')) {
-      return;
-    }
+    let hasTriggered = false;
 
     const triggerGreeting = () => {
-      if (HAS_GLOBAL_SPOKEN_HI || sessionStorage.getItem('nexalliance_has_spoken_hi')) {
-        return;
-      }
-      HAS_GLOBAL_SPOKEN_HI = true;
-      try {
-        sessionStorage.setItem('nexalliance_has_spoken_hi', 'true');
-      } catch (e) { }
+      if (hasTriggered) return;
+      hasTriggered = true;
 
       speakHelloFromNexAlliance();
 
@@ -55,11 +47,11 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
       window.removeEventListener('keydown', triggerGreeting);
     };
 
-    // Try to speak immediately on initial website open
+    // Try to speak immediately on page load / refresh
     const t1 = setTimeout(triggerGreeting, 400);
     const t2 = setTimeout(triggerGreeting, 1200);
 
-    // Browser Autoplay Policy Fallback on initial load
+    // Browser Autoplay Policy Fallback (User gesture listener)
     window.addEventListener('pointerdown', triggerGreeting, { once: true });
     window.addEventListener('click', triggerGreeting, { once: true });
     window.addEventListener('scroll', triggerGreeting, { once: true });
