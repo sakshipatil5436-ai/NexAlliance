@@ -143,10 +143,6 @@ export default function Testimonials({ theme = 'light' }) {
           
           {/* LEFT COLUMN: CINEMATIC FIXED QUOTE AREA (7 Cols) */}
           <div className="lg:col-span-7 relative min-h-[360px] sm:min-h-[400px] flex flex-col justify-between py-4">
-            
-            {/* Giant Watermarked Quotation Mark */}
-            <Quote className="absolute -top-6 -left-6 w-24 h-24 text-[#0088FF]/15 pointer-events-none -z-10" />
-
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeStory.id}
