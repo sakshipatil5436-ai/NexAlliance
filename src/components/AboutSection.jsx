@@ -1,7 +1,17 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Building2, Code2 } from 'lucide-react';
+import {
+  Building2,
+  Code2,
+  Award,
+  Globe2,
+  GitMerge,
+  Users,
+  ArrowDown,
+  Rocket,
+  CheckCircle2
+} from 'lucide-react';
 import AnimatedCounter from './AnimatedCounter';
 
 export default function AboutSection({ onOpenBooking, theme = 'light', showFounders = true }) {
