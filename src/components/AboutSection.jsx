@@ -165,11 +165,11 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
             >
               <div className="space-y-3">
                 <div>
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-teal-700 bg-teal-100/80 px-3 py-1 rounded-full border border-teal-300/70 shadow-sm inline-block">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100 px-3 py-1 rounded-full border border-sky-300/70 shadow-sm inline-block">
                     1 March 2025
                   </span>
                 </div>
-                <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-teal-600 transition-colors">
+                <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#0088FF] transition-colors">
                   A Second Journey — Nexora
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-semibold">
@@ -192,11 +192,11 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
             >
               <div className="space-y-3">
                 <div>
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-indigo-700 bg-indigo-100/80 px-3 py-1 rounded-full border border-indigo-300/70 shadow-sm inline-block">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100 px-3 py-1 rounded-full border border-sky-300/70 shadow-sm inline-block">
                     Project Partnership
                   </span>
                 </div>
-                <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#0088FF] transition-colors">
                   When Two Journeys Connected
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-semibold">
