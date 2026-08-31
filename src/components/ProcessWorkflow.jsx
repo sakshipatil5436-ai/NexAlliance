@@ -96,12 +96,12 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
     }
   ];
 
-  // Auto-advance sequence from Step 1 (0) -> 2 -> 3 -> 4 -> 5 -> 6 every 3.5s
+  // Fast auto-advance sequence from Step 1 (0) -> 2 -> 3 -> 4 -> 5 -> 6 every 1.6s
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
       setActiveStep((prev) => (prev === null ? 0 : (prev + 1) % steps.length));
-    }, 3500);
+    }, 1600);
     return () => clearInterval(timer);
   }, [isPaused, steps.length]);
 
