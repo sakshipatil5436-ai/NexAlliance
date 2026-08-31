@@ -23,7 +23,7 @@ export default function ClientsSection() {
   ];
 
   return (
-    <div className="min-h-screen pt-28 sm:pt-36 pb-20 bg-gradient-to-b from-[#F0F6FF] via-[#E8F2FF] to-[#F0F6FF] text-slate-900 select-none relative overflow-hidden">
+    <div className="min-h-screen pt-28 sm:pt-36 pb-24 bg-gradient-to-b from-[#F0F6FF] via-[#E8F2FF] to-[#F0F6FF] text-slate-900 select-none relative overflow-hidden">
       
       {/* Ambient Radial Blue Glow Points */}
       <div className="absolute top-12 left-1/4 w-[600px] h-[600px] bg-[#0088FF]/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
@@ -40,43 +40,24 @@ export default function ClientsSection() {
             Valued Ecosystem <span className="text-[#0088FF]">Clients & Brands</span>
           </h1>
           <p className="text-sm sm:text-base font-semibold leading-relaxed text-slate-600 max-w-2xl mx-auto">
-            A clean, direct list of trusted enterprises, software platforms, and brands engineered by NexAlliance.
+            Trusted enterprises, software platforms, and brands engineered by NexAlliance.
           </p>
         </div>
 
-        {/* Plain Numbered Logos Layout - No Boxes, No Cards, No Dark Backgrounds, No Explore */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 pt-4">
-          {clients.map((client) => {
-            const formattedNum = String(client.id).padStart(2, '0');
-
-            return (
-              <div
-                key={client.id}
-                className="flex items-center gap-5 sm:gap-7 py-3 px-2 border-b border-sky-200/60"
-              >
-                {/* Numbering */}
-                <span className="font-heading text-xl sm:text-2xl font-black text-[#0088FF] shrink-0">
-                  {formattedNum}.
-                </span>
-
-                {/* Plain Logo directly on screen */}
-                <div className="h-12 sm:h-16 w-32 sm:w-44 shrink-0 flex items-center justify-start">
-                  <img
-                    src={client.image}
-                    alt={client.title}
-                    className="max-h-full max-w-full object-contain object-left filter drop-shadow-sm"
-                  />
-                </div>
-
-                {/* Plain Text Title */}
-                <div className="min-w-0 flex-1">
-                  <h3 className="font-heading text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">
-                    {client.title}
-                  </h3>
-                </div>
-              </div>
-            );
-          })}
+        {/* Plain Logos Only - No Names, No Boxes, No Cards, No Dark Backgrounds, No Explore */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 sm:gap-12 pt-6 items-center justify-items-center">
+          {clients.map((client) => (
+            <div
+              key={client.id}
+              className="w-full h-24 sm:h-32 flex items-center justify-center p-2"
+            >
+              <img
+                src={client.image}
+                alt={client.title}
+                className="max-h-full max-w-[180px] sm:max-w-[220px] object-contain filter drop-shadow-sm transition-transform duration-300 hover:scale-105"
+              />
+            </div>
+          ))}
         </div>
 
       </div>
