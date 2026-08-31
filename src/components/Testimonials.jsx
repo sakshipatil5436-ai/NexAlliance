@@ -56,12 +56,12 @@ export default function Testimonials({ theme = 'light' }) {
   ];
 
   useEffect(() => {
-    return () => {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
-    };
-  }, []);
+    const interval = setInterval(() => {
+      setActiveIdx((prevIdx) => (prevIdx + 1) % testimonials.length);
+    }, 4500);
+
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
 
   const activeStory = testimonials[activeIdx];
 
