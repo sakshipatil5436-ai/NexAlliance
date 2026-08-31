@@ -59,7 +59,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-heading text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15] text-slate-900"
+            className="font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-snug text-slate-900"
           >
             Two Founders. Two Journeys.{' '}
             <span className="text-[#0088FF]">
