@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Compass,
@@ -8,13 +8,12 @@ import {
   ShieldCheck,
   Rocket,
   ChevronRight,
-  CheckCircle2
+  ChevronDown
 } from 'lucide-react';
 
 export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
   const isLight = theme === 'light';
-  const [activeStep, setActiveStep] = useState(2); // Default to Step 3 (0-indexed: 2) as in Image 2
-  const [isPaused, setIsPaused] = useState(false);
+  const [activeStep, setActiveStep] = useState(2); // Default open to Step 3 (0-indexed: 2) as in Image 2
 
   const steps = [
     {
@@ -97,15 +96,6 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
     }
   ];
 
-  // Auto-play 3D rotation across steps every 3.5s
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % steps.length);
-    }, 3500);
-    return () => clearInterval(timer);
-  }, [isPaused, steps.length]);
-
   return (
     <section className="py-14 sm:py-20 transition-colors duration-500 relative overflow-hidden select-none bg-gradient-to-b from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] text-slate-900">
 
@@ -136,13 +126,10 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
         </motion.div>
 
         {/* 6-STEP 3D INTERACTIVE TIMELINE CONTAINER */}
-        <div
-          className="relative max-w-7xl mx-auto pt-6 pb-4"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
+        <div className="relative max-w-7xl mx-auto pt-6 pb-4">
+
           {/* Horizontal Connecting 3D Pipeline Line (Desktop) */}
-          <div className="hidden lg:block absolute top-[68px] left-[6%] right-[6%] h-[3px] bg-gradient-to-r from-sky-300 via-[#0088FF] to-indigo-500 rounded-full shadow-[0_0_12px_rgba(0,136,255,0.4)] z-0" />
+          <div className="hidden lg:block absolute top-[52px] left-[6%] right-[6%] h-[3px] bg-gradient-to-r from-sky-300 via-[#0088FF] to-indigo-500 rounded-full shadow-[0_0_12px_rgba(0,136,255,0.4)] z-0" />
 
           {/* 6-Step Timeline Nodes Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-4 relative z-10 items-start">
@@ -153,7 +140,7 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
               return (
                 <div
                   key={step.id}
-                  onClick={() => setActiveStep(idx)}
+                  onClick={() => setActiveStep(isActive ? null : idx)}
                   className="flex flex-col items-center cursor-pointer group"
                 >
                   {/* 3D FLOATING GLOWING ORB */}
@@ -186,55 +173,47 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
                     </div>
                   </motion.div>
 
-                  {/* 3D STEP CARD (Expands with bullet points when active as in Image 2) */}
-                  <motion.div
-                    layout
-                    transition={{ duration: 0.3 }}
-                    className={`w-full p-5 sm:p-6 rounded-3xl transition-all duration-300 flex flex-col justify-between text-center relative overflow-hidden transform-gpu border-2 ${
-                      isActive
-                        ? 'bg-white/95 backdrop-blur-xl border-[#0088FF] shadow-2xl shadow-sky-500/20 ring-2 ring-[#0088FF]/20 -translate-y-1'
-                        : 'bg-white/80 backdrop-blur-md border-sky-200/80 hover:border-sky-400 shadow-md hover:shadow-xl'
-                    }`}
-                  >
-                    <div>
-                      <h3 className={`font-heading font-black text-base sm:text-lg mb-2 transition-colors ${
-                        isActive ? 'text-[#0088FF]' : 'text-slate-900 group-hover:text-[#0088FF]'
-                      }`}>
-                        {step.title}
-                      </h3>
+                  {/* HEADING LABEL (Always visible) */}
+                  <div className="text-center mb-3">
+                    <h3 className={`font-heading font-black text-sm sm:text-base leading-snug transition-colors ${
+                      isActive ? 'text-[#0088FF]' : 'text-slate-900 group-hover:text-[#0088FF]'
+                    }`}>
+                      {step.title}
+                    </h3>
+                  </div>
 
-                      {/* Description Text */}
-                      <p className="text-xs text-slate-600 font-semibold leading-relaxed mb-3">
-                        {step.desc}
-                      </p>
+                  {/* EXPANDABLE INFORMATION BOX (Opens ONLY when clicked!) */}
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10, height: 0 }}
+                        animate={{ opacity: 1, y: 0, height: 'auto' }}
+                        exit={{ opacity: 0, y: -10, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="w-full p-5 rounded-3xl bg-white/95 backdrop-blur-xl border-2 border-[#0088FF] shadow-2xl shadow-sky-500/20 ring-2 ring-[#0088FF]/20 text-left space-y-3 overflow-hidden transform-gpu"
+                      >
+                        <p className="text-xs text-slate-600 font-semibold leading-relaxed">
+                          {step.desc}
+                        </p>
 
-                      {/* Expandable Bullet Points (Exact match to Image 2!) */}
-                      <AnimatePresence>
-                        {isActive && (
-                          <motion.ul
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.25 }}
-                            className="pt-3 border-t border-sky-100 space-y-2 text-left text-[11px] font-bold text-slate-700 overflow-hidden"
-                          >
-                            {step.bullets.map((bullet, i) => (
-                              <li key={i} className="flex items-center gap-1.5 text-slate-700">
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#0088FF] shrink-0" />
-                                <span>{bullet}</span>
-                              </li>
-                            ))}
-                          </motion.ul>
-                        )}
-                      </AnimatePresence>
-                    </div>
+                        {/* Bullet Points List */}
+                        <ul className="pt-2 border-t border-sky-100 space-y-2 text-[11px] font-bold text-slate-700">
+                          {step.bullets.map((bullet, i) => (
+                            <li key={i} className="flex items-center gap-1.5 text-slate-700">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#0088FF] shrink-0" />
+                              <span>{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
 
-                    {/* Step Active Indicator */}
-                    <div className="pt-3 mt-3 flex items-center justify-center gap-1 text-[10px] font-black uppercase tracking-wider text-[#0088FF]">
-                      <span>{isActive ? 'ACTIVE STEP' : `STEP 0${step.number}`}</span>
-                      <ChevronRight className={`w-3 h-3 transition-transform ${isActive ? 'rotate-90 text-[#0088FF]' : ''}`} />
-                    </div>
-                  </motion.div>
+                        <div className="pt-2 flex items-center justify-between text-[10px] font-black uppercase tracking-wider text-[#0088FF]">
+                          <span>STEP 0{step.number} DETAILS</span>
+                          <ChevronDown className="w-3.5 h-3.5 text-[#0088FF]" />
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
                 </div>
               );
             })}
