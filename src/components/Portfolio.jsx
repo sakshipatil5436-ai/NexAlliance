@@ -1,10 +1,29 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage = false }) {
   const [activeTab, setActiveTab] = useState('all');
+  const [isPaused, setIsPaused] = useState(false);
   const scrollRef = useRef(null);
+
+  // Auto-scroll project gallery slider every 2.8s
+  useEffect(() => {
+    if (!isHomePage || isPaused) return;
+
+    const timer = setInterval(() => {
+      if (scrollRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 20) {
+          scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          scrollRef.current.scrollBy({ left: 380, behavior: 'smooth' });
+        }
+      }
+    }, 2800);
+
+    return () => clearInterval(timer);
+  }, [isHomePage, isPaused]);
 
   const scrollManual = (direction) => {
     if (scrollRef.current) {
@@ -224,7 +243,11 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
 
         {/* CONDITION 1: Home Page Gallery Track (isHomePage === true) */}
         {isHomePage ? (
-          <div className="relative w-full overflow-hidden py-4 sm:py-6 group/gallery">
+          <div
+            className="relative w-full overflow-hidden py-4 sm:py-6 group/gallery"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
             {/* Left Arrow Button */}
             <button
               onClick={() => scrollManual('left')}
