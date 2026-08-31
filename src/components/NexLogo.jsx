@@ -6,7 +6,7 @@ export default function NexLogo({ theme = "light", size = "normal" }) {
   return (
     <div className="flex items-center cursor-pointer select-none">
       <img
-        src="/logo.png"
+        src="/logo.webp"
         alt="NexAlliance Official Logo"
         className={`${heightClass} w-auto object-contain drop-shadow-sm`}
       />

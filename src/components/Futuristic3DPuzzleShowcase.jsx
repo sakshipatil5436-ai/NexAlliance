@@ -133,7 +133,7 @@ export default function Futuristic3DPuzzleShowcase({ onOpenServiceDetail, theme 
         {/* Subtle Background Texture Layer */}
         <div className="absolute inset-0 opacity-15 mix-blend-screen pointer-events-none">
           <img
-            src="/futuristic_3d_puzzle_services.jpg"
+            src="/futuristic_3d_puzzle_services.webp"
             alt="3D Holographic Matrix"
             className="w-full h-full object-cover"
           />

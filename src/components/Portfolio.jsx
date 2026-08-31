@@ -19,70 +19,70 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
       id: 1,
       category: 'web',
       title: 'Vrani Chemicals',
-      image: '/projects/vrani_chemicals.jpg',
+      image: '/projects/vrani_chemicals.webp',
       tech: 'Chemical & Product Portal'
     },
     {
       id: 2,
       category: 'web',
       title: 'ArkA Stone Realty',
-      image: '/projects/arka_stone_realty.jpg',
+      image: '/projects/arka_stone_realty.webp',
       tech: 'Real Estate Advisory'
     },
     {
       id: 3,
       category: 'erp',
       title: 'BrandBox',
-      image: '/projects/brandbox.jpg',
+      image: '/projects/brandbox.webp',
       tech: 'E-Commerce & HRM System'
     },
     {
       id: 4,
       category: 'crm',
       title: 'V Square Neuro Spine Centre',
-      image: '/projects/v_square_spine.jpg',
+      image: '/projects/v_square_spine.webp',
       tech: 'Healthcare & Clinic Portal'
     },
     {
       id: 5,
       category: 'web',
       title: 'Dotteds',
-      image: '/projects/dotteds.jpg',
+      image: '/projects/dotteds.webp',
       tech: 'Fashion E-Commerce Store'
     },
     {
       id: 6,
       category: 'erp',
       title: 'Gas Agency',
-      image: '/projects/gas_agency.jpg',
+      image: '/projects/gas_agency.webp',
       tech: 'Gas & Inventory ERP'
     },
     {
       id: 7,
       category: 'crm',
       title: 'Novva Salon',
-      image: '/projects/novva_salon.jpg',
+      image: '/projects/novva_salon.webp',
       tech: 'Salon ERP & Booking System'
     },
     {
       id: 8,
       category: 'erp',
       title: 'BDSRN',
-      image: '/projects/bdsrn.jpg',
+      image: '/projects/bdsrn.webp',
       tech: 'Disaster Resource Network'
     },
     {
       id: 9,
       category: 'erp',
       title: 'Custom Restaurant System',
-      image: '/projects/restaurant_system.jpg',
+      image: '/projects/restaurant_system.webp',
       tech: 'Restaurant POS & Billing'
     },
     {
       id: 10,
       category: 'erp',
       title: 'Nirman Architects MS',
-      image: '/projects/nirman_architects.jpg',
+      image: '/projects/nirman_architects.webp',
       tech: 'Architecture Management'
     },
     {

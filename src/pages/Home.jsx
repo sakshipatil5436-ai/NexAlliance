@@ -6,7 +6,6 @@ import Services from '../components/Services';
 import AboutSection from '../components/AboutSection';
 import ProcessWorkflow from '../components/ProcessWorkflow';
 import Portfolio from '../components/Portfolio';
-import CareersSection from '../components/CareersSection';
 import Testimonials from '../components/Testimonials';
 import ContactSection from '../components/ContactSection';
 
@@ -62,7 +61,6 @@ export default function Home({ onOpenBooking, onOpenServiceDetail, theme }) {
           <Services onOpenBooking={onOpenBooking} onOpenServiceDetail={onOpenServiceDetail} theme={theme} isHomePage={true} />
           <ProcessWorkflow onOpenBooking={onOpenBooking} theme={theme} />
           <Portfolio onOpenBooking={onOpenBooking} theme={theme} isHomePage={true} />
-          <CareersSection onOpenBooking={onOpenBooking} theme={theme} isHomePage={true} />
           <Testimonials theme={theme} />
           <ContactSection onOpenBooking={onOpenBooking} theme={theme} isHomePage={true} />
         </div>

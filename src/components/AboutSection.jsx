@@ -25,13 +25,13 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
       name: "Meet Mistry",
       role: "Co-Founder · Business & Growth",
       desc: "Meet leads business development, sales, client relationships, and growth at NexAlliance. His focus is on understanding business challenges, creating meaningful client partnerships, and identifying opportunities where technology can drive measurable business growth.",
-      image: "/meet_founder.jpeg"
+      image: "/meet_founder.webp"
     },
     {
       name: "Sanket Pithava",
       role: "Co-Founder · Technology & Innovation",
       desc: "Sanket leads technology, software development, and innovation at NexAlliance. His focus is on transforming complex requirements into scalable, reliable, and modern digital solutions.",
-      image: "/sanket_founder.jpeg"
+      image: "/sanket_founder.webp"
     }
   ];
 
@@ -47,16 +47,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
   return (
     <section id="about" className="scroll-mt-20 pt-24 sm:pt-32 pb-20 bg-white text-slate-900 select-none relative">
 
-      {/* 100% FIXED VIEWPORT BACKGROUND IMAGE ONLY ON DEDICATED ABOUT PAGE (/about) */}
-      {isAboutPage && (
-        <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl sm:max-w-4xl pointer-events-none opacity-20 sm:opacity-25 select-none z-0">
-          <img
-            src="/images_nobg.png"
-            alt="NexAlliance 3D Handshake Fixed Position"
-            className="w-full h-auto object-contain filter drop-shadow-[0_10px_35px_rgba(0,136,255,0.25)]"
-          />
-        </div>
-      )}
+
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 sm:space-y-28 relative z-10">
 
@@ -121,15 +112,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
 
         {/* 2. OUR STORY SECTION */}
         <div id="our-story" className="scroll-mt-24 space-y-12 sm:space-y-16 pt-6 relative">
-          {!isAboutPage && (
-            <div className="sticky top-28 -mb-[380px] sm:-mb-[480px] pointer-events-none flex items-center justify-center overflow-hidden opacity-30 sm:opacity-35 select-none z-0">
-              <img
-                src="/images_nobg.png"
-                alt="NexAlliance 3D Handshake Story Background"
-                className="w-full max-w-3xl h-[360px] sm:h-[480px] object-contain filter drop-shadow-[0_10px_35px_rgba(0,136,255,0.25)]"
-              />
-            </div>
-          )}
+
 
           <div className="text-center max-w-2xl mx-auto space-y-2 relative z-10">
             <span className="text-xs font-bold uppercase tracking-widest text-[#0088FF]">OUR STORY</span>

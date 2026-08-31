@@ -168,13 +168,18 @@ export default function CareersSection({ onOpenBooking, theme = 'light', isHomeP
   return (
     <section id="careers" className="scroll-mt-20 pt-28 sm:pt-36 pb-16 sm:pb-20 relative w-full max-w-full overflow-hidden select-none bg-white text-slate-900">
 
-      {isCareersPage && (
-        <div className="fixed inset-0 w-full h-full pointer-events-none opacity-20 sm:opacity-25 select-none z-0 overflow-hidden">
-          <img
-            src="/careers.jpg"
-            alt="NexAlliance Careers Full Screen Fixed Background"
-            className="w-full h-full object-cover filter drop-shadow-[0_10px_35px_rgba(0,136,255,0.25)]"
-          />
+      {(isCareersPage || !isHomePage) && (
+        <div className="fixed inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-25 sm:opacity-30 filter brightness-95 contrast-105"
+          >
+            <source src="/career_k_liye_kuch_video_bana.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-white/50 backdrop-blur-[1px]"></div>
         </div>
       )}
 

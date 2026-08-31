@@ -51,9 +51,9 @@ export default function AntiGravityHeroVisual({ theme = 'dark' }) {
     scene.add(spotLight);
 
     // 2. LOGO & TEXT 3D OBJECTS
-    // Create Texture from transparent logo.png
+    // Create Texture from transparent logo.webp
     const textureLoader = new THREE.TextureLoader();
-    const logoTexture = textureLoader.load('/logo.png');
+    const logoTexture = textureLoader.load('/logo.webp');
     logoTexture.colorSpace = THREE.SRGBColorSpace;
 
     // Logo 3D Floating Mesh Group
