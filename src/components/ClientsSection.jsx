@@ -1,26 +1,25 @@
 import React, { useEffect } from 'react';
-import { ExternalLink } from 'lucide-react';
 
-export default function ClientsSection({ onOpenBooking }) {
+export default function ClientsSection() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
   const clients = [
-    { id: 1, title: 'Hotel Hilton TMS', image: '/projects/milton.webp', link: 'https://www.hilton.com/en/locations/india/' },
-    { id: 2, title: 'Mad Over Grills MS', image: '/projects/Mad_over.webp', link: 'https://madovergrills.co.in/' },
-    { id: 3, title: 'Nirman Architects MS', image: '/projects/niraman.webp', link: 'https://www.nirman-architects.com/' },
-    { id: 4, title: 'Modulite Interior', image: '/projects/modulite.webp', link: 'https://modulite.in/' },
-    { id: 5, title: 'Har Bole – News Platform', image: '/projects/harbole.webp', link: 'https://harbole.com/' },
+    { id: 1, title: 'Hotel Hilton TMS', image: '/projects/milton.webp' },
+    { id: 2, title: 'Mad Over Grills MS', image: '/projects/Mad_over.webp' },
+    { id: 3, title: 'Nirman Architects MS', image: '/projects/niraman.webp' },
+    { id: 4, title: 'Modulite Interior', image: '/projects/modulite.webp' },
+    { id: 5, title: 'Har Bole – News Platform', image: '/projects/harbole.webp' },
     { id: 6, title: 'BDSRN', image: '/projects/bdsrn.webp' },
     { id: 7, title: 'Novva Salon', image: '/projects/novva_salon.webp' },
     { id: 8, title: 'Gas Agency', image: '/projects/gas_agency.webp' },
-    { id: 9, title: 'V Square Neuro Spine Centre', image: '/projects/v_logo.webp', link: 'https://vsquareneurospine.com/' },
-    { id: 10, title: 'Dotteds', image: '/projects/dotteds_logo.webp', link: 'https://dotteds.in/' },
+    { id: 9, title: 'V Square Neuro Spine Centre', image: '/projects/v_logo.webp' },
+    { id: 10, title: 'Dotteds', image: '/projects/dotteds_logo.webp' },
     { id: 11, title: 'BrandBox', image: '/projects/brandbox.webp' },
-    { id: 12, title: 'ArkA Stone Realty', image: '/projects/arka_logo.webp', link: 'https://arkastonerealty.com/' },
-    { id: 13, title: 'Luxbury Properties', image: '/projects/new-logo.webp', link: 'https://luxburyproperties.com/' },
-    { id: 14, title: 'Vrani Chemicals', image: '/projects/vrani_chemicals.webp', link: 'https://vranichemicals.com/' }
+    { id: 12, title: 'ArkA Stone Realty', image: '/projects/arka_logo.webp' },
+    { id: 13, title: 'Luxbury Properties', image: '/projects/new-logo.webp' },
+    { id: 14, title: 'Vrani Chemicals', image: '/projects/vrani_chemicals.webp' }
   ];
 
   return (
@@ -41,58 +40,40 @@ export default function ClientsSection({ onOpenBooking }) {
             Valued Ecosystem <span className="text-[#0088FF]">Clients & Brands</span>
           </h1>
           <p className="text-sm sm:text-base font-semibold leading-relaxed text-slate-600 max-w-2xl mx-auto">
-            A comprehensive list of trusted enterprises, software platforms, and brands engineered by NexAlliance.
+            A clean, direct list of trusted enterprises, software platforms, and brands engineered by NexAlliance.
           </p>
         </div>
 
-        {/* Static 2-Line Numbered Client Grid (No Animations) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        {/* Plain Numbered Logos Layout - No Boxes, No Cards, No Dark Backgrounds, No Explore */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 pt-4">
           {clients.map((client) => {
             const formattedNum = String(client.id).padStart(2, '0');
-            const hasLink = Boolean(client.link);
 
             return (
               <div
                 key={client.id}
-                onClick={() => {
-                  if (hasLink) {
-                    window.open(client.link, '_blank', 'noopener,noreferrer');
-                  }
-                }}
-                className={`p-5 sm:p-6 rounded-2xl bg-white/90 border border-sky-200/80 shadow-md flex items-center justify-between gap-4 transition-all ${
-                  hasLink ? 'cursor-pointer hover:border-[#0088FF] hover:shadow-xl' : 'cursor-default'
-                }`}
+                className="flex items-center gap-5 sm:gap-7 py-3 px-2 border-b border-sky-200/60"
               >
-                {/* Left: Number & Logo & Title */}
-                <div className="flex items-center gap-4 sm:gap-6 min-w-0">
-                  {/* Numbering */}
-                  <span className="font-heading text-lg sm:text-xl font-black text-[#0088FF] bg-sky-100/80 px-3 py-1.5 rounded-xl border border-sky-200 shrink-0">
-                    {formattedNum}.
-                  </span>
+                {/* Numbering */}
+                <span className="font-heading text-xl sm:text-2xl font-black text-[#0088FF] shrink-0">
+                  {formattedNum}.
+                </span>
 
-                  {/* Logo Frame */}
-                  <div className="w-16 h-12 sm:w-20 sm:h-14 rounded-xl bg-[#050B17] border border-slate-700/60 p-2 flex items-center justify-center shrink-0">
-                    <img
-                      src={client.image}
-                      alt={client.title}
-                      className="max-h-full max-w-full object-contain object-center"
-                    />
-                  </div>
-
-                  {/* Client Title */}
-                  <div className="min-w-0">
-                    <h3 className="font-heading text-sm sm:text-base font-bold text-slate-900 truncate">
-                      {client.title}
-                    </h3>
-                  </div>
+                {/* Plain Logo directly on screen */}
+                <div className="h-12 sm:h-16 w-32 sm:w-44 shrink-0 flex items-center justify-start">
+                  <img
+                    src={client.image}
+                    alt={client.title}
+                    className="max-h-full max-w-full object-contain object-left filter drop-shadow-sm"
+                  />
                 </div>
 
-                {/* Right: External Link Indicator if available */}
-                {hasLink && (
-                  <div className="w-8 h-8 rounded-full bg-sky-100 text-[#0088FF] border border-sky-200 flex items-center justify-center shrink-0">
-                    <ExternalLink className="w-4 h-4" />
-                  </div>
-                )}
+                {/* Plain Text Title */}
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-heading text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">
+                    {client.title}
+                  </h3>
+                </div>
               </div>
             );
           })}
