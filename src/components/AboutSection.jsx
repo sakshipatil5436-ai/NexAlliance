@@ -1,6 +1,19 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import {
+  ArrowDown,
+  Building2,
+  Users,
+  Award,
+  Globe2,
+  Rocket,
+  Code2,
+  CheckCircle2,
+  GitMerge,
+  Cpu,
+  Layers
+} from 'lucide-react';
 import AnimatedCounter from './AnimatedCounter';
 
 export default function AboutSection({ onOpenBooking, theme = 'light', showFounders = true }) {
@@ -23,7 +36,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
 
   return (
     <section id="about" className="scroll-mt-20 pt-24 sm:pt-32 pb-20 bg-gradient-to-b from-[#F0F6FF] via-[#E8F2FF] to-[#F0F6FF] text-slate-900 select-none relative overflow-hidden">
-      
+
       {/* Ambient Blue Glow Points */}
       <div className="absolute top-12 left-1/4 w-[600px] h-[600px] bg-[#0088FF]/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
       <div className="absolute bottom-20 right-1/4 w-[600px] h-[600px] bg-cyan-400/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
@@ -37,8 +50,9 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#0088FF]">
-              ABOUT NEXALLIANCE
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#0088FF] flex items-center justify-center gap-2">
+              <Cpu className="w-4 h-4" />
+              <span>ABOUT NEXALLIANCE</span>
             </span>
           </motion.div>
 
@@ -65,28 +79,29 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
           </motion.p>
         </div>
 
-        {/* 2. OUR STORY — CLEAN VISUAL DIAGRAM LAYOUT */}
+        {/* 2. OUR STORY — SYSTEM ARCHITECTURE DIAGRAM LAYOUT */}
         <div id="our-story" className="scroll-mt-24 space-y-12 relative">
 
           <div className="text-center max-w-2xl mx-auto space-y-2 relative z-10">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#0088FF]">
-              SYSTEM ARCHITECTURE
+            <span className="text-xs font-bold uppercase tracking-widest text-[#0088FF] flex items-center justify-center gap-2">
+              <Layers className="w-4 h-4" />
+              <span>SYSTEM ARCHITECTURE DIAGRAM</span>
             </span>
             <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
-              From Two Journeys to <span className="text-[#0088FF]">NexAlliance</span>
+              The Evolution <span className="text-[#0088FF]">Architecture Diagram</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-semibold">
               Visual pipeline showing how Meet.Nexus & Nexora converged into NexAlliance.
             </p>
           </div>
 
-          {/* VISUAL DIAGRAM CONTAINER */}
-          <div className="relative max-w-5xl mx-auto space-y-8 sm:space-y-12 pt-4">
-            
-            {/* STAGE 1: TWO PARALLEL FOUNDER STREAMS */}
+          {/* VISUAL ARCHITECTURE DIAGRAM CONTAINER */}
+          <div className="relative max-w-5xl mx-auto space-y-10 sm:space-y-14 pt-4">
+
+            {/* STAGE 1: TWO PARALLEL FOUNDER NODES (TOP LEVEL) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 relative z-10">
-              
-              {/* MEET.NEXUS */}
+
+              {/* NODE A: MEET.NEXUS */}
               <motion.div
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -96,14 +111,16 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
                 className="bg-white/95 backdrop-blur-xl border-2 border-sky-300/80 hover:border-[#0088FF] rounded-3xl p-6 sm:p-7 shadow-xl shadow-sky-500/10 hover:shadow-2xl transition-all duration-300 relative space-y-4 group"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100 px-3.5 py-1 rounded-full border border-sky-300/80">
-                    10 FEBRUARY 2025
+                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100 px-3 py-1 rounded-full border border-sky-300/80 flex items-center gap-1.5">
+                    <Building2 className="w-3.5 h-3.5" />
+                    <span>10 FEBRUARY 2025</span>
                   </span>
+                  <span className="text-[10px] font-mono font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded">NODE_A</span>
                 </div>
 
                 <div className="space-y-2">
                   <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#0088FF] transition-colors">
-                    Meet.Nexus
+                    Meet.Nexus <span className="text-xs text-slate-500 font-semibold block">(Meet Mistry)</span>
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-semibold">
                     Meet Mistry started Meet.Nexus focusing on practical client digital solutions, sales, business development, and client relationships.
@@ -111,10 +128,11 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
                 </div>
 
                 {/* Sub Node: First Project */}
-                <div className="pt-3 border-t border-sky-100 bg-sky-50/70 p-3.5 rounded-2xl border border-sky-200/80 space-y-1">
+                <div className="pt-3 border-t border-sky-100 bg-sky-50/70 p-3 rounded-2xl border border-sky-200/80 space-y-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-extrabold text-[#0088FF] uppercase tracking-wider">
-                      FIRST PROJECT: HOTEL HILTON TMS
+                    <span className="text-[10px] font-extrabold text-[#0088FF] uppercase tracking-wider flex items-center gap-1">
+                      <Award className="w-3 h-3" />
+                      <span>FIRST PROJECT: HOTEL HILTON TMS</span>
                     </span>
                     <span className="text-[10px] font-bold text-emerald-600">DELIVERED</span>
                   </div>
@@ -124,7 +142,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
                 </div>
               </motion.div>
 
-              {/* NEXORA */}
+              {/* NODE B: NEXORA */}
               <motion.div
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -134,14 +152,16 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
                 className="bg-white/95 backdrop-blur-xl border-2 border-sky-300/80 hover:border-[#0088FF] rounded-3xl p-6 sm:p-7 shadow-xl shadow-sky-500/10 hover:shadow-2xl transition-all duration-300 relative space-y-4 group"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100 px-3.5 py-1 rounded-full border border-sky-300/80">
-                    1 MARCH 2025
+                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100 px-3 py-1 rounded-full border border-sky-300/80 flex items-center gap-1.5">
+                    <Code2 className="w-3.5 h-3.5" />
+                    <span>1 MARCH 2025</span>
                   </span>
+                  <span className="text-[10px] font-mono font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded">NODE_B</span>
                 </div>
 
                 <div className="space-y-2">
                   <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#0088FF] transition-colors">
-                    Nexora
+                    Nexora <span className="text-xs text-slate-500 font-semibold block">(Sanket Pithava)</span>
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-semibold">
                     Sanket Pithava started Nexora focusing on software development, digital solutions, complex technology architecture, and technical innovation.
@@ -149,10 +169,11 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
                 </div>
 
                 {/* Sub Node: First Project */}
-                <div className="pt-3 border-t border-sky-100 bg-sky-50/70 p-3.5 rounded-2xl border border-sky-200/80 space-y-1">
+                <div className="pt-3 border-t border-sky-100 bg-sky-50/70 p-3 rounded-2xl border border-sky-200/80 space-y-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-extrabold text-[#0088FF] uppercase tracking-wider">
-                      FIRST PROJECT: BIHAR DISASTER SYSTEM
+                    <span className="text-[10px] font-extrabold text-[#0088FF] uppercase tracking-wider flex items-center gap-1">
+                      <Globe2 className="w-3 h-3" />
+                      <span>FIRST PROJECT: BIHAR DISASTER SYSTEM</span>
                     </span>
                     <span className="text-[10px] font-bold text-emerald-600">DELIVERED</span>
                   </div>
@@ -164,12 +185,15 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
 
             </div>
 
-            {/* CONNECTING PIPELINE LINE */}
-            <div className="flex flex-col items-center justify-center my-2 relative">
-              <div className="w-1 h-10 bg-gradient-to-b from-[#0088FF] to-cyan-400 rounded-full animate-pulse" />
+            {/* CONNECTING FLOW PIPELINE ANIMATION (BOTH STREAMS CONVERGE) */}
+            <div className="flex flex-col items-center justify-center my-4 relative">
+              <div className="w-1 h-12 bg-gradient-to-b from-[#0088FF] to-cyan-400 rounded-full animate-pulse" />
+              <div className="w-8 h-8 rounded-full bg-[#0088FF] text-white flex items-center justify-center shadow-lg shadow-sky-500/40 border-2 border-white -mt-1 z-20">
+                <GitMerge className="w-4 h-4" />
+              </div>
             </div>
 
-            {/* STAGE 2: PROJECT PARTNERSHIP */}
+            {/* STAGE 2: CONVERGENCE GATEWAY (PROJECT PARTNERSHIP) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -178,9 +202,9 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
               whileHover={{ y: -3 }}
               className="max-w-3xl mx-auto bg-gradient-to-r from-sky-50 via-white to-sky-50 border-2 border-[#0088FF] rounded-3xl p-6 sm:p-8 shadow-2xl shadow-sky-500/15 relative space-y-3 text-center"
             >
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center gap-2">
                 <span className="text-xs font-extrabold uppercase tracking-widest text-[#0088FF] bg-sky-100 px-4 py-1.5 rounded-full border border-sky-300">
-                  PROJECT PARTNERSHIP
+                  CONVERGENCE GATEWAY — PROJECT PARTNERSHIP
                 </span>
               </div>
               <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900">
@@ -191,12 +215,15 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
               </p>
             </motion.div>
 
-            {/* FINAL PIPELINE DOWNWARD LINE */}
-            <div className="flex flex-col items-center justify-center my-2 relative">
-              <div className="w-1 h-10 bg-gradient-to-b from-cyan-400 to-[#0088FF] rounded-full animate-pulse" />
+            {/* FINAL PIPELINE DOWNWARD */}
+            <div className="flex flex-col items-center justify-center my-4 relative">
+              <div className="w-1 h-12 bg-gradient-to-b from-cyan-400 to-[#0088FF] rounded-full animate-pulse" />
+              <div className="w-8 h-8 rounded-full bg-[#0088FF] text-white flex items-center justify-center shadow-lg shadow-sky-500/40 border-2 border-white -mt-1 z-20">
+                <ArrowDown className="w-4 h-4 animate-bounce" />
+              </div>
             </div>
 
-            {/* STAGE 3: NEXALLIANCE BORN */}
+            {/* STAGE 3: SYSTEM APEX NODE (NEXALLIANCE OFFICIALLY BORN) */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -206,9 +233,9 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
               className="max-w-3xl mx-auto bg-gradient-to-br from-[#0088FF] via-[#0077E6] to-blue-700 text-white rounded-3xl p-8 sm:p-10 shadow-2xl shadow-sky-500/30 text-center space-y-4 relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full filter blur-3xl pointer-events-none" />
-              
+
               <div className="inline-block bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/30 text-xs font-extrabold uppercase tracking-widest text-white shadow-sm">
-                26 JULY 2026
+                SYSTEM APEX · 26 JULY 2026
               </div>
 
               <h2 className="font-heading text-3xl sm:text-5xl font-black tracking-tight leading-tight">
@@ -219,7 +246,8 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
                 Officially established by Meet Mistry & Sanket Pithava — uniting two independent companies, real-world projects, and one shared vision.
               </p>
 
-              <div className="pt-4 flex items-center justify-center text-xs font-black uppercase tracking-wider text-sky-200 border-t border-white/20">
+              <div className="pt-4 flex items-center justify-center gap-2 text-xs font-black uppercase tracking-wider text-sky-200 border-t border-white/20">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                 <span>One Vision. Built Together.</span>
               </div>
             </motion.div>
