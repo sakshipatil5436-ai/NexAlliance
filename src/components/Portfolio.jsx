@@ -206,10 +206,10 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
               <ChevronRight className="w-5 h-5 sm:w-7 sm:h-7" />
             </button>
 
-            {/* SCROLLABLE GALLERY TRACK (Clean Static Rendering) */}
+            {/* SCROLLABLE GALLERY TRACK (Clean Horizontal Scroll Track) */}
             <div
               ref={scrollRef}
-              className="w-full overflow-x-auto scroll-smooth py-3 no-scrollbar"
+              className="w-full overflow-x-auto py-3 no-scrollbar"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               <div className="flex gap-6 px-6 sm:px-12 w-max">
