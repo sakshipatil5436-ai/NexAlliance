@@ -34,7 +34,7 @@ export default function Navbar({ onOpenBooking }) {
           : 'bg-transparent border-b-0 shadow-none'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between">
 
         {/* NexAlliance Logo */}
         <NavLink to="/" className="shrink-0">
