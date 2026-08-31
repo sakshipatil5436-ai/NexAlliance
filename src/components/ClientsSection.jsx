@@ -60,7 +60,7 @@ export default function ClientsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.25, ease: 'easeOut', delay: (idx % 4) * 0.05 }}
               whileHover={{ y: -6, scale: 1.02 }}
-              className="bg-white/95 border border-sky-200/80 hover:border-[#0088FF] rounded-3xl p-6 sm:p-8 h-36 sm:h-44 shadow-lg shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-200 flex items-center justify-center group transform-gpu overflow-hidden"
+              className="bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] border-2 border-sky-300/80 hover:border-[#0088FF] rounded-3xl p-6 sm:p-8 h-36 sm:h-44 shadow-xl shadow-sky-500/10 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-200 flex items-center justify-center group transform-gpu overflow-hidden"
             >
               <img
                 src={client.image}
