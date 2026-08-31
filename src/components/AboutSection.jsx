@@ -50,9 +50,8 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#0088FF] flex items-center justify-center gap-2">
-              <Cpu className="w-4 h-4" />
-              <span>ABOUT NEXALLIANCE</span>
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#0088FF]">
+              ABOUT NEXALLIANCE
             </span>
           </motion.div>
 
