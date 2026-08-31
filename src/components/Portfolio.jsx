@@ -55,8 +55,9 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
       id: 5,
       category: 'web',
       title: 'Har Bole – News Platform',
-      image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&auto=format&fit=crop&q=80',
-      tech: 'Digital News & CMS Portal'
+      image: '/projects/harbole.webp',
+      tech: 'Digital News & CMS Portal',
+      fit: 'contain'
     },
     {
       id: 6,
@@ -70,7 +71,8 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
       category: 'crm',
       title: 'Novva Salon',
       image: '/projects/novva_salon.webp',
-      tech: 'Salon ERP & Booking System'
+      tech: 'Salon ERP & Booking System',
+      fit: 'contain'
     },
     {
       id: 8,
@@ -127,7 +129,9 @@ export default function Portfolio({ onOpenBooking, theme = 'dark', isHomePage = 
       category: 'web',
       title: 'Vrani Chemicals',
       image: '/projects/vrani_chemicals.webp',
-      tech: 'Chemical & Product Portal'
+      tech: 'Chemical & Product Portal',
+      fit: 'contain',
+      link: 'https://vranichemicals.com/'
     }
   ];
 

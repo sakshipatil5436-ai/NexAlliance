@@ -45,9 +45,10 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
   ];
 
   return (
-    <section id="about" className="scroll-mt-20 pt-24 sm:pt-32 pb-20 bg-white text-slate-900 select-none relative">
-
-
+    <section id="about" className="scroll-mt-20 pt-24 sm:pt-32 pb-20 bg-gradient-to-b from-[#F0F6FF] via-[#E8F2FF] to-[#F0F6FF] text-slate-900 select-none relative overflow-hidden">
+      {/* Ambient Blue Glow Points matching Home theme */}
+      <div className="absolute top-12 left-1/4 w-[600px] h-[600px] bg-[#0088FF]/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
+      <div className="absolute bottom-20 right-1/4 w-[600px] h-[600px] bg-cyan-400/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 sm:space-y-28 relative z-10">
 
@@ -133,7 +134,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
               viewport={{ once: true }}
               transition={{ duration: 0.3 }}
               whileHover={{ y: -4 }}
-              className="bg-slate-50/80 hover:bg-white border border-slate-200/90 hover:border-[#0088FF]/50 rounded-2xl p-6 sm:p-7 shadow-sm hover:shadow-xl transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between"
+              className="bg-white/90 border border-sky-200/80 hover:border-[#0088FF]/60 rounded-2xl p-6 sm:p-7 shadow-lg shadow-sky-500/5 hover:shadow-xl transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between"
             >
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
@@ -161,7 +162,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: 0.05 }}
               whileHover={{ y: -4 }}
-              className="bg-slate-50/80 hover:bg-white border border-slate-200/90 hover:border-[#0088FF]/50 rounded-2xl p-6 sm:p-7 shadow-sm hover:shadow-xl transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between"
+              className="bg-white/90 border border-sky-200/80 hover:border-[#0088FF]/60 rounded-2xl p-6 sm:p-7 shadow-lg shadow-sky-500/5 hover:shadow-xl transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between"
             >
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
@@ -189,7 +190,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: 0.1 }}
               whileHover={{ y: -4 }}
-              className="bg-slate-50/80 hover:bg-white border border-slate-200/90 hover:border-[#0088FF]/50 rounded-2xl p-6 sm:p-7 shadow-sm hover:shadow-xl transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between"
+              className="bg-white/90 border border-sky-200/80 hover:border-[#0088FF]/60 rounded-2xl p-6 sm:p-7 shadow-lg shadow-sky-500/5 hover:shadow-xl transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between"
             >
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
@@ -214,7 +215,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: 0.15 }}
               whileHover={{ y: -4 }}
-              className="bg-slate-50/80 hover:bg-white border border-slate-200/90 hover:border-[#0088FF]/50 rounded-2xl p-6 sm:p-7 shadow-sm hover:shadow-xl transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between"
+              className="bg-white/90 border border-sky-200/80 hover:border-[#0088FF]/60 rounded-2xl p-6 sm:p-7 shadow-lg shadow-sky-500/5 hover:shadow-xl transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between"
             >
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
@@ -243,8 +244,8 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3 }}
               className="text-center space-y-2"
             >
               <span className="text-xs font-bold uppercase tracking-widest text-[#0088FF]">LEADERSHIP</span>
@@ -253,42 +254,31 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
               {founders.map((f, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: i === 0 ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false }}
-                  transition={{ duration: 0.6, delay: i * 0.15 }}
-                  className="flex items-start space-x-4 text-left p-2"
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: i * 0.1 }}
+                  whileHover={{ y: -4 }}
+                  className="flex items-start space-x-4 text-left p-6 rounded-3xl bg-white/90 border border-sky-200/80 shadow-lg shadow-sky-500/5 hover:border-[#0088FF]/60 hover:shadow-xl transition-all duration-300 transform-gpu"
                 >
                   <motion.img
                     whileHover={{ scale: 1.05 }}
                     src={f.image}
                     alt={f.name}
-                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover"
+                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border border-sky-100 shadow-md shrink-0"
                   />
                   <div className="space-y-1.5 flex-1">
-                    <motion.h3
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: false }}
-                      transition={{ duration: 0.4, delay: i * 0.15 + 0.1 }}
-                      className="font-heading text-lg font-bold text-slate-900"
-                    >
+                    <h3 className="font-heading text-lg sm:text-xl font-bold text-slate-900">
                       {f.name}
-                    </motion.h3>
-                    <p className="text-xs font-semibold text-[#0088FF] uppercase tracking-wider">{f.role}</p>
-                    <motion.p
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: false }}
-                      transition={{ duration: 0.5, delay: i * 0.15 + 0.2 }}
-                      className="text-xs text-slate-600 leading-relaxed font-medium"
-                    >
+                    </h3>
+                    <p className="text-xs font-bold text-[#0088FF] uppercase tracking-wider">{f.role}</p>
+                    <p className="text-xs text-slate-600 leading-relaxed font-semibold">
                       {f.desc}
-                    </motion.p>
+                    </p>
                   </div>
                 </motion.div>
               ))}
@@ -301,8 +291,8 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3 }}
             className="text-center space-y-2"
           >
             <span className="text-xs font-bold uppercase tracking-widest text-[#0088FF]">MILESTONES</span>
@@ -320,7 +310,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
                 viewport={{ once: true }}
                 transition={{ duration: 0.28, delay: idx * 0.04, ease: "easeOut" }}
                 whileHover={{ y: -4 }}
-                className="bg-slate-50/80 hover:bg-white border border-slate-200/90 hover:border-[#0088FF]/50 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-200 flex flex-col justify-between group relative overflow-hidden transform-gpu"
+                className="bg-white/90 border border-sky-200/80 hover:border-[#0088FF]/60 rounded-2xl p-6 shadow-md shadow-sky-500/5 hover:shadow-xl transition-all duration-200 flex flex-col justify-between group relative overflow-hidden transform-gpu"
               >
                   <div className="space-y-4">
                     {/* Top Row: Date Badge */}
@@ -356,34 +346,34 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
         </div>
 
         {/* 5. MINIMALIST METRICS SUMMARY */}
-        <div className="py-10">
+        <div className="py-8 px-6 sm:px-10 rounded-3xl bg-white/80 border border-sky-200/80 shadow-lg shadow-sky-500/5 backdrop-blur-xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="space-y-1">
               <div className="font-heading text-3xl sm:text-4xl font-extrabold text-[#0088FF]">
                 <AnimatedCounter end={15} suffix="+" duration={1800} />
               </div>
-              <span className="text-xs text-slate-500 font-medium">Projects Delivered</span>
+              <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Projects Delivered</span>
             </div>
 
             <div className="space-y-1">
               <div className="font-heading text-3xl sm:text-4xl font-extrabold text-[#0088FF]">
                 <AnimatedCounter end={60} suffix="+" duration={1800} />
               </div>
-              <span className="text-xs text-slate-500 font-medium">Senior Engineers</span>
+              <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Senior Engineers</span>
             </div>
 
             <div className="space-y-1">
               <div className="font-heading text-3xl sm:text-4xl font-extrabold text-[#0088FF]">
                 <AnimatedCounter end={99} suffix="%" duration={1800} />
               </div>
-              <span className="text-xs text-slate-500 font-medium">Client Retention</span>
+              <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Client Retention</span>
             </div>
 
             <div className="space-y-1">
               <div className="font-heading text-3xl sm:text-4xl font-extrabold text-[#0088FF]">
                 <AnimatedCounter end={100} suffix="%" duration={1800} />
               </div>
-              <span className="text-xs text-slate-500 font-medium">On-Time Velocity</span>
+              <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">On-Time Velocity</span>
             </div>
           </div>
         </div>

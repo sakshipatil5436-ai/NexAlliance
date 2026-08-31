@@ -166,7 +166,11 @@ export default function CareersSection({ onOpenBooking, theme = 'light', isHomeP
   };
 
   return (
-    <section id="careers" className="scroll-mt-20 pt-28 sm:pt-36 pb-16 sm:pb-20 relative w-full max-w-full overflow-hidden select-none bg-white text-slate-900">
+    <section id="careers" className="scroll-mt-20 pt-28 sm:pt-36 pb-16 sm:pb-20 relative w-full max-w-full overflow-hidden select-none bg-gradient-to-b from-[#F0F6FF] via-[#E8F2FF] to-[#F0F6FF] text-slate-900">
+
+      {/* Ambient Blue Glow Points matching Home & About theme */}
+      <div className="absolute top-12 left-1/4 w-[600px] h-[600px] bg-[#0088FF]/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
+      <div className="absolute bottom-20 right-1/4 w-[600px] h-[600px] bg-cyan-400/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
 
       {(isCareersPage || !isHomePage) && (
         <div className="fixed inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden">
@@ -175,11 +179,11 @@ export default function CareersSection({ onOpenBooking, theme = 'light', isHomeP
             loop
             muted
             playsInline
-            className="w-full h-full object-cover opacity-25 sm:opacity-30 filter brightness-95 contrast-105"
+            className="w-full h-full object-cover opacity-20 sm:opacity-25 filter brightness-95 contrast-105"
           >
             <source src="/career_k_liye_kuch_video_bana.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-white/50 backdrop-blur-[1px]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#F0F6FF]/70 via-sky-950/20 to-[#F0F6FF]/80 backdrop-blur-[1px]"></div>
         </div>
       )}
 

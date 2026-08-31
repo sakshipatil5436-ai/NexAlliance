@@ -142,7 +142,14 @@ export default function Services({ onOpenBooking, onOpenServiceDetail, theme = '
   ];
 
   return (
-    <section ref={sectionRef} id="services" className={`scroll-mt-20 pt-24 sm:pt-32 pb-20 select-none relative overflow-hidden ${isLight ? 'bg-[#F8FAFC] text-slate-900' : 'bg-[#030712] text-white'}`}>
+    <section ref={sectionRef} id="services" className={`scroll-mt-20 pt-24 sm:pt-32 pb-20 select-none relative overflow-hidden ${isLight ? 'bg-gradient-to-b from-[#F0F6FF] via-[#E8F2FF] to-[#F0F6FF] text-slate-900' : 'bg-[#030712] text-white'}`}>
+      {/* Ambient Blue Glow Points matching Home theme */}
+      {isLight && (
+        <>
+          <div className="absolute top-12 left-1/4 w-[600px] h-[600px] bg-[#0088FF]/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
+          <div className="absolute bottom-20 right-1/4 w-[600px] h-[600px] bg-cyan-400/15 rounded-full filter blur-[140px] pointer-events-none z-0"></div>
+        </>
+      )}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 sm:space-y-24 relative z-10">
 
         {/* 1. HERO HEADER AREA */}
@@ -226,7 +233,7 @@ export default function Services({ onOpenBooking, onOpenServiceDetail, theme = '
                 transition={{ duration: 0.25, ease: "easeOut", delay: (index % 2) * 0.05 }}
                 whileHover={{ y: -3 }}
                 className={`w-full lg:w-[46%] ${isLeft ? 'lg:mr-auto lg:ml-0' : 'lg:ml-auto lg:mr-0'} p-5 sm:p-6 rounded-2xl border relative overflow-hidden transition-all duration-200 text-left space-y-3.5 transform-gpu ${isLight
-                  ? 'bg-white border-slate-200/80 shadow-md hover:shadow-xl'
+                  ? 'bg-white/90 border-sky-200/80 shadow-lg shadow-sky-500/5 hover:border-[#0088FF]/60 hover:shadow-xl'
                   : 'bg-[#0B132B] border-[#1E3A8A]/70 shadow-xl shadow-blue-950/50'
                   }`}
               >
