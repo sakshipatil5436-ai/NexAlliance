@@ -250,79 +250,44 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
             {/* Right Fade Mask */}
             <div className="absolute top-0 right-0 bottom-0 w-12 sm:w-32 z-20 pointer-events-none bg-gradient-to-l from-[#F0F6FF] to-transparent"></div>
 
-            {/* SCROLLABLE GALLERY TRACK */}
+            {/* SCROLLABLE GALLERY TRACK (Native smooth horizontal & arrow button scrolling) */}
             <div
               ref={scrollRef}
-              className="w-full overflow-x-auto scroll-smooth py-2 no-scrollbar"
+              className="w-full overflow-x-auto scroll-smooth py-3 no-scrollbar"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              {activeTab === 'all' ? (
-                <div className="nex-gpu-marquee-fast px-4">
-                  {[...projects, ...projects].map((item, idx) => (
-                    <div
-                      key={`${item.id}-${idx}`}
-                      onClick={() => handleProjectClick(item)}
-                      className="w-[290px] xs:w-[330px] sm:w-[400px] h-[220px] xs:h-[250px] sm:h-[280px] shrink-0 rounded-3xl relative overflow-hidden group cursor-pointer shadow-xl shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 hover:-translate-y-1.5 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-5 sm:p-6 flex flex-col justify-between transform-gpu"
-                    >
-                      {/* Clean Logo Image Centered */}
-                      <div className="flex-1 min-h-0 w-full flex items-center justify-center p-3">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          loading="lazy"
-                          decoding="async"
-                          className="max-h-full max-w-full object-contain object-center filter drop-shadow-sm group-hover:scale-105 transition-transform duration-300 transform-gpu"
-                        />
-                      </div>
-
-                      {/* Project Name & Explore Icon */}
-                      <div className="flex items-center justify-between pt-3 pb-1 border-t border-sky-200/80 z-10 shrink-0 min-w-0">
-                        <h3 className="font-heading text-sm sm:text-base font-extrabold text-slate-900 truncate pr-2">
-                          {item.title}
-                        </h3>
-                        {!item.hideExplore && (
-                          <div className="w-7 h-7 rounded-full bg-sky-100 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white group-hover:scale-110 transition-all shrink-0">
-                            <ArrowUpRight className="w-4 h-4" />
-                          </div>
-                        )}
-                      </div>
+              <div className="flex gap-6 px-6 sm:px-12 w-max">
+                {filtered.map((item) => (
+                  <div
+                    key={item.id}
+                    onClick={() => handleProjectClick(item)}
+                    className="w-[290px] xs:w-[330px] sm:w-[400px] h-[220px] xs:h-[250px] sm:h-[280px] shrink-0 rounded-3xl relative overflow-hidden group cursor-pointer shadow-xl shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 hover:-translate-y-1.5 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-5 sm:p-6 flex flex-col justify-between transform-gpu"
+                  >
+                    {/* Clean Logo Image Centered */}
+                    <div className="flex-1 min-h-0 w-full flex items-center justify-center p-3">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="max-h-full max-w-full object-contain object-center filter drop-shadow-sm group-hover:scale-105 transition-transform duration-300 transform-gpu"
+                      />
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="flex gap-6 px-4 w-full justify-center flex-wrap">
-                  {filtered.map((item) => (
-                    <div
-                      key={item.id}
-                      onClick={() => handleProjectClick(item)}
-                      className="w-[290px] xs:w-[330px] sm:w-[400px] h-[220px] xs:h-[250px] sm:h-[280px] shrink-0 rounded-3xl relative overflow-hidden group cursor-pointer shadow-xl shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 hover:-translate-y-1.5 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-5 sm:p-6 flex flex-col justify-between transform-gpu"
-                    >
-                      {/* Clean Logo Image Centered */}
-                      <div className="flex-1 min-h-0 w-full flex items-center justify-center p-3">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          loading="lazy"
-                          decoding="async"
-                          className="max-h-full max-w-full object-contain object-center filter drop-shadow-sm group-hover:scale-105 transition-transform duration-300 transform-gpu"
-                        />
-                      </div>
 
-                      {/* Project Name & Explore Icon */}
-                      <div className="flex items-center justify-between pt-3 pb-1 border-t border-sky-200/80 z-10 shrink-0 min-w-0">
-                        <h3 className="font-heading text-sm sm:text-base font-extrabold text-slate-900 truncate pr-2">
-                          {item.title}
-                        </h3>
-                        {!item.hideExplore && (
-                          <div className="w-7 h-7 rounded-full bg-sky-100 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white group-hover:scale-110 transition-all shrink-0">
-                            <ArrowUpRight className="w-4 h-4" />
-                          </div>
-                        )}
-                      </div>
+                    {/* Project Name & Explore Icon */}
+                    <div className="flex items-center justify-between pt-3 pb-1 border-t border-sky-200/80 z-10 shrink-0 min-w-0">
+                      <h3 className="font-heading text-sm sm:text-base font-extrabold text-slate-900 truncate pr-2">
+                        {item.title}
+                      </h3>
+                      {!item.hideExplore && (
+                        <div className="w-7 h-7 rounded-full bg-sky-100 text-[#0088FF] border border-sky-200 flex items-center justify-center group-hover:bg-[#0088FF] group-hover:text-white group-hover:scale-110 transition-all shrink-0">
+                          <ArrowUpRight className="w-4 h-4" />
+                        </div>
+                      )}
                     </div>
-                  ))}
-                </div>
-              )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         ) : (
