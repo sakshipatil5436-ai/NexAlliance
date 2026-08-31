@@ -179,7 +179,8 @@ export default function CareersSection({ onOpenBooking, theme = 'light', isHomeP
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-35 sm:opacity-40 filter brightness-95 contrast-105"
+          preload="metadata"
+          className="w-full h-full object-cover opacity-30 sm:opacity-35 transform-gpu will-change-transform filter brightness-95 contrast-105"
         >
           <source src="/career_k_liye_kuch_video_bana.mp4" type="video/mp4" />
         </video>
