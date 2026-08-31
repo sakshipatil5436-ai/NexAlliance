@@ -4,7 +4,7 @@ import AboutSection from './AboutSection';
 
 export default function AboutSPAView({ onOpenBooking, theme = 'light' }) {
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo(0, 0);
   }, []);
 
   return (

@@ -12,7 +12,7 @@ export default function ServiceDetailSPAView({ serviceId = 'erp', onBack, onOpen
   const [openFaq, setOpenFaq] = useState(0);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo(0, 0);
   }, [serviceId]);
 
   // Ecosystem Switcher Tabs Data
