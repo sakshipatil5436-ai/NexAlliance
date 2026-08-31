@@ -6,6 +6,7 @@ import AboutSPAView from './components/AboutSPAView';
 import Services from './components/Services';
 import ServiceDetailSPAView from './components/ServiceDetailSPAView';
 import Portfolio from './components/Portfolio';
+import ClientsSection from './components/ClientsSection';
 import CareersSection from './components/CareersSection';
 import ContactSection from './components/ContactSection';
 import BookingModal from './components/BookingModal';
@@ -108,6 +109,14 @@ export default function App() {
               path="/portfolio"
               element={
                 <Portfolio onOpenBooking={handleOpenBookingModal} theme="light" isHomePage={false} />
+              }
+            />
+
+            {/* Route 4b: Dedicated Clients Page */}
+            <Route
+              path="/clients"
+              element={
+                <ClientsSection onOpenBooking={handleOpenBookingModal} />
               }
             />
 

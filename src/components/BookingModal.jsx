@@ -111,6 +111,7 @@ export default function BookingModal({ isOpen, onClose, theme = 'light', onToggl
             <a href="#about" onClick={onClose} className="hover:text-[#0088FF] transition-colors">About</a>
             <a href="#services" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Services</a>
             <a href="#portfolio" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Portfolio</a>
+            <a href="#clients" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Clients</a>
             <a href="#careers" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Careers</a>
             <a href="#contact" onClick={onClose} className="hover:text-[#0088FF] transition-colors">Contact</a>
           </nav>

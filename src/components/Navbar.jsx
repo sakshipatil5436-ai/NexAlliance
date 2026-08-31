@@ -21,6 +21,7 @@ export default function Navbar({ onOpenBooking }) {
     { path: '/about', label: 'About' },
     { path: '/services', label: 'Services' },
     { path: '/portfolio', label: 'Portfolio' },
+    { path: '/clients', label: 'Clients' },
     { path: '/careers', label: 'Careers' },
     { path: '/contact', label: 'Contact' }
   ];
