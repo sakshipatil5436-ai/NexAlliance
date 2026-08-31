@@ -129,27 +129,27 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch transform-gpu">
             {/* Story Block 1: Meet.Nexus */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -35 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3 }}
-              whileHover={{ y: -4 }}
-              className="bg-white/90 border border-sky-200/80 hover:border-[#0088FF]/60 rounded-2xl p-6 sm:p-7 shadow-lg shadow-sky-500/5 hover:shadow-xl transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between"
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              whileHover={{ y: -4, scale: 1.01 }}
+              className="bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] border-2 border-sky-300/80 hover:border-[#0088FF] rounded-2xl p-6 sm:p-7 shadow-xl shadow-sky-500/10 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between group"
             >
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#0088FF]" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#0088FF] bg-sky-100/70 px-3 py-1 rounded-full border border-sky-200/60">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100 px-3 py-1 rounded-full border border-sky-300/70 shadow-sm">
                     10 February 2025
                   </span>
                 </div>
-                <h3 className="font-heading text-xl sm:text-2xl font-bold text-slate-900">
+                <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#0088FF] transition-colors">
                   Meet.Nexus
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-semibold">
                   On <strong>10 February 2025</strong>, <strong>Meet Mistry</strong> started his entrepreneurial journey with <strong>Meet.Nexus</strong>. Meet.Nexus began by focusing on delivering practical digital solutions for businesses and organizations. Its first major project was <strong>Hotel Hilton</strong>, marking the beginning of Meet's journey in building client-focused technology solutions.
                 </p>
-                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-medium pt-1">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium pt-1">
                   Through Meet.Nexus, Meet developed strong experience in business development, client relationships, project management, sales, and delivering technology solutions aligned with business requirements.
                 </p>
               </div>
@@ -157,27 +157,27 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
 
             {/* Story Block 2: Nexora */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 35 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.05 }}
-              whileHover={{ y: -4 }}
-              className="bg-white/90 border border-sky-200/80 hover:border-[#0088FF]/60 rounded-2xl p-6 sm:p-7 shadow-lg shadow-sky-500/5 hover:shadow-xl transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between"
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              whileHover={{ y: -4, scale: 1.01 }}
+              className="bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] border-2 border-sky-300/80 hover:border-[#0088FF] rounded-2xl p-6 sm:p-7 shadow-xl shadow-sky-500/10 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between group"
             >
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-teal-600" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-teal-600 bg-teal-50 px-3 py-1 rounded-full border border-teal-200/60">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-teal-700 bg-teal-100/80 px-3 py-1 rounded-full border border-teal-300/70 shadow-sm">
                     1 March 2025
                   </span>
                 </div>
-                <h3 className="font-heading text-xl sm:text-2xl font-bold text-slate-900">
+                <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-teal-600 transition-colors">
                   A Second Journey — Nexora
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-semibold">
                   On <strong>1 March 2025</strong>, <strong>Sanket Pithava</strong> started his own technology company, <strong>Nexora</strong>. Nexora's first project was the <strong>Bihar Disaster System</strong>, a technology-driven initiative that gave Sanket valuable experience in developing solutions for real-world operational requirements.
                 </p>
-                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-medium pt-1">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium pt-1">
                   Through Nexora, Sanket focused on software development, technology architecture, digital solutions, and solving complex technical challenges.
                 </p>
               </div>
@@ -185,24 +185,24 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
 
             {/* Story Block 3: When Two Journeys Connected */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -35 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-              whileHover={{ y: -4 }}
-              className="bg-white/90 border border-sky-200/80 hover:border-[#0088FF]/60 rounded-2xl p-6 sm:p-7 shadow-lg shadow-sky-500/5 hover:shadow-xl transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between"
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              whileHover={{ y: -4, scale: 1.01 }}
+              className="bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] border-2 border-sky-300/80 hover:border-[#0088FF] rounded-2xl p-6 sm:p-7 shadow-xl shadow-sky-500/10 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between group"
             >
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-indigo-600" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200/60">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-indigo-700 bg-indigo-100/80 px-3 py-1 rounded-full border border-indigo-300/70 shadow-sm">
                     Project Partnership
                   </span>
                 </div>
-                <h3 className="font-heading text-xl sm:text-2xl font-bold text-slate-900">
+                <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors">
                   When Two Journeys Connected
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-semibold">
                   The next chapter began when <strong>Meet.Nexus and Nexora came together through a project partnership</strong>. Working together on projects created an opportunity for both founders to combine their strengths. Meet brought his expertise in business, sales, client relationships, and growth, while Sanket brought his expertise in technology, development, innovation, and technical execution.
                 </p>
               </div>
@@ -210,27 +210,27 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
 
             {/* Story Block 4: The Birth of NexAlliance */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 35 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.15 }}
-              whileHover={{ y: -4 }}
-              className="bg-white/90 border border-sky-200/80 hover:border-[#0088FF]/60 rounded-2xl p-6 sm:p-7 shadow-lg shadow-sky-500/5 hover:shadow-xl transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between"
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              whileHover={{ y: -4, scale: 1.01 }}
+              className="bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] border-2 border-sky-300/80 hover:border-[#0088FF] rounded-2xl p-6 sm:p-7 shadow-xl shadow-sky-500/10 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-200 text-left space-y-3.5 transform-gpu flex flex-col justify-between group"
             >
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-200/60">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#0088FF]" />
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#0088FF] bg-sky-100 px-3 py-1 rounded-full border border-sky-300/70 shadow-sm">
                     26 July 2026
                   </span>
                 </div>
-                <h3 className="font-heading text-xl sm:text-2xl font-bold text-slate-900">
+                <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#0088FF] transition-colors">
                   The Birth of NexAlliance
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-semibold">
                   On <strong>26 July 2026</strong>, that vision became a reality. <strong>NexAlliance</strong> was officially established by <strong>Meet Mistry and Sanket Pithava</strong>, bringing together the experience, knowledge, and strengths they had developed through their individual journeys.
                 </p>
-                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-medium pt-1">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium pt-1">
                   NexAlliance was built from two independent companies, multiple experiences, real-world projects, and a shared vision for the future of technology.
                 </p>
               </div>
