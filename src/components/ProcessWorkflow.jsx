@@ -220,17 +220,6 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
           </div>
         </div>
 
-        {/* Bottom CTA Action Button */}
-        <div className="text-center pt-4">
-          <button
-            onClick={onOpenBooking}
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-[#0088FF] via-[#0077E6] to-indigo-600 hover:from-[#0077E6] hover:to-indigo-700 text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider px-8 py-4 rounded-full shadow-xl shadow-sky-500/25 hover:shadow-2xl hover:scale-105 transition-all cursor-pointer"
-          >
-            <span>START YOUR DIGITAL ECOSYSTEM TODAY</span>
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        </div>
-
       </div>
     </section>
   );
