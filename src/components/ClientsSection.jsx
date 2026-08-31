@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export default function ClientsSection() {
   useEffect(() => {
@@ -32,7 +33,12 @@ export default function ClientsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16 relative z-10">
 
         {/* Section Header Area */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="text-center max-w-3xl mx-auto space-y-4"
+        >
           <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#0088FF]">
             OUR CLIENTS & PARTNERS
           </span>
@@ -42,21 +48,29 @@ export default function ClientsSection() {
           <p className="text-sm sm:text-base font-semibold leading-relaxed text-slate-600 max-w-2xl mx-auto">
             Trusted enterprises, software platforms, and brands engineered by NexAlliance.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Plain Logos Only - No Names, No Boxes, No Cards, No Dark Backgrounds, No Explore */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 sm:gap-12 pt-6 items-center justify-items-center">
-          {clients.map((client) => (
-            <div
+        {/* Fast Animated Logo Cards Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 pt-4">
+          {clients.map((client, idx) => (
+            <motion.div
               key={client.id}
-              className="w-full h-24 sm:h-32 flex items-center justify-center p-2"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.25, ease: 'easeOut', delay: (idx % 4) * 0.05 }}
+              whileHover={{ y: -6, scale: 1.02 }}
+              className="bg-white/90 border border-sky-200/80 hover:border-[#0088FF] rounded-3xl p-5 sm:p-6 shadow-lg shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-200 flex items-center justify-center group transform-gpu"
             >
-              <img
-                src={client.image}
-                alt={client.title}
-                className="max-h-full max-w-[180px] sm:max-w-[220px] object-contain filter drop-shadow-sm transition-transform duration-300 hover:scale-105"
-              />
-            </div>
+              {/* Inner Dark Logo Container for Clean Contrast */}
+              <div className="w-full h-28 sm:h-36 rounded-2xl bg-[#050B17] border border-slate-800 p-4 sm:p-6 flex items-center justify-center overflow-hidden">
+                <img
+                  src={client.image}
+                  alt={client.title}
+                  className="max-h-full max-w-full object-contain object-center group-hover:scale-108 transition-transform duration-300"
+                />
+              </div>
+            </motion.div>
           ))}
         </div>
 
