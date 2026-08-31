@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, MapPin, Phone, Mail, ExternalLink, CheckCircle2, Send, ArrowRight } from 'lucide-react';
 import NexLogo from './NexLogo';
