@@ -225,7 +225,7 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
 
         {/* CONDITION 1: Home Page Gallery Track (isHomePage === true) */}
         {isHomePage ? (
-          <div className="relative w-full overflow-hidden py-4 group/gallery">
+          <div className="relative w-full overflow-hidden py-4 sm:py-6 group/gallery">
             {/* Left Arrow Button */}
             <button
               onClick={() => scrollManual('left')}
@@ -262,10 +262,10 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                     <div
                       key={`${item.id}-${idx}`}
                       onClick={() => handleProjectClick(item)}
-                      className="w-[280px] xs:w-[320px] sm:w-[380px] h-[180px] xs:h-[210px] sm:h-[240px] shrink-0 rounded-3xl relative overflow-hidden group cursor-pointer shadow-xl shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 hover:-translate-y-1.5 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-6 flex flex-col justify-between"
+                      className="w-[290px] xs:w-[330px] sm:w-[400px] h-[220px] xs:h-[250px] sm:h-[280px] shrink-0 rounded-3xl relative overflow-hidden group cursor-pointer shadow-xl shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 hover:-translate-y-1.5 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-5 sm:p-6 flex flex-col justify-between"
                     >
                       {/* Clean Logo Image Centered */}
-                      <div className="w-full h-full flex items-center justify-center p-2">
+                      <div className="flex-1 min-h-0 w-full flex items-center justify-center p-3">
                         <img
                           src={item.image}
                           alt={item.title}
@@ -274,8 +274,8 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                       </div>
 
                       {/* Project Name & Explore Icon */}
-                      <div className="flex items-center justify-between pt-2 border-t border-sky-200/60 z-10 shrink-0">
-                        <h3 className="font-heading text-sm sm:text-base font-extrabold text-slate-900 truncate">
+                      <div className="flex items-center justify-between pt-3 pb-1 border-t border-sky-200/80 z-10 shrink-0 min-w-0">
+                        <h3 className="font-heading text-sm sm:text-base font-extrabold text-slate-900 truncate pr-2">
                           {item.title}
                         </h3>
                         {!item.hideExplore && (
@@ -293,10 +293,10 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                     <div
                       key={item.id}
                       onClick={() => handleProjectClick(item)}
-                      className="w-[280px] xs:w-[320px] sm:w-[380px] h-[180px] xs:h-[210px] sm:h-[240px] shrink-0 rounded-3xl relative overflow-hidden group cursor-pointer shadow-xl shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 hover:-translate-y-1.5 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-6 flex flex-col justify-between"
+                      className="w-[290px] xs:w-[330px] sm:w-[400px] h-[220px] xs:h-[250px] sm:h-[280px] shrink-0 rounded-3xl relative overflow-hidden group cursor-pointer shadow-xl shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 hover:-translate-y-1.5 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-5 sm:p-6 flex flex-col justify-between"
                     >
                       {/* Clean Logo Image Centered */}
-                      <div className="w-full h-full flex items-center justify-center p-2">
+                      <div className="flex-1 min-h-0 w-full flex items-center justify-center p-3">
                         <img
                           src={item.image}
                           alt={item.title}
@@ -305,8 +305,8 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                       </div>
 
                       {/* Project Name & Explore Icon */}
-                      <div className="flex items-center justify-between pt-2 border-t border-sky-200/60 z-10 shrink-0">
-                        <h3 className="font-heading text-sm sm:text-base font-extrabold text-slate-900 truncate">
+                      <div className="flex items-center justify-between pt-3 pb-1 border-t border-sky-200/80 z-10 shrink-0 min-w-0">
+                        <h3 className="font-heading text-sm sm:text-base font-extrabold text-slate-900 truncate pr-2">
                           {item.title}
                         </h3>
                         {!item.hideExplore && (
@@ -334,11 +334,11 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: (idx % 3) * 0.05 }}
                   whileHover={{ y: -6 }}
-                  className="h-[220px] sm:h-[260px] rounded-3xl relative overflow-hidden group cursor-pointer shadow-xl shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-6 sm:p-7 flex flex-col justify-between w-full"
+                  className="h-[240px] sm:h-[280px] rounded-3xl relative overflow-hidden group cursor-pointer shadow-xl shadow-sky-500/5 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 border-2 border-sky-300/80 hover:border-[#0088FF] bg-gradient-to-br from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] p-5 sm:p-7 flex flex-col justify-between w-full"
                   onClick={() => handleProjectClick(item)}
                 >
                   {/* Clean Logo Image Centered */}
-                  <div className="w-full h-full flex items-center justify-center p-2">
+                  <div className="flex-1 min-h-0 w-full flex items-center justify-center p-3">
                     <img
                       src={item.image}
                       alt={item.title}
@@ -347,12 +347,12 @@ export default function Portfolio({ onOpenBooking, theme = 'light', isHomePage =
                   </div>
 
                   {/* Project Name & Explore Icon */}
-                  <div className="flex items-center justify-between pt-3 border-t border-sky-200/80 z-10 shrink-0">
-                    <div>
-                      <h3 className="font-heading text-base sm:text-lg font-black text-slate-900">
+                  <div className="flex items-center justify-between pt-3 pb-1 border-t border-sky-200/80 z-10 shrink-0 min-w-0">
+                    <div className="min-w-0 pr-2">
+                      <h3 className="font-heading text-base sm:text-lg font-black text-slate-900 truncate">
                         {item.title}
                       </h3>
-                      <p className="text-xs font-semibold text-slate-500">
+                      <p className="text-xs font-semibold text-slate-500 truncate">
                         {item.tech}
                       </p>
                     </div>
