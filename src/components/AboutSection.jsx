@@ -89,7 +89,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
               The Evolution <span className="text-[#0088FF]">Architecture Diagram</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-semibold">
-              Visual pipeline showing how Meet.Nexus & Nexora converged into NexAlliance.
+              Visual pipeline showing how Meet Nexus & Nexora converged into NexAlliance.
             </p>
           </div>
 
@@ -99,7 +99,7 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
             {/* STAGE 1: TWO PARALLEL FOUNDER NODES */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 relative z-10">
               
-              {/* MEET.NEXUS */}
+              {/* MEET NEXUS */}
               <motion.div
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -117,10 +117,10 @@ export default function AboutSection({ onOpenBooking, theme = 'light', showFound
 
                 <div className="space-y-2">
                   <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#0088FF] transition-colors">
-                    Meet.Nexus
+                    Meet Nexus
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-semibold">
-                    Meet Mistry started Meet.Nexus focusing on practical client digital solutions, sales, business development, and client relationships.
+                    Meet Mistry started Meet Nexus focusing on practical client digital solutions, sales, business development, and client relationships.
                   </p>
                 </div>
 
