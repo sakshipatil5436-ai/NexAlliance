@@ -5,20 +5,45 @@ import { Mic, MicOff, Sparkles, Volume2 } from 'lucide-react';
 export default function RobotVoiceAssistant({ theme = 'dark' }) {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
-  const [assistantMessage, setAssistantMessage] = useState('Hi, I am Nex from NexAlliance. How can I help you?');
+  const [assistantMessage, setAssistantMessage] = useState('Nex AI is Always Listening... Speak anytime!');
   const navigate = useNavigate();
-
+  const recognitionRef = useRef(null);
   const isLight = theme === 'light';
 
-  // Entry Welcome Greeting on Website Load
+  // Entry Welcome Greeting & ALWAYS ON Microphone Loop Initialization
   useEffect(() => {
     speak("Hi, I am Nex from NexAlliance. How can I help you?");
+
+    // Start continuous mic listening loop
+    startContinuousListening();
+
+    // Re-trigger mic unlock on first user gesture (for mobile browser security compliance)
+    const unlockAndStartMic = () => {
+      startContinuousListening();
+    };
+
+    ['click', 'touchstart', 'pointerdown'].forEach(evt => {
+      document.addEventListener(evt, unlockAndStartMic, { passive: true });
+      window.addEventListener(evt, unlockAndStartMic, { passive: true });
+    });
+
+    return () => {
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.stop();
+        } catch (e) {}
+      }
+      ['click', 'touchstart', 'pointerdown'].forEach(evt => {
+        document.removeEventListener(evt, unlockAndStartMic);
+        window.removeEventListener(evt, unlockAndStartMic);
+      });
+    };
   }, []);
 
   const speak = (text) => {
     if ('speechSynthesis' in window) {
       try {
-        window.speechSynthesis.cancel(); // Cancel previous audio
+        window.speechSynthesis.cancel();
         if (window.speechSynthesis.paused) {
           window.speechSynthesis.resume();
         }
@@ -40,47 +65,63 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
     }
   };
 
-  const startListening = () => {
+  const startContinuousListening = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
       const errorMsg = "Speech Recognition is not supported in this browser. Please try Google Chrome.";
       setAssistantMessage(errorMsg);
-      speak("Speech recognition is not supported in this browser. Please try Google Chrome.");
       return;
+    }
+
+    if (recognitionRef.current) {
+      try {
+        recognitionRef.current.start();
+        return;
+      } catch (e) {
+        // Recognition instance already active or restarting
+      }
     }
 
     try {
       const recognition = new SpeechRecognition();
       recognition.lang = 'en-US';
-      recognition.continuous = false;
+      recognition.continuous = true;
       recognition.interimResults = false;
 
       recognition.onstart = () => {
         setIsListening(true);
-        setAssistantMessage("Listening... Speak now!");
+        setAssistantMessage("Nex AI is Always Listening... Speak anytime!");
       };
 
       recognition.onresult = (event) => {
-        const spokenText = event.results[0][0].transcript.toLowerCase();
+        const lastIndex = event.results.length - 1;
+        const spokenText = event.results[lastIndex][0].transcript.toLowerCase().trim();
         setTranscript(spokenText);
         handleVoiceCommand(spokenText);
       };
 
       recognition.onerror = (event) => {
-        console.error("Speech recognition error", event.error);
-        setIsListening(false);
-        setAssistantMessage("Sorry, I didn't hear that. Tap the mic to try again.");
+        console.log("Speech recognition error:", event.error);
+        if (event.error === 'not-allowed') {
+          setIsListening(false);
+          setAssistantMessage("Microphone blocked. Please allow mic access in browser.");
+        }
       };
 
       recognition.onend = () => {
-        setIsListening(false);
+        // ALWAYS RESTART microphone loop automatically!
+        try {
+          recognition.start();
+        } catch (e) {
+          setIsListening(false);
+        }
       };
 
+      recognitionRef.current = recognition;
       recognition.start();
     } catch (e) {
-      console.error(e);
-      setIsListening(false);
+      console.log("Mic init error:", e);
     }
   };
 
@@ -123,7 +164,7 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
       setTimeout(() => navigate('/careers'), 800);
     }
     else {
-      const reply = 'I didn\'t catch that. Try saying "Show portfolio", "Services", or "Contact".';
+      const reply = 'I heard you! Try saying "Show portfolio", "Services", or "Contact".';
       setAssistantMessage(reply);
       speak(reply);
     }
