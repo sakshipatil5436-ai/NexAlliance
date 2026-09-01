@@ -58,7 +58,8 @@ export default function ClientsSection({ onOpenBooking }) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2, ease: 'easeOut', delay: idx * 0.03 }}
-              className="bg-white/95 backdrop-blur-xl border border-sky-200/90 hover:border-[#0088FF] rounded-2xl p-3 sm:p-4 h-24 sm:h-28 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col items-center justify-center group overflow-hidden"
+              whileHover={{ scale: 1.04, y: -2 }}
+              className="bg-gradient-to-br from-[#F0F7FF] via-[#E6F3FF] to-[#D5EAFF] border-2 border-sky-300/80 hover:border-[#0088FF] rounded-2xl p-3 sm:p-4 h-24 sm:h-28 shadow-md shadow-sky-500/10 hover:shadow-xl hover:shadow-sky-500/25 transition-all duration-200 flex flex-col items-center justify-center group overflow-hidden cursor-pointer"
             >
               <img
                 src={client.image}
@@ -67,7 +68,7 @@ export default function ClientsSection({ onOpenBooking }) {
                 decoding="async"
                 className="max-h-[60%] max-w-full object-contain object-center group-hover:scale-105 transition-transform duration-200 filter drop-shadow-sm"
               />
-              <span className="text-[10px] sm:text-[11px] font-bold text-slate-700 truncate w-full text-center mt-2 group-hover:text-[#0088FF]">
+              <span className="text-[10px] sm:text-[11px] font-extrabold text-slate-800 truncate w-full text-center mt-2 group-hover:text-[#0088FF]">
                 {client.title}
               </span>
             </motion.div>
