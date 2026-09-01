@@ -202,7 +202,7 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
   }, []);
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto mt-2 sm:-mt-8 lg:-mt-16 flex flex-col items-center select-none z-30 overflow-visible px-2 sm:px-4">
+    <div className="robot-container relative w-full max-w-4xl mx-auto mt-2 sm:-mt-8 lg:-mt-16 flex flex-col items-center select-none z-30 overflow-visible px-2 sm:px-4">
 
       {/* Volumetric Ambient Glow Projection */}
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] xs:w-[320px] sm:w-[500px] h-[280px] xs:h-[320px] sm:h-[500px] rounded-full pointer-events-none z-0 ${isLight ? 'bg-sky-200/40 blur-3xl' : 'bg-[#0088FF]/20 blur-3xl'
@@ -235,7 +235,7 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
             ref={canvasRef}
             onClick={handleRobotClick}
             onTouchEnd={handleRobotClick}
-            className="w-[280px] xs:w-[360px] sm:w-[600px] md:w-[720px] lg:w-[800px] max-w-[94vw] h-auto object-contain relative z-20 cursor-pointer drop-shadow-[0_25px_45px_rgba(0,136,255,0.4)] transition-transform duration-300 hover:scale-[1.03]"
+            className="animated-robot w-[280px] xs:w-[320px] sm:w-[600px] md:w-[720px] lg:w-[800px] max-w-[90vw] sm:max-w-[94vw] h-auto object-contain relative z-20 cursor-pointer drop-shadow-[0_25px_45px_rgba(0,136,255,0.4)] transition-transform duration-300 hover:scale-[1.03]"
           />
 
           {/* Futuristic Round Space Podium Platform Stage under Feet */}

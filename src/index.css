@@ -232,4 +232,29 @@ body::-webkit-scrollbar,
     content-visibility: auto;
     contain-intrinsic-size: 1px 800px;
   }
+
+  /* Mobile view layout & overlap fixes */
+  .hero-section {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero-section h1,
+  .hero-section h2 {
+    font-size: 1.85rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .robot-container {
+    width: 100%;
+    max-width: 300px !important;
+    margin: 0 auto;
+  }
+}
+
+/* GPU acceleration hint for smooth mobile rendering */
+.animated-robot {
+  will-change: transform;
 }

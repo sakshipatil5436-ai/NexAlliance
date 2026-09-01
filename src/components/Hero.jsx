@@ -25,7 +25,7 @@ export default function Hero({ onOpenBooking, theme = 'dark' }) {
   const isLight = theme === 'light';
 
   return (
-    <section id="home" className={`relative w-full max-w-full flex flex-col justify-center overflow-hidden pt-20 sm:pt-24 pb-4 sm:pb-8 select-none transition-colors duration-500 ${isLight ? 'bg-white text-slate-900' : 'bg-[#050B17] text-white'
+    <section id="home" className={`hero-section relative w-full max-w-full flex flex-col justify-center overflow-hidden pt-20 sm:pt-24 pb-4 sm:pb-8 select-none transition-colors duration-500 ${isLight ? 'bg-white text-slate-900' : 'bg-[#050B17] text-white'
       }`}>
 
       {/* Subtle Ambient Background Video Layer */}
@@ -52,17 +52,17 @@ export default function Hero({ onOpenBooking, theme = 'dark' }) {
       {/* Hero Content Canvas - 2-Column Side-by-Side Layout */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
 
           {/* LEFT COLUMN: WE BUILD DIGITAL ECOSYSTEMS TYPOGRAPHY */}
-          <div className="lg:col-span-6 text-left space-y-6">
+          <div className="lg:col-span-6 text-left space-y-4 sm:space-y-6">
 
             {/* Headline ("We Build Digital Ecosystems.") */}
             <motion.h2
               initial={{ opacity: 0, y: 30, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className={`font-heading text-3xl xs:text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] ${isLight ? 'text-slate-900' : 'text-white'
+              className={`font-heading text-2xl xs:text-3xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-snug sm:leading-[1.08] ${isLight ? 'text-slate-900' : 'text-white'
                 }`}
             >
               We Build Digital <br />
