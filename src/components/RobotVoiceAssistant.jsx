@@ -39,6 +39,8 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
     };
   }, []);
 
+  const isSpeakingRef = useRef(false);
+
   const speak = (text) => {
     if ('speechSynthesis' in window) {
       try {
@@ -46,6 +48,15 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
         if (window.speechSynthesis.paused) {
           window.speechSynthesis.resume();
         }
+
+        // Pause microphone while speaking to prevent feedback loop
+        isSpeakingRef.current = true;
+        if (recognitionRef.current) {
+          try {
+            recognitionRef.current.stop();
+          } catch (e) {}
+        }
+
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.rate = 1.0;
         utterance.pitch = 1.1;
@@ -57,15 +68,30 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
           if (englishVoice) utterance.voice = englishVoice;
         }
 
+        utterance.onend = () => {
+          isSpeakingRef.current = false;
+          if (!isUserTurnedOffRef.current) {
+            startContinuousListening();
+          }
+        };
+
+        utterance.onerror = () => {
+          isSpeakingRef.current = false;
+          if (!isUserTurnedOffRef.current) {
+            startContinuousListening();
+          }
+        };
+
         window.speechSynthesis.speak(utterance);
       } catch (err) {
         console.log("SpeechSynthesis Error:", err);
+        isSpeakingRef.current = false;
       }
     }
   };
 
   const startContinuousListening = () => {
-    if (isUserTurnedOffRef.current) return;
+    if (isUserTurnedOffRef.current || isSpeakingRef.current) return;
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) return;
@@ -90,6 +116,7 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
       };
 
       recognition.onresult = (event) => {
+        if (isSpeakingRef.current) return;
         const lastIndex = event.results.length - 1;
         const spokenText = event.results[lastIndex][0].transcript.toLowerCase().trim();
         handleVoiceCommand(spokenText);
@@ -103,7 +130,7 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
       };
 
       recognition.onend = () => {
-        if (isUserTurnedOffRef.current) {
+        if (isUserTurnedOffRef.current || isSpeakingRef.current) {
           setIsListening(false);
           return;
         }
@@ -143,11 +170,12 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
     navigate(path);
   };
 
-  // Keyword Matching Logic (Desktop & Mobile Synchronous Navigation)
+  // Keyword Matching Logic (Strict Matching without annoying fallback speech loops)
   const handleVoiceCommand = (text) => {
     const cleanText = text.toLowerCase().trim();
+    if (!cleanText) return;
 
-    if (cleanText.includes('portfolio') || cleanText.includes('work') || cleanText.includes('projects')) {
+    if (cleanText.includes('portfolio') || cleanText.includes('port') || cleanText.includes('work') || cleanText.includes('projects')) {
       performNavigation('/portfolio', "Sure! Let me show you our portfolio.");
     } 
     else if (cleanText.includes('about') || cleanText.includes('who are you') || cleanText.includes('company')) {
@@ -168,9 +196,7 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
     else if (cleanText.includes('home') || cleanText.includes('main')) {
       performNavigation('/', "Taking you to the home page.");
     }
-    else {
-      speak("I heard you! Try saying Show portfolio, Services, or Contact.");
-    }
+    // No fallback speak repetition! Unmatched words are silently ignored.
   };
 
   return (
