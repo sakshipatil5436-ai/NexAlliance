@@ -65,11 +65,17 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
     }
   ];
 
-  // Progressive Step Automation: advances step 1->2->3->4->5->6 (all previous stay glowing BLUE)
+  // Progressive Step Automation: advances step 1->2->3->4->5->6 (Stops permanently at Step 6)
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveStepIndex((prev) => (prev + 1) % steps.length);
-    }, 2000);
+      setActiveStepIndex((prev) => {
+        if (prev >= steps.length - 1) {
+          clearInterval(timer);
+          return steps.length - 1; // Lock at Step 6!
+        }
+        return prev + 1;
+      });
+    }, 1800);
     return () => clearInterval(timer);
   }, [steps.length]);
 
