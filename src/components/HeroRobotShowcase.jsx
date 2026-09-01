@@ -49,13 +49,16 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
     }
   };
 
-  // Entry Greeting on Website Initial Open & Refresh (Mobile Gesture Compatible)
+  // Entry Greeting on Website Initial Open & Refresh (Instant 0ms Mobile & Desktop Trigger)
   useEffect(() => {
-    // Force mobile voices array preload
-    if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
-      window.speechSynthesis.onvoiceschanged = () => {
-        window.speechSynthesis.getVoices();
-      };
+    // Preload mobile/browser voices instantly
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.getVoices();
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = () => {
+          window.speechSynthesis.getVoices();
+        };
+      }
     }
 
     let hasTriggered = false;
@@ -64,7 +67,7 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
       if (hasTriggered) return;
       hasTriggered = true;
 
-      // Resume speech synth context on mobile user gesture
+      // Resume speech synth context on mobile user gesture instantly
       if ('speechSynthesis' in window && window.speechSynthesis.paused) {
         window.speechSynthesis.resume();
       }
@@ -79,7 +82,10 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
       window.removeEventListener('keydown', triggerGreeting);
     };
 
-    // Mobile Autoplay Policy Compliance: Listen to direct user gestures
+    // 1. INSTANT ZERO-DELAY SPEAK CALL ON PAGE LOAD / OPEN
+    speakHelloFromNexAlliance();
+
+    // 2. Immediate user gesture listeners for strict mobile autoplay policies
     window.addEventListener('touchstart', triggerGreeting, { passive: true });
     window.addEventListener('touchend', triggerGreeting, { passive: true });
     window.addEventListener('pointerdown', triggerGreeting, { passive: true });
@@ -87,15 +93,7 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
     window.addEventListener('scroll', triggerGreeting, { passive: true });
     window.addEventListener('keydown', triggerGreeting, { passive: true });
 
-    // Fallback attempt for desktop browsers
-    const t1 = setTimeout(() => {
-      if (!hasTriggered) {
-        speakHelloFromNexAlliance();
-      }
-    }, 600);
-
     return () => {
-      clearTimeout(t1);
       window.removeEventListener('touchstart', triggerGreeting);
       window.removeEventListener('touchend', triggerGreeting);
       window.removeEventListener('pointerdown', triggerGreeting);
