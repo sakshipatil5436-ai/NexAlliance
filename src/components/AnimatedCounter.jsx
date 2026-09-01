@@ -16,9 +16,9 @@ export default function AnimatedCounter({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-        } else {
-          setIsVisible(false);
-          setCount(0);
+          if (counterRef.current) {
+            observer.unobserve(counterRef.current);
+          }
         }
       },
       { threshold: 0.15 }
@@ -41,6 +41,7 @@ export default function AnimatedCounter({
 
     let startTime = null;
     let animationFrameId;
+    let lastValue = -1;
 
     const animate = (timestamp) => {
       if (!startTime) startTime = timestamp;
@@ -50,7 +51,11 @@ export default function AnimatedCounter({
       const easeOutProgress = 1 - Math.pow(1 - progress, 3);
       const currentCount = easeOutProgress * end;
 
-      setCount(currentCount);
+      const formattedVal = decimals > 0 ? Number(currentCount.toFixed(decimals)) : Math.floor(currentCount);
+      if (formattedVal !== lastValue) {
+        lastValue = formattedVal;
+        setCount(currentCount);
+      }
 
       if (progress < 1) {
         animationFrameId = requestAnimationFrame(animate);
@@ -60,7 +65,7 @@ export default function AnimatedCounter({
     animationFrameId = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [isVisible, end, duration]);
+  }, [isVisible, end, duration, decimals]);
 
   const formattedCount = decimals > 0 
     ? count.toFixed(decimals) 

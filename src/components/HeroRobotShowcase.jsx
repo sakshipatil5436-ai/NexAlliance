@@ -82,44 +82,62 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
     video.volume = 0;
 
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    let lastFrameTime = 0;
 
-    const renderTransparentFrame = () => {
-      if (video && video.readyState >= 2 && !video.paused && !video.ended) {
-        const width = video.videoWidth || 640;
-        const height = video.videoHeight || 480;
+    const renderTransparentFrame = (timestamp) => {
+      const isMobile = window.innerWidth < 768;
+      const targetFPS = isMobile ? 30 : 60;
+      const frameInterval = 1000 / targetFPS;
 
-        if (canvas.width !== width || canvas.height !== height) {
-          canvas.width = width;
-          canvas.height = height;
-        }
+      if (timestamp - lastFrameTime >= frameInterval) {
+        lastFrameTime = timestamp;
 
-        try {
-          ctx.drawImage(video, 0, 0, width, height);
+        if (video && video.readyState >= 2 && !video.paused && !video.ended) {
+          const rawWidth = video.videoWidth || 640;
+          const rawHeight = video.videoHeight || 480;
 
-          const frameData = ctx.getImageData(0, 0, width, height);
-          const data = frameData.data;
-          const len = data.length;
-
-          for (let i = 0; i < len; i += 4) {
-            const r = data[i];
-            const g = data[i + 1];
-            const b = data[i + 2];
-
-            if (r > 220 && g > 220 && b > 220) {
-              const avg = (r + g + b) / 3;
-              if (avg > 240) {
-                data[i + 3] = 0;
-              } else {
-                const alpha = Math.max(0, Math.floor(255 - (avg - 220) * 12.75));
-                data[i + 3] = alpha;
-              }
-            }
+          // Cap processing resolution on mobile to max 360px width, desktop max 640px width
+          const maxProcessingWidth = isMobile ? 360 : 640;
+          let scale = 1;
+          if (rawWidth > maxProcessingWidth) {
+            scale = maxProcessingWidth / rawWidth;
           }
 
-          ctx.putImageData(frameData, 0, 0);
-        } catch (e) {
-          // Fallback draw without pixel manipulation if tainted canvas
-          ctx.drawImage(video, 0, 0, width, height);
+          const targetWidth = Math.floor(rawWidth * scale);
+          const targetHeight = Math.floor(rawHeight * scale);
+
+          if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
+            canvas.width = targetWidth;
+            canvas.height = targetHeight;
+          }
+
+          try {
+            ctx.drawImage(video, 0, 0, targetWidth, targetHeight);
+
+            const frameData = ctx.getImageData(0, 0, targetWidth, targetHeight);
+            const data = frameData.data;
+            const len = data.length;
+
+            for (let i = 0; i < len; i += 4) {
+              const r = data[i];
+              const g = data[i + 1];
+              const b = data[i + 2];
+
+              if (r > 220 && g > 220 && b > 220) {
+                const avg = (r + g + b) / 3;
+                if (avg > 240) {
+                  data[i + 3] = 0;
+                } else {
+                  const alpha = Math.max(0, Math.floor(255 - (avg - 220) * 12.75));
+                  data[i + 3] = alpha;
+                }
+              }
+            }
+
+            ctx.putImageData(frameData, 0, 0);
+          } catch (e) {
+            ctx.drawImage(video, 0, 0, targetWidth, targetHeight);
+          }
         }
       }
 

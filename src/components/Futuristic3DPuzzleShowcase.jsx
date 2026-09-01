@@ -14,20 +14,28 @@ export default function Futuristic3DPuzzleShowcase({ onOpenServiceDetail, theme 
     // If rendered on Home Page overview, display the clean UI cards directly without falling down animation
     if (isHomePage) return;
 
+    let ticking = false;
     const handleScroll = () => {
       const el = containerRef.current;
-      if (!el || hasAnimated) return;
+      if (!el || hasAnimated || ticking) return;
 
-      const rect = el.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const currentEl = containerRef.current;
+        if (currentEl && !hasAnimated) {
+          const rect = currentEl.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
 
-      // Starts ONLY when user has scrolled down (scrollY > 150) AND Services section is visible in viewport
-      if (window.scrollY > 150 && rect.top < windowHeight * 0.75 && rect.bottom > 0) {
-        setHasAnimated(true);
-        setStage(0);
-        setTimeout(() => setStage(1), 1200); // Stage 1: 3D puzzle interlocking weave (1.2s)
-        setTimeout(() => setStage(2), 2800); // Stage 2: Morphing into 8 UI service cards (2.8s)
-      }
+          // Starts ONLY when user has scrolled down (scrollY > 150) AND Services section is visible in viewport
+          if (window.scrollY > 150 && rect.top < windowHeight * 0.75 && rect.bottom > 0) {
+            setHasAnimated(true);
+            setStage(0);
+            setTimeout(() => setStage(1), 1200); // Stage 1: 3D puzzle interlocking weave (1.2s)
+            setTimeout(() => setStage(2), 2800); // Stage 2: Morphing into 8 UI service cards (2.8s)
+          }
+        }
+        ticking = false;
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });

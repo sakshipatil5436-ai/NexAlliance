@@ -11,17 +11,14 @@ import ContactSection from '../components/ContactSection';
 
 export default function Home({ onOpenBooking, onOpenServiceDetail, theme }) {
   const techRainItems = [
-    { text: "CRM", left: "3%", duration: 16, delay: 0 },
-    { text: "HRM", left: "11%", duration: 18, delay: 2 },
-    { text: "REACT.JS", left: "20%", duration: 15, delay: 0.5 },
-    { text: "ERP", left: "29%", duration: 17, delay: 3 },
-    { text: "NODE.JS", left: "38%", duration: 14, delay: 1 },
-    { text: "EXPRESS.JS", left: "47%", duration: 19, delay: 4 },
-    { text: "WEB.APP", left: "56%", duration: 16, delay: 1.5 },
-    { text: "AI & ML", left: "65%", duration: 15, delay: 2.5 },
-    { text: "AWS CLOUD", left: "74%", duration: 18, delay: 0.8 },
-    { text: "FLUTTER", left: "83%", duration: 14, delay: 3.5 },
-    { text: "UI / UX", left: "92%", duration: 17, delay: 1.2 }
+    { text: "CRM", left: "5%", duration: 16, delay: 0 },
+    { text: "HRM", left: "15%", duration: 18, delay: 2, desktopOnly: true },
+    { text: "REACT.JS", left: "28%", duration: 15, delay: 0.5 },
+    { text: "ERP", left: "40%", duration: 17, delay: 3, desktopOnly: true },
+    { text: "NODE.JS", left: "52%", duration: 14, delay: 1, desktopOnly: true },
+    { text: "WEB.APP", left: "62%", duration: 16, delay: 1.5 },
+    { text: "AI & ML", left: "75%", duration: 15, delay: 2.5, desktopOnly: true },
+    { text: "AWS CLOUD", left: "88%", duration: 18, delay: 0.8 }
   ];
 
   return (
@@ -46,7 +43,9 @@ export default function Home({ onOpenBooking, onOpenServiceDetail, theme }) {
                 delay: item.delay
               }}
               style={{ left: item.left }}
-              className="absolute top-0 font-mono text-xs font-bold tracking-widest uppercase select-none pointer-events-none text-transparent bg-clip-text bg-gradient-to-b from-cyan-400 via-[#0088FF] to-blue-600 drop-shadow-sm whitespace-nowrap"
+              className={`absolute top-0 font-mono text-xs font-bold tracking-widest uppercase select-none pointer-events-none text-transparent bg-clip-text bg-gradient-to-b from-cyan-400 via-[#0088FF] to-blue-600 whitespace-nowrap ${
+                item.desktopOnly ? 'hidden sm:block' : 'block'
+              }`}
             >
               <span className="text-cyan-400 opacity-60 mr-1">&gt;</span>
               <span>{item.text}</span>
