@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Bot, Sparkles } from 'lucide-react';
+import { Bot } from 'lucide-react';
 
 export default function RobotVoiceAssistant({ theme = 'dark' }) {
   const [isListening, setIsListening] = useState(false);
@@ -178,14 +178,7 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
       title={isListening ? "Nex AI Voice Active (Click to turn off)" : "Nex AI Voice Off (Click to turn on)"}
       aria-label="Toggle Nex AI Assistant"
     >
-      {isListening ? (
-        <div className="relative flex items-center justify-center">
-          <Bot className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-          <Sparkles className="w-2.5 h-2.5 text-cyan-300 absolute -top-1 -right-1" />
-        </div>
-      ) : (
-        <Bot className="w-5 h-5 sm:w-6 sm:h-6 text-white/50" />
-      )}
+      <Bot className={`w-5 h-5 sm:w-6 sm:h-6 ${isListening ? 'text-white' : 'text-white/50'}`} />
     </button>
   );
 }
