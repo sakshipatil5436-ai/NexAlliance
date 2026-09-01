@@ -16,50 +16,88 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
   const speakHelloFromNexAlliance = () => {
     try {
       if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        if (window.speechSynthesis.paused) {
-          window.speechSynthesis.resume();
+        const synth = window.speechSynthesis;
+
+        if (synth.paused) {
+          synth.resume();
         }
+
+        // Cancel previous queue if actively speaking
+        if (synth.speaking) {
+          synth.cancel();
+        }
+
         const utterance = new SpeechSynthesisUtterance("Hello from NexAlliance");
-        utterance.pitch = 1.2;
+        utterance.pitch = 1.1;
         utterance.rate = 1.0;
         utterance.lang = 'en-US';
-        window.speechSynthesis.speak(utterance);
+        utterance.volume = 1.0;
+
+        // Select an English voice for Android / iOS Safari compatibility
+        const voices = synth.getVoices();
+        if (voices && voices.length > 0) {
+          const englishVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Natural') || v.name.includes('English'))) || voices.find(v => v.lang.startsWith('en')) || voices[0];
+          if (englishVoice) {
+            utterance.voice = englishVoice;
+          }
+        }
+
+        synth.speak(utterance);
       }
     } catch (err) {
       console.log("SpeechSynthesis Error:", err);
     }
   };
 
-  // Entry Greeting on Website Initial Open & Refresh
+  // Entry Greeting on Website Initial Open & Refresh (Mobile Gesture Compatible)
   useEffect(() => {
+    // Force mobile voices array preload
+    if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+      };
+    }
+
     let hasTriggered = false;
 
     const triggerGreeting = () => {
       if (hasTriggered) return;
       hasTriggered = true;
 
+      // Resume speech synth context on mobile user gesture
+      if ('speechSynthesis' in window && window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+      }
+
       speakHelloFromNexAlliance();
 
+      window.removeEventListener('touchstart', triggerGreeting);
+      window.removeEventListener('touchend', triggerGreeting);
       window.removeEventListener('pointerdown', triggerGreeting);
       window.removeEventListener('click', triggerGreeting);
       window.removeEventListener('scroll', triggerGreeting);
       window.removeEventListener('keydown', triggerGreeting);
     };
 
-    // Try to speak immediately on page load / refresh
-    const t1 = setTimeout(triggerGreeting, 400);
-    const t2 = setTimeout(triggerGreeting, 1200);
+    // Mobile Autoplay Policy Compliance: Listen to direct user gestures
+    window.addEventListener('touchstart', triggerGreeting, { passive: true });
+    window.addEventListener('touchend', triggerGreeting, { passive: true });
+    window.addEventListener('pointerdown', triggerGreeting, { passive: true });
+    window.addEventListener('click', triggerGreeting, { passive: true });
+    window.addEventListener('scroll', triggerGreeting, { passive: true });
+    window.addEventListener('keydown', triggerGreeting, { passive: true });
 
-    // Browser Autoplay Policy Fallback (User gesture listener)
-    window.addEventListener('pointerdown', triggerGreeting, { once: true });
-    window.addEventListener('click', triggerGreeting, { once: true });
-    window.addEventListener('scroll', triggerGreeting, { once: true });
-    window.addEventListener('keydown', triggerGreeting, { once: true });
+    // Fallback attempt for desktop browsers
+    const t1 = setTimeout(() => {
+      if (!hasTriggered) {
+        speakHelloFromNexAlliance();
+      }
+    }, 600);
 
     return () => {
       clearTimeout(t1);
-      clearTimeout(t2);
+      window.removeEventListener('touchstart', triggerGreeting);
+      window.removeEventListener('touchend', triggerGreeting);
       window.removeEventListener('pointerdown', triggerGreeting);
       window.removeEventListener('click', triggerGreeting);
       window.removeEventListener('scroll', triggerGreeting);
@@ -67,7 +105,7 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
     };
   }, []);
 
-  // Robot Click Handler
+  // Robot Click & Touch Handler
   const handleRobotClick = () => {
     speakHelloFromNexAlliance();
   };
@@ -206,6 +244,7 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
           <canvas
             ref={canvasRef}
             onClick={handleRobotClick}
+            onTouchEnd={handleRobotClick}
             className="w-[280px] xs:w-[360px] sm:w-[600px] md:w-[720px] lg:w-[800px] max-w-[94vw] h-auto object-contain relative z-20 cursor-pointer drop-shadow-[0_25px_45px_rgba(0,136,255,0.4)] transition-transform duration-300 hover:scale-[1.03]"
           />
 
