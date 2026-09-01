@@ -125,6 +125,10 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
     }
   };
 
+  const startListening = () => {
+    startContinuousListening();
+  };
+
   // Keyword Matching Logic (Pure Client-Side Navigation & Speech)
   const handleVoiceCommand = (text) => {
     if (text.includes('portfolio') || text.includes('work') || text.includes('projects')) {
