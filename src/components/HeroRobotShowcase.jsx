@@ -12,53 +12,61 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
   const canvasRef = useRef(null);
   const animFrameRef = useRef(null);
 
-  // Play entry greeting speech: "Hello from NexAlliance"
-  const speakHelloFromNexAlliance = () => {
+  // Preloaded Audio Ref for instant 0ms mobile playback
+  const audioRef = useRef(null);
+
+  const playWebSpeechFallback = () => {
     try {
       if ('speechSynthesis' in window) {
         const synth = window.speechSynthesis;
-
-        if (synth.paused) {
-          synth.resume();
-        }
-
-        // Cancel previous queue if actively speaking
-        if (synth.speaking) {
-          synth.cancel();
-        }
+        if (synth.paused) synth.resume();
+        if (synth.speaking) synth.cancel();
 
         const utterance = new SpeechSynthesisUtterance("Hello from NexAlliance");
         utterance.pitch = 1.1;
         utterance.rate = 1.0;
         utterance.lang = 'en-US';
-        utterance.volume = 1.0;
 
-        // Select an English voice for Android / iOS Safari compatibility
         const voices = synth.getVoices();
         if (voices && voices.length > 0) {
-          const englishVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Natural') || v.name.includes('English'))) || voices.find(v => v.lang.startsWith('en')) || voices[0];
-          if (englishVoice) {
-            utterance.voice = englishVoice;
-          }
+          const englishVoice = voices.find(v => v.lang.startsWith('en')) || voices[0];
+          if (englishVoice) utterance.voice = englishVoice;
         }
 
         synth.speak(utterance);
       }
+    } catch (e) {}
+  };
+
+  // Play entry greeting speech: "Hello from NexAlliance" (Instant MP3 + TTS Fallback)
+  const speakHelloFromNexAlliance = () => {
+    try {
+      if (audioRef.current) {
+        audioRef.current.currentTime = 0;
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            playWebSpeechFallback();
+          });
+        }
+      } else {
+        playWebSpeechFallback();
+      }
     } catch (err) {
-      console.log("SpeechSynthesis Error:", err);
+      playWebSpeechFallback();
     }
   };
 
-  // Entry Greeting on Website Initial Open & Refresh (Instant 0ms Mobile & Desktop Trigger)
+  // Entry Greeting on Website Initial Open & Refresh (Instant 0ms Audio Preload)
   useEffect(() => {
-    // Preload mobile/browser voices instantly
+    // Preload MP3 audio in browser memory for instant zero-delay playback
+    const audio = new Audio('/hello_nexalliance.mp3');
+    audio.preload = 'auto';
+    audioRef.current = audio;
+
+    // Preload SpeechSynthesis voices if available
     if ('speechSynthesis' in window) {
       window.speechSynthesis.getVoices();
-      if (window.speechSynthesis.onvoiceschanged !== undefined) {
-        window.speechSynthesis.onvoiceschanged = () => {
-          window.speechSynthesis.getVoices();
-        };
-      }
     }
 
     let hasTriggered = false;
@@ -67,11 +75,6 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
       if (hasTriggered) return;
       hasTriggered = true;
 
-      // Resume speech synth context on mobile user gesture instantly
-      if ('speechSynthesis' in window && window.speechSynthesis.paused) {
-        window.speechSynthesis.resume();
-      }
-
       speakHelloFromNexAlliance();
 
       window.removeEventListener('touchstart', triggerGreeting);
@@ -79,19 +82,17 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
       window.removeEventListener('pointerdown', triggerGreeting);
       window.removeEventListener('click', triggerGreeting);
       window.removeEventListener('scroll', triggerGreeting);
-      window.removeEventListener('keydown', triggerGreeting);
     };
 
-    // 1. INSTANT ZERO-DELAY SPEAK CALL ON PAGE LOAD / OPEN
+    // 1. Immediate zero-delay audio playback attempt
     speakHelloFromNexAlliance();
 
-    // 2. Immediate user gesture listeners for strict mobile autoplay policies
+    // 2. Mobile Autoplay Policy Compliance: Instant gesture activation
     window.addEventListener('touchstart', triggerGreeting, { passive: true });
     window.addEventListener('touchend', triggerGreeting, { passive: true });
     window.addEventListener('pointerdown', triggerGreeting, { passive: true });
     window.addEventListener('click', triggerGreeting, { passive: true });
     window.addEventListener('scroll', triggerGreeting, { passive: true });
-    window.addEventListener('keydown', triggerGreeting, { passive: true });
 
     return () => {
       window.removeEventListener('touchstart', triggerGreeting);
@@ -99,7 +100,6 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
       window.removeEventListener('pointerdown', triggerGreeting);
       window.removeEventListener('click', triggerGreeting);
       window.removeEventListener('scroll', triggerGreeting);
-      window.removeEventListener('keydown', triggerGreeting);
     };
   }, []);
 
