@@ -11,6 +11,7 @@ import CareersSection from './components/CareersSection';
 import ContactSection from './components/ContactSection';
 import BookingModal from './components/BookingModal';
 import Footer from './components/Footer';
+import RobotVoiceAssistant from './components/RobotVoiceAssistant';
 import { PhoneCall } from 'lucide-react';
 
 // ScrollToTop Helper Component to reset scroll position on route change
@@ -175,6 +176,9 @@ export default function App() {
             </a>
           </div>
         )}
+
+        {/* Floating AI Robot Voice Assistant Widget */}
+        <RobotVoiceAssistant theme="light" />
 
         {/* Start Consultation Email Form Modal */}
         <BookingModal isOpen={bookingOpen} onClose={handleCloseBooking} theme="light" />

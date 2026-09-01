@@ -130,47 +130,47 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center my-3 select-none z-30">
-      {/* Robot Mic Action Button */}
-      <button
-        onClick={startListening}
-        className={`group relative flex items-center gap-2.5 px-6 py-2.5 rounded-full font-heading font-extrabold text-xs uppercase tracking-wider shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer border ${
-          isListening
-            ? 'bg-gradient-to-r from-rose-500 to-red-600 text-white border-rose-400 shadow-rose-500/40 animate-pulse'
-            : isLight
-            ? 'bg-gradient-to-r from-[#0088FF] via-[#0077E6] to-[#2563EB] text-white border-sky-300 shadow-sky-500/25 hover:shadow-sky-500/40'
-            : 'bg-gradient-to-r from-[#0088FF] via-[#3B82F6] to-[#2563EB] text-white border-[#1E3A8A] shadow-blue-500/30 hover:shadow-cyan-500/40'
-        }`}
-      >
-        <div className={`p-1 rounded-full ${isListening ? 'bg-white/20 animate-spin' : 'bg-white/10'}`}>
-          {isListening ? (
-            <MicOff className="w-4 h-4 text-white" />
-          ) : (
-            <Mic className="w-4 h-4 text-white group-hover:rotate-12 transition-transform" />
-          )}
-        </div>
-        <span>{isListening ? "🎙️ Listening..." : "🎤 Speak to Robot"}</span>
-        <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-      </button>
-
-      {/* Assistant Feedback Box */}
+    <div className="fixed bottom-28 right-4 sm:bottom-32 sm:right-6 z-50 flex flex-col items-end select-none">
+      {/* Speech Transcript & Assistant Reply Tooltip Popup */}
       {assistantMessage && (
-        <div className={`mt-2.5 px-4 py-2 rounded-2xl border backdrop-blur-md max-w-sm text-center shadow-md transition-all ${
+        <div className={`mb-2.5 px-3.5 py-2 rounded-2xl border backdrop-blur-md max-w-[230px] text-right shadow-xl transition-all animate-in fade-in slide-in-from-bottom-2 ${
           isLight
-            ? 'bg-white/90 border-sky-200 text-slate-800 shadow-sky-500/5'
-            : 'bg-[#0B172E]/90 border-[#1E3A8A] text-sky-200 shadow-blue-500/10'
+            ? 'bg-white/95 border-sky-200 text-slate-800 shadow-sky-500/10'
+            : 'bg-[#0B172E]/95 border-[#1E3A8A] text-sky-100 shadow-blue-500/20'
         }`}>
-          <p className="text-xs font-semibold leading-relaxed flex items-center justify-center gap-1.5">
-            <Volume2 className="w-3.5 h-3.5 text-[#0088FF] shrink-0" />
+          <p className="text-[11px] font-semibold leading-tight flex items-center justify-end gap-1">
             <span>{assistantMessage}</span>
+            <Volume2 className="w-3 h-3 text-[#0088FF] shrink-0" />
           </p>
           {transcript && (
-            <p className="text-[10px] text-slate-400 font-mono mt-1">
-              You said: "{transcript}"
+            <p className="text-[9px] text-sky-400 font-mono mt-0.5">
+              "{transcript}"
             </p>
           )}
         </div>
       )}
+
+      {/* Floating Sticky AI Robot Assistant Button */}
+      <button
+        onClick={startListening}
+        className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-white text-xl sm:text-2xl shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer border border-white/40 ${
+          isListening
+            ? 'bg-gradient-to-r from-rose-500 to-red-600 shadow-rose-500/50 animate-pulse'
+            : 'bg-gradient-to-tr from-[#0066FF] via-[#0088FF] to-[#00FFCC] shadow-cyan-500/40 hover:shadow-cyan-400/60'
+        }`}
+        title="Nex AI Voice Assistant"
+        aria-label="Nex AI Voice Assistant"
+      >
+        {isListening ? (
+          <span className="animate-spin text-lg">🎙️</span>
+        ) : (
+          <span className="hover:rotate-12 transition-transform">🤖</span>
+        )}
+        <span className="absolute -top-1 -right-1 flex h-3 w-3">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
+        </span>
+      </button>
     </div>
   );
 }
