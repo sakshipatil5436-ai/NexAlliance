@@ -16,7 +16,6 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
   // Web Audio API Context Ref for bypassing mobile HTML5 autoplay restrictions without touch
   const audioContextRef = useRef(null);
   const audioBufferRef = useRef(null);
-  const audioRef = useRef(null);
 
   // Preload Audio ArrayBuffer for Web Audio API
   useEffect(() => {
@@ -61,25 +60,24 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
 
   // Robust Zero-Touch Speech & Audio Playback
   const speakHelloFromNexAlliance = () => {
-    // 1. Try DOM Audio Ref
-    if (audioRef.current) {
-      try {
-        audioRef.current.currentTime = 0;
-        const playPromise = audioRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => {}).catch(() => {
-            playWebAudioBuffer();
-          });
-        }
-      } catch (e) {}
-    }
-
-    // 2. Try Web Audio API Buffer
+    // 1. Try Web Audio API Buffer (Bypasses mobile media autoplay restriction)
     const success = playWebAudioBuffer();
     if (success) return;
 
-    // 3. Fallback Web Speech API
-    playWebSpeechFallback();
+    // 2. Try HTML5 Audio
+    try {
+      const audio = new Audio('/hello_nexalliance.mp3');
+      audio.volume = 1.0;
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          playWebSpeechFallback();
+        });
+      }
+    } catch (err) {
+      playWebSpeechFallback();
+    }
   };
 
   const playWebSpeechFallback = () => {
@@ -102,37 +100,53 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
 
         synth.speak(utterance);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
-  // Entry Greeting on Website Initial Open & Refresh (Zero-Touch Mobile Autoplay Sequence)
+  // Entry Greeting on Website Initial Open & Refresh (Page Refresh & Focus Autoplay Sequence)
   useEffect(() => {
     let hasSuccessfullyPlayed = false;
 
     const executeGreeting = async () => {
       if (hasSuccessfullyPlayed) return;
 
+      // Resume WebAudio context on page refresh / focus
       if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
         try {
           await audioContextRef.current.resume();
-        } catch (e) {}
+        } catch (e) { }
       }
 
-      speakHelloFromNexAlliance();
+      const success = playWebAudioBuffer();
+      if (success) {
+        hasSuccessfullyPlayed = true;
+        return;
+      }
+
+      try {
+        const audio = new Audio('/hello_nexalliance.mp3');
+        audio.volume = 1.0;
+        await audio.play();
+        hasSuccessfullyPlayed = true;
+      } catch (err) {
+        // Fallback to Web Speech API on refresh
+        if ('speechSynthesis' in window) {
+          playWebSpeechFallback();
+        }
+      }
     };
 
-    // 1. Immediate zero-touch play attempt on mount / refresh
+    // 1. Immediate play attempt on mount / refresh
     executeGreeting();
 
-    // 2. Automatic retries at 10ms, 50ms, 150ms, 300ms, 600ms, 1000ms
-    const t0 = setTimeout(executeGreeting, 10);
+    // 2. Automatic retries at 50ms, 150ms, 300ms, 600ms, 1000ms
     const t1 = setTimeout(executeGreeting, 50);
     const t2 = setTimeout(executeGreeting, 150);
     const t3 = setTimeout(executeGreeting, 300);
     const t4 = setTimeout(executeGreeting, 600);
     const t5 = setTimeout(executeGreeting, 1000);
 
-    // 3. Instant Page Refresh & Tab Focus Event Listeners (Triggers without tap/click)
+    // 3. Instant Page Refresh & Tab Focus Event Listeners (Triggers immediately on page refresh)
     const refreshEvents = [
       'pageshow',
       'focus',
@@ -153,7 +167,6 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
     });
 
     return () => {
-      clearTimeout(t0);
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
@@ -172,7 +185,7 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
     speakHelloFromNexAlliance();
   };
 
-  // Real-Time Canvas White-Background Removal for 3D Motion Robot (Mobile & Desktop)
+  // Real-Time Canvas White-Background Removal for 3D Motion Robot
   useEffect(() => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
@@ -246,7 +259,7 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
 
     const startPlay = () => {
       if (video && video.paused) {
-        video.play().catch(() => {});
+        video.play().catch(() => { });
       }
     };
 
@@ -302,22 +315,12 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
             className="hidden"
           />
 
-          {/* DOM Audio Element with autoPlay & playsInline for instant zero-touch mobile refresh speech */}
-          <audio
-            ref={audioRef}
-            src="/hello_nexalliance.mp3"
-            autoPlay={true}
-            playsInline={true}
-            preload="auto"
-            className="hidden"
-          />
-
-          {/* 100% Real-Time Transparent Canvas Motion Robot (Identical on Mobile & Desktop) */}
+          {/* 100% Real-Time Transparent Canvas rendering ONLY the 3D Motion Robot */}
           <canvas
             ref={canvasRef}
             onClick={handleRobotClick}
             onTouchEnd={handleRobotClick}
-            className="block animated-robot w-[280px] xs:w-[320px] sm:w-[600px] md:w-[720px] lg:w-[800px] max-w-[90vw] sm:max-w-[94vw] h-auto object-contain relative z-20 cursor-pointer drop-shadow-[0_25px_45px_rgba(0,136,255,0.4)] transition-transform duration-300 hover:scale-[1.03]"
+            className="animated-robot w-[280px] xs:w-[320px] sm:w-[600px] md:w-[720px] lg:w-[800px] max-w-[90vw] sm:max-w-[94vw] h-auto object-contain relative z-20 cursor-pointer drop-shadow-[0_25px_45px_rgba(0,136,255,0.4)] transition-transform duration-300 hover:scale-[1.03]"
           />
 
           {/* Futuristic Round Space Podium Platform Stage under Feet */}
