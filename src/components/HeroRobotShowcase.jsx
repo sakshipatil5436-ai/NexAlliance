@@ -185,10 +185,8 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
     speakHelloFromNexAlliance();
   };
 
-  // Real-Time Canvas White-Background Removal for 3D Motion Robot (Desktop only)
+  // Real-Time Canvas White-Background Removal for 3D Motion Robot (Mobile & Desktop)
   useEffect(() => {
-    if (window.innerWidth < 768) return;
-
     const video = videoRef.current;
     const canvas = canvasRef.current;
     if (!video || !canvas) return;
@@ -317,21 +315,12 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
             className="hidden"
           />
 
-          {/* On Mobile: Optimized High-Res Transparent WebP Robot (0% CPU Load, 60 FPS Smooth) */}
-          <img
-            src="/robot.webp"
-            alt="NexAlliance AI Robot"
-            onClick={handleRobotClick}
-            onTouchEnd={handleRobotClick}
-            className="block sm:hidden animated-robot w-[220px] xs:w-[260px] h-auto object-contain relative z-20 cursor-pointer drop-shadow-[0_20px_35px_rgba(0,136,255,0.4)] animate-float"
-          />
-
-          {/* On Desktop: 100% Real-Time Transparent Canvas Motion Robot */}
+          {/* 100% Real-Time Transparent Canvas Motion Robot (Identical on Mobile & Desktop) */}
           <canvas
             ref={canvasRef}
             onClick={handleRobotClick}
             onTouchEnd={handleRobotClick}
-            className="hidden sm:block animated-robot w-[360px] sm:w-[600px] md:w-[720px] lg:w-[800px] max-w-[90vw] sm:max-w-[94vw] h-auto object-contain relative z-20 cursor-pointer drop-shadow-[0_25px_45px_rgba(0,136,255,0.4)] transition-transform duration-300 hover:scale-[1.03]"
+            className="block animated-robot w-[280px] xs:w-[320px] sm:w-[600px] md:w-[720px] lg:w-[800px] max-w-[90vw] sm:max-w-[94vw] h-auto object-contain relative z-20 cursor-pointer drop-shadow-[0_25px_45px_rgba(0,136,255,0.4)] transition-transform duration-300 hover:scale-[1.03]"
           />
 
           {/* Futuristic Round Space Podium Platform Stage under Feet */}
