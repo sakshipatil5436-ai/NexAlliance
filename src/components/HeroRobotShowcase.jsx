@@ -1,9 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Volume2 } from 'lucide-react';
-
-// Global Session Flag to ensure entry speech plays once on load
-let HAS_GLOBAL_SPOKEN_HI = false;
 
 export default function HeroRobotShowcase({ theme = 'dark' }) {
   const isLight = theme === 'light';
@@ -13,11 +9,11 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
   const canvasRef = useRef(null);
   const animFrameRef = useRef(null);
 
-  // Web Audio API Context Ref for bypassing mobile HTML5 autoplay restrictions without touch
+  // Web Audio API Context Ref
   const audioContextRef = useRef(null);
   const audioBufferRef = useRef(null);
 
-  // Preload Audio ArrayBuffer for Web Audio API
+  // Preload Audio Buffer on Mount
   useEffect(() => {
     const preloadBuffer = async () => {
       try {
@@ -29,12 +25,9 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
           audioContextRef.current = ctx;
           const decoded = await ctx.decodeAudioData(arrayBuffer);
           audioBufferRef.current = decoded;
-          // Attempt immediate zero-touch Web Audio API buffer play
           playWebAudioBuffer();
         }
-      } catch (e) {
-        console.log("WebAudio Preload info:", e);
-      }
+      } catch (e) {}
     };
     preloadBuffer();
   }, []);
@@ -52,29 +45,19 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
         source.start(0);
         return true;
       }
-    } catch (e) {
-      console.log("WebAudio Buffer Play error:", e);
-    }
+    } catch (e) {}
     return false;
   };
 
-  // Robust Zero-Touch Speech & Audio Playback
+  // Play entry greeting speech: "Hello from NexAlliance"
   const speakHelloFromNexAlliance = () => {
-    // 1. Try Web Audio API Buffer (Bypasses mobile media autoplay restriction)
     const success = playWebAudioBuffer();
     if (success) return;
 
-    // 2. Try HTML5 Audio
     try {
       const audio = new Audio('/hello_nexalliance.mp3');
       audio.volume = 1.0;
-      const playPromise = audio.play();
-
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          playWebSpeechFallback();
-        });
-      }
+      audio.play().catch(() => playWebSpeechFallback());
     } catch (err) {
       playWebSpeechFallback();
     }
@@ -100,86 +83,36 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
 
         synth.speak(utterance);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
-  // Entry Greeting on Website Initial Open & Refresh (Page Refresh & Focus Autoplay Sequence)
+  // Entry Greeting Trigger on Website Open, Refresh, and Focus
   useEffect(() => {
-    let hasSuccessfullyPlayed = false;
+    let hasPlayed = false;
 
-    const executeGreeting = async () => {
-      if (hasSuccessfullyPlayed) return;
-
-      // Resume WebAudio context on page refresh / focus
-      if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
-        try {
-          await audioContextRef.current.resume();
-        } catch (e) { }
-      }
-
-      const success = playWebAudioBuffer();
-      if (success) {
-        hasSuccessfullyPlayed = true;
-        return;
-      }
-
-      try {
-        const audio = new Audio('/hello_nexalliance.mp3');
-        audio.volume = 1.0;
-        await audio.play();
-        hasSuccessfullyPlayed = true;
-      } catch (err) {
-        // Fallback to Web Speech API on refresh
-        if ('speechSynthesis' in window) {
-          playWebSpeechFallback();
-        }
-      }
+    const executeGreeting = () => {
+      if (hasPlayed) return;
+      hasPlayed = true;
+      speakHelloFromNexAlliance();
     };
 
-    // 1. Immediate play attempt on mount / refresh
+    // 1. Immediate trigger on open / refresh
     executeGreeting();
 
-    // 2. Automatic retries at 50ms, 150ms, 300ms, 600ms, 1000ms
-    const t1 = setTimeout(executeGreeting, 50);
-    const t2 = setTimeout(executeGreeting, 150);
-    const t3 = setTimeout(executeGreeting, 300);
-    const t4 = setTimeout(executeGreeting, 600);
-    const t5 = setTimeout(executeGreeting, 1000);
-
-    // 3. Instant Page Refresh & Tab Focus Event Listeners (Triggers immediately on page refresh)
-    const refreshEvents = [
-      'pageshow',
-      'focus',
-      'visibilitychange',
-      'mousemove',
-      'mouseenter',
-      'scroll',
-      'touchstart',
-      'touchend',
-      'pointerdown',
-      'click',
-      'load'
-    ];
-
-    refreshEvents.forEach(evt => {
-      window.addEventListener(evt, executeGreeting, { passive: true });
-      document.addEventListener(evt, executeGreeting, { passive: true });
+    // 2. Refresh & Focus Event Triggers
+    const events = ['pageshow', 'focus', 'click', 'touchstart'];
+    events.forEach(evt => {
+      window.addEventListener(evt, executeGreeting, { passive: true, once: true });
     });
 
     return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
-      clearTimeout(t4);
-      clearTimeout(t5);
-      refreshEvents.forEach(evt => {
+      events.forEach(evt => {
         window.removeEventListener(evt, executeGreeting);
-        document.removeEventListener(evt, executeGreeting);
       });
     };
   }, []);
 
-  // Robot Click & Touch Handler
+  // Robot Click Handler
   const handleRobotClick = (e) => {
     if (e) e.stopPropagation();
     speakHelloFromNexAlliance();
