@@ -137,31 +137,36 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
     }
   };
 
-  // Keyword Matching Logic
+  const performNavigation = (path, message) => {
+    speak(message);
+    window.scrollTo(0, 0);
+    navigate(path);
+  };
+
+  // Keyword Matching Logic (Desktop & Mobile Synchronous Navigation)
   const handleVoiceCommand = (text) => {
-    if (text.includes('portfolio') || text.includes('work') || text.includes('projects')) {
-      speak("Sure! Let me show you our portfolio.");
-      setTimeout(() => navigate('/portfolio'), 800);
+    const cleanText = text.toLowerCase().trim();
+
+    if (cleanText.includes('portfolio') || cleanText.includes('work') || cleanText.includes('projects')) {
+      performNavigation('/portfolio', "Sure! Let me show you our portfolio.");
     } 
-    else if (text.includes('about') || text.includes('who are you') || text.includes('company')) {
-      speak("Sure, taking you to our About page.");
-      setTimeout(() => navigate('/about'), 800);
+    else if (cleanText.includes('about') || cleanText.includes('who are you') || cleanText.includes('company')) {
+      performNavigation('/about', "Sure, taking you to our About page.");
     } 
-    else if (text.includes('service') || text.includes('solutions') || text.includes('what do you do')) {
-      speak("Here are our core digital services.");
-      setTimeout(() => navigate('/services'), 800);
+    else if (cleanText.includes('service') || cleanText.includes('solutions') || cleanText.includes('what do you do')) {
+      performNavigation('/services', "Here are our core digital services.");
     } 
-    else if (text.includes('contact') || text.includes('call') || text.includes('book') || text.includes('hire')) {
-      speak("Let's get in touch. Opening contact page.");
-      setTimeout(() => navigate('/contact'), 800);
+    else if (cleanText.includes('contact') || cleanText.includes('call') || cleanText.includes('book') || cleanText.includes('hire')) {
+      performNavigation('/contact', "Let's get in touch. Opening contact page.");
     } 
-    else if (text.includes('client') || text.includes('partner') || text.includes('brand')) {
-      speak("Opening our clients and partners page.");
-      setTimeout(() => navigate('/clients'), 800);
+    else if (cleanText.includes('client') || cleanText.includes('partner') || cleanText.includes('brand')) {
+      performNavigation('/clients', "Opening our clients and partners page.");
     }
-    else if (text.includes('career') || text.includes('job') || text.includes('hiring')) {
-      speak("Opening our careers page.");
-      setTimeout(() => navigate('/careers'), 800);
+    else if (cleanText.includes('career') || cleanText.includes('job') || cleanText.includes('hiring')) {
+      performNavigation('/careers', "Opening our careers page.");
+    }
+    else if (cleanText.includes('home') || cleanText.includes('main')) {
+      performNavigation('/', "Taking you to the home page.");
     }
     else {
       speak("I heard you! Try saying Show portfolio, Services, or Contact.");
