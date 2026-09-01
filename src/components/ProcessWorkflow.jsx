@@ -65,8 +65,12 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
     }
   ];
 
-  // Progressive Step Automation: advances step 1->2->3->4->5->6 (Stops permanently at Step 6)
+  const [hasStarted, setHasStarted] = useState(false); // Starts automation ONLY when scrolled into view!
+
+  // Progressive Step Automation: starts ONLY when user scrolls into view! Advances 1->2->3->4->5->6 & locks at 6.
   useEffect(() => {
+    if (!hasStarted) return;
+
     const timer = setInterval(() => {
       setActiveStepIndex((prev) => {
         if (prev >= steps.length - 1) {
@@ -75,9 +79,9 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
         }
         return prev + 1;
       });
-    }, 1800);
+    }, 1600);
     return () => clearInterval(timer);
-  }, [steps.length]);
+  }, [hasStarted, steps.length]);
 
   const progressPercentage = (activeStepIndex / (steps.length - 1)) * 100;
 
@@ -93,6 +97,7 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          onViewportEnter={() => setHasStarted(true)}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.4 }}
           className="text-center max-w-3xl mx-auto space-y-3"
