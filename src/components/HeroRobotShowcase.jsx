@@ -103,12 +103,19 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
     } catch (e) {}
   };
 
-  // Entry Greeting on Website Initial Open & Refresh (Zero-Touch Mobile Autoplay Sequence)
+  // Entry Greeting on Website Initial Open & Refresh (Page Refresh & Focus Autoplay Sequence)
   useEffect(() => {
     let hasSuccessfullyPlayed = false;
 
     const executeGreeting = async () => {
       if (hasSuccessfullyPlayed) return;
+
+      // Resume WebAudio context on page refresh / focus
+      if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
+        try {
+          await audioContextRef.current.resume();
+        } catch (e) {}
+      }
 
       const success = playWebAudioBuffer();
       if (success) {
@@ -122,24 +129,39 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
         await audio.play();
         hasSuccessfullyPlayed = true;
       } catch (err) {
-        // Fallback to Web Speech API
+        // Fallback to Web Speech API on refresh
         if ('speechSynthesis' in window) {
           playWebSpeechFallback();
         }
       }
     };
 
-    // 1. Immediate zero-touch play attempt on mount
+    // 1. Immediate play attempt on mount / refresh
     executeGreeting();
 
-    // 2. Automatic retries at 100ms, 300ms, 600ms, 1200ms
-    const t1 = setTimeout(executeGreeting, 100);
-    const t2 = setTimeout(executeGreeting, 300);
-    const t3 = setTimeout(executeGreeting, 600);
-    const t4 = setTimeout(executeGreeting, 1200);
+    // 2. Automatic retries at 50ms, 150ms, 300ms, 600ms, 1000ms
+    const t1 = setTimeout(executeGreeting, 50);
+    const t2 = setTimeout(executeGreeting, 150);
+    const t3 = setTimeout(executeGreeting, 300);
+    const t4 = setTimeout(executeGreeting, 600);
+    const t5 = setTimeout(executeGreeting, 1000);
 
-    // 3. Fallback gesture listeners
-    ['touchstart', 'touchend', 'pointerdown', 'click', 'scroll'].forEach(evt => {
+    // 3. Instant Page Refresh & Tab Focus Event Listeners (Triggers immediately on page refresh)
+    const refreshEvents = [
+      'pageshow',
+      'focus',
+      'visibilitychange',
+      'mousemove',
+      'mouseenter',
+      'scroll',
+      'touchstart',
+      'touchend',
+      'pointerdown',
+      'click',
+      'load'
+    ];
+
+    refreshEvents.forEach(evt => {
       window.addEventListener(evt, executeGreeting, { passive: true });
       document.addEventListener(evt, executeGreeting, { passive: true });
     });
@@ -149,7 +171,8 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
       clearTimeout(t2);
       clearTimeout(t3);
       clearTimeout(t4);
-      ['touchstart', 'touchend', 'pointerdown', 'click', 'scroll'].forEach(evt => {
+      clearTimeout(t5);
+      refreshEvents.forEach(evt => {
         window.removeEventListener(evt, executeGreeting);
         document.removeEventListener(evt, executeGreeting);
       });
