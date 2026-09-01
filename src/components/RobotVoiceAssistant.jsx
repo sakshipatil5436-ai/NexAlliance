@@ -10,10 +10,8 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
 
   // Entry Welcome Greeting & ALWAYS ON Microphone Loop Initialization
   useEffect(() => {
-    // Delay AI Assistant welcome speech until "Hello from NexAlliance" finishes (2.2 seconds)
-    const welcomeTimer = setTimeout(() => {
-      speak("Hi, I am Nex from NexAlliance. How can I help you?");
-    }, 2200);
+    // Immediate AI Assistant welcome speech on website load/refresh
+    speak("Hi, I am Nex from NexAlliance. How can I help you?");
 
     startContinuousListening();
 
@@ -29,7 +27,6 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
     });
 
     return () => {
-      clearTimeout(welcomeTimer);
       if (recognitionRef.current) {
         try {
           recognitionRef.current.stop();
