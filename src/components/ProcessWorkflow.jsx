@@ -96,17 +96,16 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
     }
   ];
 
-  // 0.2 Second Click Automation: Close current step and auto-open next step after 200ms
+  // Click Handler: Toggle close reading section if active step is clicked
   const handleStepClick = (idx) => {
     setIsPaused(true);
-    // 1. Close current step immediately
-    setActiveStep(null);
-
-    // 2. After 0.2s (200ms), auto-open next step
-    setTimeout(() => {
-      const nextIdx = (idx + 1) % steps.length;
-      setActiveStep(nextIdx);
-    }, 200);
+    if (activeStep === idx) {
+      // User clicked currently open step -> CLOSE the reading details box!
+      setActiveStep(null);
+    } else {
+      // User clicked a different step -> OPEN that step!
+      setActiveStep(idx);
+    }
   };
 
   // Smooth Auto-Progression Loop (cycles next step every 3.5s unless hovered)
