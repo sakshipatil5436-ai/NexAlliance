@@ -96,7 +96,29 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
     }
   ];
 
-  // Static user click control (No automatic setInterval timer height shifts)
+  // 0.2 Second Click Automation: Close current step and auto-open next step after 200ms
+  const handleStepClick = (idx) => {
+    setIsPaused(true);
+    // 1. Close current step immediately
+    setActiveStep(null);
+
+    // 2. After 0.2s (200ms), auto-open next step
+    setTimeout(() => {
+      const nextIdx = (idx + 1) % steps.length;
+      setActiveStep(nextIdx);
+    }, 200);
+  };
+
+  // Smooth Auto-Progression Loop (cycles next step every 3.5s unless hovered)
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev === null ? 0 : (prev + 1) % steps.length));
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
 
   return (
     <section className="py-14 sm:py-20 transition-colors duration-500 relative overflow-hidden select-none bg-gradient-to-b from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] text-slate-900">
@@ -150,10 +172,7 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
               return (
                 <div
                   key={step.id}
-                  onClick={() => {
-                    setIsPaused(true);
-                    setActiveStep(isActive ? null : idx);
-                  }}
+                  onClick={() => handleStepClick(idx)}
                   className="flex flex-col items-center cursor-pointer group"
                 >
                   {/* 3D FLOATING GLOWING ORB */}
