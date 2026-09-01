@@ -93,8 +93,7 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          onViewportEnter={() => setActiveStepIndex(0)}
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.4 }}
           className="text-center max-w-3xl mx-auto space-y-3"
         >
@@ -120,7 +119,7 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
           {/* 2. Active Progressive Glowing Blue Line (Desktop) */}
           <motion.div
             className="hidden lg:block absolute top-[52px] left-[6%] h-[4px] bg-gradient-to-r from-sky-400 via-[#0088FF] to-blue-600 rounded-full shadow-[0_0_14px_rgba(0,136,255,0.6)] z-0 transition-all duration-500 ease-out"
-            style={{ width: `${(progressPercentage * 0.88)}%` }}
+            style={{ width: activeStepIndex === 5 ? '88%' : `${(progressPercentage * 0.88)}%` }}
           />
 
           {/* 3. Base Pipeline Track (Mobile) */}
