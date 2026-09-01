@@ -105,22 +105,38 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
 
   // Entry Greeting on Website Initial Open & Refresh (Zero-Touch Mobile Autoplay Sequence)
   useEffect(() => {
-    let played = false;
+    let hasSuccessfullyPlayed = false;
 
-    const executeGreeting = () => {
-      if (played) return;
-      played = true;
+    const executeGreeting = async () => {
+      if (hasSuccessfullyPlayed) return;
 
-      speakHelloFromNexAlliance();
+      const success = playWebAudioBuffer();
+      if (success) {
+        hasSuccessfullyPlayed = true;
+        return;
+      }
+
+      try {
+        const audio = new Audio('/hello_nexalliance.mp3');
+        audio.volume = 1.0;
+        await audio.play();
+        hasSuccessfullyPlayed = true;
+      } catch (err) {
+        // Fallback to Web Speech API
+        if ('speechSynthesis' in window) {
+          playWebSpeechFallback();
+        }
+      }
     };
 
     // 1. Immediate zero-touch play attempt on mount
     executeGreeting();
 
-    // 2. Automatic retries at 100ms, 300ms, 600ms without touch
+    // 2. Automatic retries at 100ms, 300ms, 600ms, 1200ms
     const t1 = setTimeout(executeGreeting, 100);
     const t2 = setTimeout(executeGreeting, 300);
     const t3 = setTimeout(executeGreeting, 600);
+    const t4 = setTimeout(executeGreeting, 1200);
 
     // 3. Fallback gesture listeners
     ['touchstart', 'touchend', 'pointerdown', 'click', 'scroll'].forEach(evt => {
@@ -132,6 +148,7 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
+      clearTimeout(t4);
       ['touchstart', 'touchend', 'pointerdown', 'click', 'scroll'].forEach(evt => {
         window.removeEventListener(evt, executeGreeting);
         document.removeEventListener(evt, executeGreeting);
@@ -298,16 +315,6 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
             {/* Inner Glowing Ring */}
             <div className="absolute w-[160px] xs:w-[180px] sm:w-[300px] max-w-[80vw] h-[20px] sm:h-[36px] rounded-[100%] border-2 border-cyan-400/70 bg-gradient-to-r from-cyan-400/20 via-[#0088FF]/30 to-indigo-500/20 shadow-[0_0_15px_rgba(0,240,255,0.5)] blur-[0.5px]" />
 
-          </div>
-
-          {/* Sound Voice Activation Badge for Instant Mobile Audio */}
-          <div
-            onClick={handleRobotClick}
-            onTouchEnd={handleRobotClick}
-            className="mt-1 sm:mt-2 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gradient-to-r from-[#0088FF] to-[#2563EB] text-white text-[10px] sm:text-xs font-black tracking-widest uppercase shadow-lg shadow-sky-500/30 cursor-pointer animate-pulse z-30 hover:scale-105 transition-transform"
-          >
-            <Volume2 className="w-3.5 h-3.5" />
-            <span>ROBOT VOICE: HELLO FROM NEXALLIANCE</span>
           </div>
 
         </div>
