@@ -16,6 +16,7 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
   // Web Audio API Context Ref for bypassing mobile HTML5 autoplay restrictions without touch
   const audioContextRef = useRef(null);
   const audioBufferRef = useRef(null);
+  const audioRef = useRef(null);
 
   // Preload Audio ArrayBuffer for Web Audio API
   useEffect(() => {
