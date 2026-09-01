@@ -27,7 +27,11 @@ export default function Navbar({ onOpenBooking }) {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 w-full z-[9999] bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-sm select-none transition-all duration-200">
+    <header className={`fixed top-0 left-0 right-0 w-full z-[9999] select-none transition-all duration-300 ${
+      scrolled || mobileOpen
+        ? 'bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-sm py-0'
+        : 'bg-transparent border-transparent shadow-none py-1 sm:py-2'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
 
         {/* NexAlliance Logo */}
