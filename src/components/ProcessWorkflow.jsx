@@ -13,7 +13,6 @@ import {
 export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
   const isLight = theme === 'light';
   const [activeStep, setActiveStep] = useState(0); // Start at Step 1 (0-indexed: 0)
-  const [isPaused, setIsPaused] = useState(false);
 
   const steps = [
     {
@@ -96,28 +95,16 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
     }
   ];
 
-  // Click Handler: Toggle close reading section if active step is clicked
+  // User Click Handler: Toggle step details open/close (statically remains closed when closed)
   const handleStepClick = (idx) => {
-    setIsPaused(true);
     if (activeStep === idx) {
-      // User clicked currently open step -> CLOSE the reading details box!
+      // User clicked open step -> CLOSE & STAY CLOSED!
       setActiveStep(null);
     } else {
-      // User clicked a different step -> OPEN that step!
+      // User clicked a step -> OPEN that step!
       setActiveStep(idx);
     }
   };
-
-  // Smooth Auto-Progression Loop (cycles next step every 3.5s unless hovered)
-  useEffect(() => {
-    if (isPaused) return;
-
-    const interval = setInterval(() => {
-      setActiveStep((prev) => (prev === null ? 0 : (prev + 1) % steps.length));
-    }, 3500);
-
-    return () => clearInterval(interval);
-  }, [isPaused]);
 
   return (
     <section className="py-14 sm:py-20 transition-colors duration-500 relative overflow-hidden select-none bg-gradient-to-b from-[#F8FAFC] via-[#F0F6FF] to-[#E6F0FF] text-slate-900">
@@ -150,11 +137,7 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
         </motion.div>
 
         {/* 6-STEP 3D INTERACTIVE TIMELINE CONTAINER */}
-        <div
-          className="relative max-w-7xl mx-auto pt-6 pb-4"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
+        <div className="relative max-w-7xl mx-auto pt-6 pb-4">
 
           {/* 1. Horizontal Connecting 3D Pipeline Line (Desktop) */}
           <div className="hidden lg:block absolute top-[52px] left-[6%] right-[6%] h-[3px] bg-gradient-to-r from-sky-300 via-[#0088FF] to-indigo-500 rounded-full shadow-[0_0_12px_rgba(0,136,255,0.4)] z-0" />
