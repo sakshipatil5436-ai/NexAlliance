@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import RobotVoiceAssistant from './RobotVoiceAssistant';
 
 export default function HeroRobotShowcase({ theme = 'dark' }) {
   const isLight = theme === 'light';
@@ -272,6 +273,9 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
             <div className="absolute w-[160px] xs:w-[180px] sm:w-[300px] max-w-[80vw] h-[20px] sm:h-[36px] rounded-[100%] border-2 border-cyan-400/70 bg-gradient-to-r from-cyan-400/20 via-[#0088FF]/30 to-indigo-500/20 shadow-[0_0_15px_rgba(0,240,255,0.5)] blur-[0.5px]" />
 
           </div>
+
+          {/* Interactive Voice Assistant Mic Button & Speech Navigation */}
+          <RobotVoiceAssistant theme={theme} />
 
         </div>
       </motion.div>
