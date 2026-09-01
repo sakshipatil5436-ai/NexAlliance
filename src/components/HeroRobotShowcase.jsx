@@ -60,24 +60,25 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
 
   // Robust Zero-Touch Speech & Audio Playback
   const speakHelloFromNexAlliance = () => {
-    // 1. Try Web Audio API Buffer (Bypasses mobile media autoplay restriction)
+    // 1. Try DOM Audio Ref
+    if (audioRef.current) {
+      try {
+        audioRef.current.currentTime = 0;
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {}).catch(() => {
+            playWebAudioBuffer();
+          });
+        }
+      } catch (e) {}
+    }
+
+    // 2. Try Web Audio API Buffer
     const success = playWebAudioBuffer();
     if (success) return;
 
-    // 2. Try HTML5 Audio
-    try {
-      const audio = new Audio('/hello_nexalliance.mp3');
-      audio.volume = 1.0;
-      const playPromise = audio.play();
-
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          playWebSpeechFallback();
-        });
-      }
-    } catch (err) {
-      playWebSpeechFallback();
-    }
+    // 3. Fallback Web Speech API
+    playWebSpeechFallback();
   };
 
   const playWebSpeechFallback = () => {
@@ -103,49 +104,64 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
     } catch (e) {}
   };
 
-  // Entry Greeting on Website Initial Open & Refresh (Mobile Gesture Unlock & Auto Play)
+  // Entry Greeting on Website Initial Open & Refresh (Zero-Touch Mobile Autoplay Sequence)
   useEffect(() => {
-    let audioPlayed = false;
+    let hasSuccessfullyPlayed = false;
 
-    const unlockAudioOnTouch = () => {
-      if (audioPlayed) return;
-      audioPlayed = true;
+    const executeGreeting = async () => {
+      if (hasSuccessfullyPlayed) return;
 
-      // Unlock Web Speech API with dummy utterance if available
-      if ('speechSynthesis' in window) {
+      if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
         try {
-          if (window.speechSynthesis.paused) {
-            window.speechSynthesis.resume();
-          }
-          const dummyUtterance = new SpeechSynthesisUtterance("");
-          window.speechSynthesis.speak(dummyUtterance);
+          await audioContextRef.current.resume();
         } catch (e) {}
       }
 
-      // Play actual robot voice
       speakHelloFromNexAlliance();
-
-      // Remove listeners after first interaction
-      document.removeEventListener('touchstart', unlockAudioOnTouch);
-      document.removeEventListener('click', unlockAudioOnTouch);
-      window.removeEventListener('touchstart', unlockAudioOnTouch);
-      window.removeEventListener('click', unlockAudioOnTouch);
     };
 
-    // 1. Immediate attempt on mount
-    speakHelloFromNexAlliance();
+    // 1. Immediate zero-touch play attempt on mount / refresh
+    executeGreeting();
 
-    // 2. Mobile Autoplay Unlock Event Listeners on first touch/click
-    document.addEventListener('touchstart', unlockAudioOnTouch, { once: true });
-    document.addEventListener('click', unlockAudioOnTouch, { once: true });
-    window.addEventListener('touchstart', unlockAudioOnTouch, { once: true });
-    window.addEventListener('click', unlockAudioOnTouch, { once: true });
+    // 2. Automatic retries at 10ms, 50ms, 150ms, 300ms, 600ms, 1000ms
+    const t0 = setTimeout(executeGreeting, 10);
+    const t1 = setTimeout(executeGreeting, 50);
+    const t2 = setTimeout(executeGreeting, 150);
+    const t3 = setTimeout(executeGreeting, 300);
+    const t4 = setTimeout(executeGreeting, 600);
+    const t5 = setTimeout(executeGreeting, 1000);
+
+    // 3. Instant Page Refresh & Tab Focus Event Listeners (Triggers without tap/click)
+    const refreshEvents = [
+      'pageshow',
+      'focus',
+      'visibilitychange',
+      'mousemove',
+      'mouseenter',
+      'scroll',
+      'touchstart',
+      'touchend',
+      'pointerdown',
+      'click',
+      'load'
+    ];
+
+    refreshEvents.forEach(evt => {
+      window.addEventListener(evt, executeGreeting, { passive: true });
+      document.addEventListener(evt, executeGreeting, { passive: true });
+    });
 
     return () => {
-      document.removeEventListener('touchstart', unlockAudioOnTouch);
-      document.removeEventListener('click', unlockAudioOnTouch);
-      window.removeEventListener('touchstart', unlockAudioOnTouch);
-      window.removeEventListener('click', unlockAudioOnTouch);
+      clearTimeout(t0);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
+      clearTimeout(t5);
+      refreshEvents.forEach(evt => {
+        window.removeEventListener(evt, executeGreeting);
+        document.removeEventListener(evt, executeGreeting);
+      });
     };
   }, []);
 
@@ -282,6 +298,16 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
             muted={true}
             playsInline={true}
             webkit-playsinline="true"
+            className="hidden"
+          />
+
+          {/* DOM Audio Element with autoPlay & playsInline for instant zero-touch mobile refresh speech */}
+          <audio
+            ref={audioRef}
+            src="/hello_nexalliance.mp3"
+            autoPlay={true}
+            playsInline={true}
+            preload="auto"
             className="hidden"
           />
 
