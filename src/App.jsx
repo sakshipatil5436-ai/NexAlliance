@@ -144,10 +144,13 @@ export default function App() {
           theme="light"
         />
 
-        {/* Floating Quick Action Buttons */}
+        {/* Floating Quick Action Buttons Stack (Zero Overlap) */}
         {!isChatbotOpen && (
-          <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col gap-2.5 sm:gap-3 items-center select-none transition-opacity duration-300">
-            {/* 1. Phone Call Icon Only Button (Triggers Direct Phone Call) */}
+          <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col gap-2.5 sm:gap-3 items-center select-none transition-opacity duration-300">
+            {/* 1. Nex AI Robot Voice Assistant Button */}
+            <RobotVoiceAssistant theme="light" />
+
+            {/* 2. Phone Call Icon Only Button (Triggers Direct Phone Call) */}
             <a
               href="tel:+916351178511"
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-[#0088FF] to-[#2563EB] hover:from-[#0077E6] hover:to-[#1D4ED8] text-white flex items-center justify-center shadow-xl shadow-blue-500/30 border border-white/40 hover:scale-110 transition-all cursor-pointer"
@@ -157,7 +160,7 @@ export default function App() {
               <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </a>
 
-            {/* 2. Official WhatsApp Brand Icon Only Button */}
+            {/* 3. Official WhatsApp Brand Icon Only Button */}
             <a
               href="https://wa.me/916351178511?text=Hello%20NexAlliance!"
               target="_blank"
@@ -176,9 +179,6 @@ export default function App() {
             </a>
           </div>
         )}
-
-        {/* Floating AI Robot Voice Assistant Widget */}
-        <RobotVoiceAssistant theme="light" />
 
         {/* Start Consultation Email Form Modal */}
         <BookingModal isOpen={bookingOpen} onClose={handleCloseBooking} theme="light" />

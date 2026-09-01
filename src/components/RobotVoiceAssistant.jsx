@@ -1,19 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Mic, MicOff, Sparkles, Volume2 } from 'lucide-react';
+import { Bot, Sparkles } from 'lucide-react';
 
 export default function RobotVoiceAssistant({ theme = 'dark' }) {
   const [isListening, setIsListening] = useState(false);
   const navigate = useNavigate();
   const recognitionRef = useRef(null);
   const isUserTurnedOffRef = useRef(false);
-  const isLight = theme === 'light';
 
   // Entry Welcome Greeting & ALWAYS ON Microphone Loop Initialization
   useEffect(() => {
     speak("Hi, I am Nex from NexAlliance. How can I help you?");
 
-    // Start continuous mic listening loop
     startContinuousListening();
 
     const unlockAndStartMic = () => {
@@ -170,24 +168,24 @@ export default function RobotVoiceAssistant({ theme = 'dark' }) {
   };
 
   return (
-    <div className="fixed bottom-28 right-4 sm:bottom-32 sm:right-6 z-50 flex flex-col items-end select-none">
-      {/* Floating Sticky AI Mic Button (No Text Bubble, No Rotation, Toggle ON/OFF) */}
-      <button
-        onClick={toggleMicrophone}
-        className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-white shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer border border-white/40 ${
-          isListening
-            ? 'bg-gradient-to-r from-rose-500 to-red-600 shadow-rose-500/40'
-            : 'bg-gradient-to-tr from-[#0066FF] via-[#0088FF] to-[#00FFCC] shadow-cyan-500/30'
-        }`}
-        title={isListening ? "Microphone ON (Click to turn off)" : "Microphone OFF (Click to turn on)"}
-        aria-label="Toggle Microphone"
-      >
-        {isListening ? (
-          <Mic className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-        ) : (
-          <MicOff className="w-5 h-5 sm:w-6 sm:h-6 text-white/80" />
-        )}
-      </button>
-    </div>
+    <button
+      onClick={toggleMicrophone}
+      className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-white shadow-xl transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer border border-white/40 ${
+        isListening
+          ? 'bg-gradient-to-r from-cyan-500 via-[#0088FF] to-blue-600 shadow-cyan-500/50'
+          : 'bg-slate-800/90 hover:bg-slate-700/90 shadow-slate-900/40'
+      }`}
+      title={isListening ? "Nex AI Voice Active (Click to turn off)" : "Nex AI Voice Off (Click to turn on)"}
+      aria-label="Toggle Nex AI Assistant"
+    >
+      {isListening ? (
+        <div className="relative flex items-center justify-center">
+          <Bot className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          <Sparkles className="w-2.5 h-2.5 text-cyan-300 absolute -top-1 -right-1" />
+        </div>
+      ) : (
+        <Bot className="w-5 h-5 sm:w-6 sm:h-6 text-white/50" />
+      )}
+    </button>
   );
 }
