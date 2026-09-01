@@ -14,6 +14,7 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
   const isLight = theme === 'light';
   const [autoHighlightedIndex, setAutoHighlightedIndex] = useState(0); // Auto-cycles 0,1,2,3,4,5
   const [openReadingBoxIndex, setOpenReadingBoxIndex] = useState(0); // Reading box opens ONLY when clicked!
+  const [isAutoStopped, setIsAutoStopped] = useState(false); // Stops auto animation on click!
 
   const steps = [
     {
@@ -96,16 +97,19 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
     }
   ];
 
-  // Auto-cycle upper round step icons 1, 2, 3, 4, 5, 6 every 2.5 seconds
+  // Auto-cycle upper round step icons 1, 2, 3, 4, 5, 6 every 2.5 seconds (Stops permanently on click)
   useEffect(() => {
+    if (isAutoStopped) return;
+
     const timer = setInterval(() => {
       setAutoHighlightedIndex((prev) => (prev + 1) % steps.length);
     }, 2500);
     return () => clearInterval(timer);
-  }, [steps.length]);
+  }, [isAutoStopped, steps.length]);
 
-  // Click Handler: Reading box opens or closes ONLY when user clicks a round icon!
+  // Click Handler: Reading box opens/closes AND stops auto-animation permanently on click!
   const handleStepClick = (idx) => {
+    setIsAutoStopped(true);
     setOpenReadingBoxIndex((prev) => (prev === idx ? null : idx));
   };
 
@@ -152,7 +156,7 @@ export default function ProcessWorkflow({ onOpenBooking, theme = 'light' }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-4 relative z-10 items-start">
             {steps.map((step, idx) => {
               const IconComp = step.icon;
-              const isAutoHighlighted = autoHighlightedIndex === idx;
+              const isAutoHighlighted = !isAutoStopped && autoHighlightedIndex === idx;
               const isReadingBoxOpen = openReadingBoxIndex === idx;
               const isHighlighted = isAutoHighlighted || isReadingBoxOpen;
 
