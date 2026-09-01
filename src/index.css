@@ -32,6 +32,17 @@
     letter-spacing: -0.02em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* iOS Safe Area Padding Utilities */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .bottom-safe {
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
   }
 
   body.modal-open {
@@ -208,23 +219,23 @@ body::-webkit-scrollbar,
   height: 0 !important;
 }
 
-/* Mobile GPU & Scroll Performance Optimizations */
+/* Mobile GPU & iOS Safari Responsiveness Optimizations */
 @media (max-width: 768px) {
-  /* Disable heavy backdrop-blur filters on mobile screens to prevent GPU lag */
-  .backdrop-blur-xl,
-  .backdrop-blur-2xl,
-  .backdrop-blur-3xl {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+  /* Ensure backdrop-blur renders correctly on iOS Safari */
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl {
+    -webkit-backdrop-filter: blur(12px) !important;
   }
 
-  /* Improve touch interaction velocity */
+  /* Improve touch interaction velocity & prevent accidental zoom on iOS */
   button,
   a,
   input,
   select,
   textarea {
     touch-action: manipulation;
+    font-size: 16px; /* Prevents iOS Safari from auto-zooming input fields */
   }
 
   /* Below-the-fold content visibility rendering optimization */
@@ -233,24 +244,38 @@ body::-webkit-scrollbar,
     contain-intrinsic-size: 1px 800px;
   }
 
-  /* Mobile view layout & overlap fixes */
+  /* Mobile view layout & overlap fixes for iPhone (320px - 430px) */
   .hero-section {
     display: flex;
     flex-direction: column;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    width: 100%;
   }
 
   .hero-section h1,
   .hero-section h2 {
-    font-size: 1.85rem !important;
-    line-height: 1.25 !important;
+    font-size: 2.15rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.03em !important;
   }
 
   .robot-container {
     width: 100%;
-    max-width: 300px !important;
+    max-width: 320px !important;
     margin: 0 auto;
+  }
+}
+
+/* Specific iPhone SE & Extra Small Mobile Viewports (<= 380px) */
+@media (max-width: 380px) {
+  .hero-section h1,
+  .hero-section h2 {
+    font-size: 1.75rem !important;
+  }
+
+  .robot-container {
+    max-width: 260px !important;
   }
 }
 
