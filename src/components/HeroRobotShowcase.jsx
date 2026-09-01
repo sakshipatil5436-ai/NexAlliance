@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Volume2 } from 'lucide-react';
 
 // Global Session Flag to ensure entry speech plays once on load
 let HAS_GLOBAL_SPOKEN_HI = false;
@@ -12,8 +13,24 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
   const canvasRef = useRef(null);
   const animFrameRef = useRef(null);
 
-  // Preloaded Audio Ref for instant 0ms mobile playback
-  const audioRef = useRef(null);
+  // Robust Mobile-Compliant Speech & Audio Playback
+  const speakHelloFromNexAlliance = () => {
+    try {
+      // Create fresh audio object for mobile browser autoplay policy compliance
+      const audio = new Audio('/hello_nexalliance.mp3');
+      audio.volume = 1.0;
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Fallback to Web Speech API if audio element blocked
+          playWebSpeechFallback();
+        });
+      }
+    } catch (err) {
+      playWebSpeechFallback();
+    }
+  };
 
   const playWebSpeechFallback = () => {
     try {
@@ -38,73 +55,48 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
     } catch (e) {}
   };
 
-  // Play entry greeting speech: "Hello from NexAlliance" (Instant MP3 + TTS Fallback)
-  const speakHelloFromNexAlliance = () => {
-    try {
-      if (audioRef.current) {
-        audioRef.current.currentTime = 0;
-        const playPromise = audioRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            playWebSpeechFallback();
-          });
-        }
-      } else {
-        playWebSpeechFallback();
-      }
-    } catch (err) {
-      playWebSpeechFallback();
-    }
-  };
-
-  // Entry Greeting on Website Initial Open & Refresh (Instant 0ms Audio Preload)
+  // Entry Greeting on Website Initial Open & Refresh (Mobile & Desktop Gesture Unlocked)
   useEffect(() => {
-    // Preload MP3 audio in browser memory for instant zero-delay playback
-    const audio = new Audio('/hello_nexalliance.mp3');
-    audio.preload = 'auto';
-    audioRef.current = audio;
+    let played = false;
 
-    // Preload SpeechSynthesis voices if available
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.getVoices();
-    }
+    const unlockAndPlayMobile = () => {
+      if (played) return;
+      played = true;
 
-    let hasTriggered = false;
-
-    const triggerGreeting = () => {
-      if (hasTriggered) return;
-      hasTriggered = true;
+      // Resume Web Speech API context if paused
+      if ('speechSynthesis' in window && window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+      }
 
       speakHelloFromNexAlliance();
 
-      window.removeEventListener('touchstart', triggerGreeting);
-      window.removeEventListener('touchend', triggerGreeting);
-      window.removeEventListener('pointerdown', triggerGreeting);
-      window.removeEventListener('click', triggerGreeting);
-      window.removeEventListener('scroll', triggerGreeting);
+      // Clean up event listeners once played
+      ['touchstart', 'touchend', 'pointerdown', 'click', 'scroll'].forEach(evt => {
+        window.removeEventListener(evt, unlockAndPlayMobile);
+        document.removeEventListener(evt, unlockAndPlayMobile);
+      });
     };
 
-    // 1. Immediate zero-delay audio playback attempt
+    // 1. Immediate play attempt (works on desktop and supporting mobile browsers)
     speakHelloFromNexAlliance();
 
-    // 2. Mobile Autoplay Policy Compliance: Instant gesture activation
-    window.addEventListener('touchstart', triggerGreeting, { passive: true });
-    window.addEventListener('touchend', triggerGreeting, { passive: true });
-    window.addEventListener('pointerdown', triggerGreeting, { passive: true });
-    window.addEventListener('click', triggerGreeting, { passive: true });
-    window.addEventListener('scroll', triggerGreeting, { passive: true });
+    // 2. Attach instant gesture unlock listeners for iOS Safari & Android Chrome
+    ['touchstart', 'touchend', 'pointerdown', 'click', 'scroll'].forEach(evt => {
+      window.addEventListener(evt, unlockAndPlayMobile, { passive: true });
+      document.addEventListener(evt, unlockAndPlayMobile, { passive: true });
+    });
 
     return () => {
-      window.removeEventListener('touchstart', triggerGreeting);
-      window.removeEventListener('touchend', triggerGreeting);
-      window.removeEventListener('pointerdown', triggerGreeting);
-      window.removeEventListener('click', triggerGreeting);
-      window.removeEventListener('scroll', triggerGreeting);
+      ['touchstart', 'touchend', 'pointerdown', 'click', 'scroll'].forEach(evt => {
+        window.removeEventListener(evt, unlockAndPlayMobile);
+        document.removeEventListener(evt, unlockAndPlayMobile);
+      });
     };
   }, []);
 
   // Robot Click & Touch Handler
-  const handleRobotClick = () => {
+  const handleRobotClick = (e) => {
+    if (e) e.stopPropagation();
     speakHelloFromNexAlliance();
   };
 
@@ -261,6 +253,16 @@ export default function HeroRobotShowcase({ theme = 'dark' }) {
             {/* Inner Glowing Ring */}
             <div className="absolute w-[160px] xs:w-[180px] sm:w-[300px] max-w-[80vw] h-[20px] sm:h-[36px] rounded-[100%] border-2 border-cyan-400/70 bg-gradient-to-r from-cyan-400/20 via-[#0088FF]/30 to-indigo-500/20 shadow-[0_0_15px_rgba(0,240,255,0.5)] blur-[0.5px]" />
 
+          </div>
+
+          {/* Sound Voice Activation Badge for Instant Mobile Audio */}
+          <div
+            onClick={handleRobotClick}
+            onTouchEnd={handleRobotClick}
+            className="mt-1 sm:mt-2 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gradient-to-r from-[#0088FF] to-[#2563EB] text-white text-[10px] sm:text-xs font-black tracking-widest uppercase shadow-lg shadow-sky-500/30 cursor-pointer animate-pulse z-30 hover:scale-105 transition-transform"
+          >
+            <Volume2 className="w-3.5 h-3.5" />
+            <span>ROBOT VOICE: HELLO FROM NEXALLIANCE</span>
           </div>
 
         </div>
